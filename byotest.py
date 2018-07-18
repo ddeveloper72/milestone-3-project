@@ -4,10 +4,19 @@ import run
 class TestStringMethods(unittest.TestCase):
     
     #Tests for genarsing game modules:
+    def test_checkUsers(self):
+        """
+        test to check if a user has alresady had thier name
+        registerd in the game
+        """
+        users = run.loadUsers()
+        self.assertEqual(run.validateName(users[0], "SomeName"), True)
+        self.assertEqual(run.validateName(users[0], "DuplicateName"), False)
+
     def test_loadUsers(self):
         """
         test to check that the users can be loaded from the
-        json file
+        users file
         """
         users = run.loadUsers()
         self.assertEqual(len(users),3)

@@ -1,14 +1,13 @@
 [
     {
-        "name": "rock",
-        "score": 0
+        "users": "Duncan"
     },
     {
-        "name": "paper",
-        "score": 0
+        "users": "Yoni" 
     },
     {
-        "name": "scissors",
-        "score": 0
+        "users": "Sam"
     }
 ]
+
+

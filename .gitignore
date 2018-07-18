@@ -5,3 +5,5 @@ data/riddles_dict.txt
 __pycache__/byotest.cpython-36.pyc
 __pycache__/run.cpython-36.pyc
 __pycache__/test_game.cpython-36.pyc
+node_modules
+
