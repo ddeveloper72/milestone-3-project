@@ -10,8 +10,8 @@ class TestStringMethods(unittest.TestCase):
         registerd in the game
         """
         users = run.loadUsers()
-        self.assertEqual(run.validateName(users[0], "SomeName"), True)
-        self.assertEqual(run.validateName(users[0], "DuplicateName"), False)
+        self.assertEqual(run.validateName("Duncan"), True)
+        self.assertEqual(run.validateName("DuplicateName"), False)
 
     def test_loadUsers(self):
         """
@@ -19,7 +19,7 @@ class TestStringMethods(unittest.TestCase):
         users file
         """
         users = run.loadUsers()
-        self.assertEqual(len(users),3)
+        self.assertEqual(len(users), 3)
 
     def test_loadRiddles(self):
         """

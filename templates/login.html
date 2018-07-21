@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block content %}
+<h2>{{ page_title }}</h2>
+
+
+<div class="masthead">
+    <div class="masthead-bg"></div>
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col-12 my-auto">
+                <div class="masthead-content text-white py-5 py-md-0">
+                    <h1 class="mb-3">Riddle Me This!</h1>
+                    <p class="mb-5">Old Style Riddles from The Project Gutenberg</p>
+                    <p>
+                        <strong>To Play</strong>! Sign in with your username, using the form below!</p>
+                    <div class="input-group input-group-newsletter">
+                        {% if session['logged_in'] %}
+                        <p>You're logged in already!</p>
+                        {% else %}
+
+                        <form action="/login" method="POST">
+                            <label form="username">Username:</label>
+                            <input type="username" class="form-control" name="username" placeholder="User name..." aria-label="Enter name..." aria-describedby="basic-addon">
+                            <input type="password" class="form-control" name="password" placeholder="Password..." aria-label="Enter name..." aria-describedby="basic-addon">
+
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary" type="submit" value="Log in">Lets Play!</button>
+                            </div>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

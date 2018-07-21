@@ -1,8 +1,9 @@
 import os
 import json
-from flask import Flask, redirect, render_template, request, flash
+from flask import Flask, redirect, render_template, request, flash, session, abort
 
 app = Flask(__name__)
+app.secret_key = 'some_secret'
 
 def write_to_file(filename, data):
     #Handel the process of writing data to a text file
@@ -16,7 +17,7 @@ def validateName(users):
     registered
     """
     users = request.form["username"]
-    with open("data/users.json", "r") as file:
+    with open("data/users.txt", "r") as file:
         data = json.load(file)
         return data              
     
@@ -52,33 +53,27 @@ def validateAnswer(riddle, answer):
 
 
 
+@app.route('/')
+def home():
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+        return "Hello Boss!"
 
-@app.route('/', methods=["GET", "POST"])
-def start():
-
-    if request.method == "POST":    
-        """
-        Gets a user login name, checks to see if it has already
-        been used and if not, writes it to the users.json file.
-        """ 
-        write_to_file("data/users.txt", request.form["username"] + "\n")
-        return redirect(request.form["username"])
-                 
-
-
-    return render_template("start.html")
-            
+@app.route('/login', methods=['POST'])
+def do_admin_login():
+    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+        session['logged_in'] = True
+    else:
+        flash('wrong password!')
+    return home()
 
 
-    
-    
-    
-        
-    
 
 @app.route('/<username>/', methods=["GET", "POST"])
-def game(username):
+def game(username):   
     
+
     return render_template("game.html")   
 
 
