@@ -6,12 +6,19 @@ class TestStringMethods(unittest.TestCase):
     #Tests for genarsing game modules:
     def test_checkUsers(self):
         """
-        test to check if a user has alresady had thier name
-        registerd in the game
+        test to check the list of user names
         """
         users = run.loadUsers()
-        self.assertEqual(run.validateName("Duncan"), True)
-        self.assertEqual(run.validateName("DuplicateName"), False)
+        self.expected = users['Duncan', 'Yoni', 'Sam']
+        self.result = users['Yoni', 'Sam', 'Duncan']
+
+    def test_count_eq(self):
+        """Will succeed"""
+        self.assertCountEqual(self.result, self.expected)
+
+    def test_list_eq(self):
+        """Will fail"""
+        self.assertListEqual(self.result, self.expected)
 
     def test_loadUsers(self):
         """

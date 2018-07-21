@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 {{ page_title }}
 <h2>Game Page!</h2>
 <div class="masthead">
@@ -6,6 +7,17 @@
         <div class="container h-100">
           <div class="row h-100">
             <div class="col-12 my-auto">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                      <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" href="#">log out</a>
+                        
+                        
+                      </div>
               <div class="masthead-content text-white py-5 py-md-0">
                 <h1 class="mb-3">Riddle Me This!</h1>
                 <p class="mb-5">{{riddle}}</p>

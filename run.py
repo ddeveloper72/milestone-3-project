@@ -1,9 +1,25 @@
 import os
 import json
 from flask import Flask, redirect, render_template, request, flash, session, abort
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from flask_bootstrap import Bootstrap
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, BooleanField
+from wtforms.validators import InputRequired, Length
 
 app = Flask(__name__)
+Bootstrap(app)
 app.secret_key = 'some_secret'
+
+class LoginForm(FlaskForm):
+    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
+    remember = BooleanField('remember me')
+
+class SignupForm(FlaskForm):
+    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
+
 
 def write_to_file(filename, data):
     #Handel the process of writing data to a text file
@@ -11,25 +27,44 @@ def write_to_file(filename, data):
         file.writelines(data)
 
 
-def validateName(users):
+def registerUser():
     """
-    Test to validate that a user name has not already been 
-    registered
+    Register users for our game, to users.txt
     """
-    users = request.form["username"]
-    with open("data/users.txt", "r") as file:
-        data = json.load(file)
-        return data              
-    
-    
+    username = str(request.form['username'])
+    password = str(request.form['password']) 
 
+    file = open("data/users.txt", "a")
+    file.write(username)
+    file.write(" ")
+    file.write(password)
+    file.write("\n")
+    file.close()
+
+def loginUser():
+    """
+    Login users for our game, verified from out users.txt
+    """
+    
+    username = str(request.form['username'])
+    password = str(request.form['password'])
+
+    for line in open("data/users.txt","r").readlines(): # Read the lines
+        login_info = line.split() # Split on the space, and store the results in a list of two strings
+        if username == login_info[0] and password == login_info[1]:
+            # If credentials are valid:
+            return True
+        else:
+            # If credentials are invalid:  
+            return False 
+   
 
 
 def loadUsers():
     """ 
     Lets get our player names from our databse file: 
     """
-    with open("data/users.json", "r") as file:
+    with open("data/users.txt", "r") as file:
         data = json.load(file)
         return data
 
@@ -54,32 +89,30 @@ def validateAnswer(riddle, answer):
 
 
 @app.route('/')
-def home():
-    if not session.get('logged_in'):
-        return render_template('login.html')
-    else:
-        return "Hello Boss!"
-
-@app.route('/login', methods=['POST'])
-def do_admin_login():
-    if request.form['password'] == 'password' and request.form['username'] == 'admin':
-        session['logged_in'] = True
-    else:
-        flash('wrong password!')
-    return home()
+def index():
+    return render_template('index.html')
 
 
+@app.route('/login')
+def login(): 
+    form = LoginForm()      
+    return render_template('login.html', form = form)
 
-@app.route('/<username>/', methods=["GET", "POST"])
-def game(username):   
+
+@app.route('/signup')
+def signup():
+    form = SignupForm()
+    return render_template('signup.html', form=form)
     
 
+@app.route('/game')
+def game():   
     return render_template("game.html")   
 
 
-@app.route('/end')
-def end():
-    return render_template("end.html", page_title="Your Leader-Board!")
+@app.route('/leaderboard')
+def leaderboard():
+    return render_template("leaderboard")
 
 
 
