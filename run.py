@@ -1,25 +1,29 @@
 import os
 import json
-from flask import Flask, redirect, render_template, request, flash, session, abort
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask import Flask, redirect, render_template, request, flash, session, url_for
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
-from wtforms.validators import InputRequired, Length
+from wtforms.validators import InputRequired, Email, Length
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 
 app = Flask(__name__)
 app.secret_key = 'some_secret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mnt/c/Users/dunca/OneDrive/The Code Institute/My Visual Studio Projects/milestone-3-project/database.db'
-bootstrap = Bootstrap(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+Bootstrap(app)
 db = SQLAlchemy(app)
 
 
-class user(db.Model):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(15), unique=True)
-    password = db.Column(db.String(80))
+    username = db.Column(db.String(15), unique=True, nullable=False)
+    password = db.Column(db.String(80), nullable=False)
+    
+
 
 class LoginForm(FlaskForm):
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
@@ -35,39 +39,6 @@ def write_to_file(filename, data):
     #Handel the process of writing data to a text file
     with open(filename, "a") as file:
         file.writelines(data)
-
-
-def registerUser():
-    """
-    Register users for our game, to users.txt
-    """
-    username = str(request.form['username'])
-    password = str(request.form['password']) 
-
-    file = open("data/users.txt", "a")
-    file.write(username)
-    file.write(" ")
-    file.write(password)
-    file.write("\n")
-    file.close()
-
-def loginUser():
-    """
-    Login users for our game, verified from out users.txt
-    """
-    
-    username = str(request.form['username'])
-    password = str(request.form['password'])
-
-    for line in open("data/users.txt","r").readlines(): # Read the lines
-        login_info = line.split() # Split on the space, and store the results in a list of two strings
-        if username == login_info[0] and password == login_info[1]:
-            # If credentials are valid:
-            return True
-        else:
-            # If credentials are invalid:  
-            return False 
-   
 
 
 def loadUsers():
@@ -108,7 +79,13 @@ def login():
     form = LoginForm() 
 
     if form.validate_on_submit():
-        return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>'
+        user = User.query.filter_by(username=form.username.data).first()
+        if user:
+            if user.password == form.password.data:
+                return redirect(url_for('game'))
+
+        return '<h1>invalid username or password</h1>'
+        #return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>'
 
     return render_template('login.html', form = form)
 
@@ -117,8 +94,14 @@ def login():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignUpForm()
+     
     if form.validate_on_submit():
-        return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>'
+        hashed_password = generate_password_hash(form.password.data, method='sha256')
+        new_user = User(username=form.username.data, password=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+
+        return '<h1> The data is confimred </h1>'
 
     return render_template('signup.html', form=form)
     
