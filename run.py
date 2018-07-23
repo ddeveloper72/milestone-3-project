@@ -8,7 +8,7 @@ from wtforms.validators import InputRequired, Email, Length
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
 
 app = Flask(__name__)
@@ -16,14 +16,20 @@ app.secret_key = 'some_secret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 Bootstrap(app)
 db = SQLAlchemy(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view ='login'
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(15), unique=True, nullable=False)
     password = db.Column(db.String(80), nullable=False)
     
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 class LoginForm(FlaskForm):
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
@@ -81,11 +87,12 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user:
-            if user.password == form.password.data:
+            if check_password_hash(user.password, form.password.data):
+                login_user(user, remember=form.remember.data)
                 return redirect(url_for('game'))
 
-        return '<h1>invalid username or password</h1>'
-        #return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>'
+        flash('<h3>This is invalid username or password</h3>')
+        
 
     return render_template('login.html', form = form)
 
@@ -94,14 +101,18 @@ def login():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignUpForm()
-     
-    if form.validate_on_submit():
-        hashed_password = generate_password_hash(form.password.data, method='sha256')
-        new_user = User(username=form.username.data, password=hashed_password)
-        db.session.add(new_user)
-        db.session.commit()
 
-        return '<h1> The data is confimred </h1>'
+    try: 
+        if form.validate_on_submit():
+            hashed_password = generate_password_hash(form.password.data, method='sha256')
+            new_user = User(username=form.username.data, password=hashed_password)
+            db.session.add(new_user)
+            db.session.commit()
+
+            return '<h1>The data is confimred. A new user ahs been added</h1>'
+
+    except Exception:
+        flash('This username already exists, please click register above and try a different name.')
 
     return render_template('signup.html', form=form)
     
@@ -109,15 +120,20 @@ def signup():
 @app.route('/game')
 @login_required
 def game():   
-    return render_template("game.html")   
+    return render_template("game.html", name=current_user.username)   
 
 
 @app.route('/leaderboard')
 @login_required
 def leaderboard():
-    return render_template("leaderboard")
+    return render_template("leaderboard", name=current_user.username)
 
 
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     """

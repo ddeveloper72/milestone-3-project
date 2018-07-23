@@ -24,12 +24,20 @@
     <div class="row h-100">
       <div class="col-12 my-auto">
         <div class="masthead-content text-white py-5 py-md-0">
-          <h1 class="mb-3">Riddle Me This!</h1>
+          <h2 class="mb-3">Riddle Me This!</h2>
           <p class="mb-5">Old Style Riddles from The Project Gutenberg</p>
-          <p>
+          <p>              
             <strong>To Register</strong>! Type in a uername and password, into the form below!</p>
             <form class="form-signin" method="POST" action="/signup">
-              {{ form.hidden_tag() }} {{ wtf.form_field(form.username) }} {{ wtf.form_field(form.password) }}
+              {{ form.hidden_tag() }} {{ wtf.form_field(form.username) }} 
+              {% with messages = get_flashed_messages() %} {% if messages %}
+              <ul class="flashes">
+                  {% for message in messages %}
+                  <li>{{ message }}</li>
+                  {% endfor %}
+              </ul>
+              {% endif %} {% endwith %}
+              {{ wtf.form_field(form.password) }}
 
               <div class="input-group-append">
                 <button class="btn btn-secondary" type="submit" value="Log in">Lets Play!</button>
