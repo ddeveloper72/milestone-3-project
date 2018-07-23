@@ -1,10 +1,17 @@
+"""
+The login system for players uses SQLAlchemy.  The code has been adapted and 
+reworked from a tutorial by PrettyPrinted to suit this game environment.  
+Exception handling was added to def signup() function to inform a player 
+that a user name has already been taken.
+"""
+
 import os
 import json
 from flask import Flask, redirect, render_template, request, flash, session, url_for
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField
-from wtforms.validators import InputRequired, Email, Length
+from wtforms.validators import InputRequired, Length
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -13,7 +20,11 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 app = Flask(__name__)
 app.secret_key = 'some_secret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+# I've used a relative path from sqlite to my database.db file
+# becase an absolute path failed to work.
+# I believe that this was because of an error in the path neame or sqlite3
+# doesn't like spaces in my windows 10 folder path names.
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' 
 Bootstrap(app)
 db = SQLAlchemy(app)
 login_manager = LoginManager()
@@ -102,6 +113,8 @@ def login():
 def signup():
     form = SignUpForm()
 
+    # The code below was modified to return an exception if a duplicate user name was
+    # attempted, during a new user registration.
     try: 
         if form.validate_on_submit():
             hashed_password = generate_password_hash(form.password.data, method='sha256')
