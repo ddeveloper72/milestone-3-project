@@ -102,7 +102,7 @@ def login():
                 login_user(user, remember=form.remember.data)
                 return redirect(url_for('game'))
 
-        flash('<h3>This is invalid username or password</h3>')
+        flash('This is invalid username or password')
         
 
     return render_template('login.html', form = form)
@@ -122,7 +122,7 @@ def signup():
             db.session.add(new_user)
             db.session.commit()
 
-            return '<h1>The data is confimred. A new user ahs been added</h1>'
+            flash('The data is confimred. A new user ahs been added')
 
     except Exception:
         flash('This username already exists, please click register above and try a different name.')
