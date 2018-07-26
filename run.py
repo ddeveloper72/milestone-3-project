@@ -52,15 +52,17 @@ class SignUpForm(FlaskForm):
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
     
 
+#1
 def write_to_file(filename, data):
     #Handel the process of writing data to a text file
     with open(filename, "a") as file:
         file.writelines(data)
 
-#1
+#2
 def loadUsers():
     """ 
-    Lets get our player names from our databse file: 
+    Gets our player names from a text file used to store
+    their wrong guesses: 
     """
     answer_given = []
     with open("data/users.txt", "r") as player_answer:
@@ -68,30 +70,34 @@ def loadUsers():
         return answer_given
 
 
-#2
+#3
 def storePlayerName(username, answer_given):
+    """ 
+    Stores player names and wrong answer to a txt file.  Adapted
+    from chat app tutorial that maintained the chat history: 
+    """
     write_to_file("data/users.txt", f"{username}'s answer was {answer_given}\n")
 
 
 
-#3
+#4
 def loadRiddles():
     """ 
     Read the riddles from the riddles txt: 
     """
-    with open("data/riddles.json", "r") as file:
-        data = json.load(file)
+    with open("data/riddles.json", "r") as json_data:
+        data = json.load(json_data)
         return data
 
 
 
-#4
+#5 Redundant function from development
 def validateAnswer(riddle, answer):
     """
     check the player's answer against our own
     """
-    return riddle["answer"] in answer.lower()
-
+    answer_given = request.form["message"].lower()
+    return answer_given
 
 
 
@@ -99,8 +105,6 @@ def validateAnswer(riddle, answer):
 @app.route('/')
 def index():
     return render_template('index.html')
-
-
 
 
 
@@ -153,13 +157,15 @@ def signup():
 @app.route('/game/<username>', methods=["GET", "POST"])
 @login_required
 def game(username):  
-    """
-    riddles are stored in JSON file and are indexed
-    """
+    
+    
+    # riddles are stored in JSON file and are indexed
     data = []
-    with open("data/riddles.json", "r") as json_data:
-        data = json.load(json_data)
 
+    # Load JSON data from riddles.json
+    data = loadRiddles()
+        
+        
     # beging at first riddle
     riddleNumber = 0
 
@@ -169,8 +175,13 @@ def game(username):
         # increment the riddle by 1 each time a correct answer is
         # given.
         riddleNumber = int(request.form["riddleNumber"])
-        answer_given = request.form["message"].lower()
 
+        
+        # Call validateAnswer function
+        answer_given = validateAnswer("riddle", "answer")
+            
+            
+        
         if data[riddleNumber]["answer"] == answer_given:
              riddleNumber += 1
 
@@ -187,7 +198,7 @@ def game(username):
 
 
 
-@app.route('/leaderboard')
+@app.route('/leaderboard/<username>')
 @login_required
 def leaderboard():
     return render_template("leaderboard", name=current_user.username)
