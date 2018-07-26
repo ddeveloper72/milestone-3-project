@@ -1,3 +1,16 @@
-default_value 123
-Yoni 1234
+Duncan's answer was pair of scales
+
+Duncan's answer was toad
+
+Duncan's answer was rabbit
+
+Duncan's answer was slug
+
+Duncan's answer was trick answer
+
+Yoni's answer was bug
+
+Yoni's answer was gow
+
+Yoni's answer was fish
 

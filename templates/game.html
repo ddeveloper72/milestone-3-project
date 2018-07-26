@@ -30,11 +30,15 @@ Game
     <div class="row h-100">
       <div class="col-12 my-auto">
         <div class="masthead-content text-white py-5 py-md-0">
-          <h2 class="mb-3">Welcome {{ name }}, to Riddle-me-this!</h2>
-          <p class="mb-5">Riddle me This Text here</p>
+          <h2 class="mb-3">Welcome {{ username }}, to Riddle-me-this!</h2>
+          <p class="mb-5">{{ riddle_me_this[riddleNumber]["riddle"] }}</p>
           <p>
             <strong>Have you the answer</strong>! Type in a one word answer below!</p>
-            
+            <form method="POST" class="form-inline">
+              <input type="text" class="form-control" placeholder="answer" name="message" id="message" autofocus>
+              <input type="hidden" name="riddleNumber" id="riddleNumber" value={{riddleNumber}}>
+              <button class="btn btn-danger">send</button>
+          </form>
             <div class="input-group input-group-newsletter">
           </div>
         </div>

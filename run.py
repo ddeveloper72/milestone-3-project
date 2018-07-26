@@ -57,15 +57,24 @@ def write_to_file(filename, data):
     with open(filename, "a") as file:
         file.writelines(data)
 
-
+#1
 def loadUsers():
     """ 
     Lets get our player names from our databse file: 
     """
-    with open("data/users.txt", "r") as file:
-        data = json.load(file)
-        return data
+    answer_given = []
+    with open("data/users.txt", "r") as player_answer:
+        answer_given = player_answer.readlines()
+        return answer_given
 
+
+#2
+def storePlayerName(username, answer_given):
+    write_to_file("data/users.txt", f"{username}'s answer was {answer_given}\n")
+
+
+
+#3
 def loadRiddles():
     """ 
     Read the riddles from the riddles txt: 
@@ -74,21 +83,25 @@ def loadRiddles():
         data = json.load(file)
         return data
 
+
+
+#4
 def validateAnswer(riddle, answer):
     """
     check the player's answer against our own
     """
     return riddle["answer"] in answer.lower()
 
-""" def addOnScore(username): 
 
-"""
 
 
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -100,12 +113,15 @@ def login():
         if user:
             if check_password_hash(user.password, form.password.data):
                 login_user(user, remember=form.remember.data)
-                return redirect(url_for('game'))
+                return redirect(url_for('game', username=form.username.data))
 
         flash('This is invalid username or password')
         
 
     return render_template('login.html', form = form)
+
+
+
 
 
 
@@ -122,18 +138,53 @@ def signup():
             db.session.add(new_user)
             db.session.commit()
 
-            flash('The data is confimred. A new user ahs been added')
+            flash('The data is confimred. A new user has been added')
+            
 
     except Exception:
         flash('This username already exists, please click register above and try a different name.')
 
     return render_template('signup.html', form=form)
+
+
+
     
 
-@app.route('/game')
+@app.route('/game/<username>', methods=["GET", "POST"])
 @login_required
-def game():   
-    return render_template("game.html", name=current_user.username)   
+def game(username):  
+    """
+    riddles are stored in JSON file and are indexed
+    """
+    data = []
+    with open("data/riddles.json", "r") as json_data:
+        data = json.load(json_data)
+
+    # beging at first riddle
+    riddleNumber = 0
+
+    if request.method == "POST":
+    
+        # post riddle number x to the the the game template and
+        # increment the riddle by 1 each time a correct answer is
+        # given.
+        riddleNumber = int(request.form["riddleNumber"])
+        answer_given = request.form["message"].lower()
+
+        if data[riddleNumber]["answer"] == answer_given:
+             riddleNumber += 1
+
+        else:
+            # The project breif requires that the incorrect answer be
+            # stored and presented back to the players.  See funcion
+            # storePlayerName above, to see this happening.
+            storePlayerName(username, answer_given)
+    
+   
+    return render_template("game.html", username=username, riddle_me_this=data, riddleNumber=riddleNumber)
+
+
+
 
 
 @app.route('/leaderboard')
@@ -142,11 +193,17 @@ def leaderboard():
     return render_template("leaderboard", name=current_user.username)
 
 
+
+
+
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+
+
 
 if __name__ == '__main__':
     """
