@@ -47,8 +47,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(run.validateAnswer(riddles[0], "house"), False)
 
     
-    
-    
+   
     def test_count_eq(self):
         """Will succeed"""
         self.assertCountEqual(self.result, self.expected)

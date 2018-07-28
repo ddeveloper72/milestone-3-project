@@ -2,11 +2,13 @@
 The login system for players uses SQLAlchemy.  The code has been adapted and 
 reworked from a tutorial by PrettyPrinted to suit this game environment.  
 Exception handling was added to def signup() function to inform a player 
-that a user name has already been taken.
+that a user name has already been taken.  The username for the game is pulled
+from the SQL database and pushed to the game.html
 """
 
 import os
 import json
+import time
 from flask import Flask, redirect, render_template, request, flash, session, url_for
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
@@ -100,6 +102,17 @@ def validateAnswer(riddle, answer):
     return answer_given
 
 
+#6
+def countRiddles():
+    """
+    Count the number or riddle in out list so we
+    can keep score! This makes our count dynamic.
+    """
+    numRiddles = len(loadRiddles())
+    return numRiddles
+
+
+
 
 
 @app.route('/')
@@ -166,8 +179,12 @@ def game(username):
     data = loadRiddles()
         
         
-    # beging at first riddle
+    # Set the first riddle
     riddleNumber = 0
+
+    
+    # Set the user score to start at 0
+    score = 0
 
     if request.method == "POST":
     
@@ -175,7 +192,8 @@ def game(username):
         # increment the riddle by 1 each time a correct answer is
         # given.
         riddleNumber = int(request.form["riddleNumber"])
-
+        image = int(request.form["riddleNumber"])
+        
         
         # Call validateAnswer function
         answer_given = validateAnswer("riddle", "answer")
@@ -183,24 +201,41 @@ def game(username):
             
         
         if data[riddleNumber]["answer"] == answer_given:
-             riddleNumber += 1
+            
+            image=riddleNumber
+            render_template("game.html", riddle_me_this=data, riddleNumber=riddleNumber)  
+            time.sleep(0)            
+            score += 1
+            riddleNumber += 1
 
+            #flash the number of riddles correct with the dynaminc total of the
+            # number of riddles. Yes! The code will update for any number of riddles.
+            flash(f'Well done! Thats {score} out of {countRiddles()} right!')
+
+                      
         else:
             # The project breif requires that the incorrect answer be
             # stored and presented back to the players.  See funcion
             # storePlayerName above, to see this happening.
             storePlayerName(username, answer_given)
-    
+            flash(f'Incorrect {username}, \"{answer_given}" is not the right answer... \nTry again?')
+
+    if request.method == "POST":        
+        if answer_given ==  "mole" and countRiddles() == 2:
+            flash(f'Excellent, youve reached the end. Thats {score} out of {countRiddles()} right!')
+            time.sleep(3)                
+            return render_template('leaderboard.html')
+        
    
     return render_template("game.html", username=username, riddle_me_this=data, riddleNumber=riddleNumber)
-
+    
 
 
 
 
 @app.route('/leaderboard/<username>')
 @login_required
-def leaderboard():
+def leaderboard(username):
     return render_template("leaderboard", name=current_user.username)
 
 

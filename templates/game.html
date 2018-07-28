@@ -31,13 +31,21 @@ Game
       <div class="col-12 my-auto">
         <div class="masthead-content text-white py-5 py-md-0">
           <h2 class="mb-3">Welcome {{ username }}, to Riddle-me-this!</h2>
+          <div class="col-auto">{% autoescape false %}{{ riddle_me_this[riddleNumber]["image"] }}{% endautoescape %}</div>
           <p class="mb-5">{{ riddle_me_this[riddleNumber]["riddle"] }}</p>
           <p>
-            <strong>Have you the answer</strong>! Type in a one word answer below!</p>
+              {% with messages = get_flashed_messages() %} {% if messages %}
+              <ul class="flashes">
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+              </ul>
+              {% endif %} {% endwith %}
+            <strong>Have you the answer?</strong> Type in your answer below!<br>(eg. glass of wine)</p>
             <form method="POST" class="form-inline">
               <input type="text" class="form-control" placeholder="answer" name="message" id="message" autofocus>
               <input type="hidden" name="riddleNumber" id="riddleNumber" value={{riddleNumber}}>
-              <button class="btn btn-danger">send</button>
+              <button class="btn btn-secondary">send</button>
           </form>
             <div class="input-group input-group-newsletter">
           </div>
