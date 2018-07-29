@@ -1,35 +1,5 @@
 {% extends 'base.html' %} 
-
-{% block title %}
-Leaderboard
-{% endblock %}
-
 {% block content %}
-{{ page_title }}
-<div class="masthead">
-  <div class="masthead-bg"></div>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="{{ url_for('index') }}">Home
-          <span class="sr-only">(current)</span>
-        </a>
-        <a class="nav-item nav-link" href="{{ url_for('login') }}">Login here</a>
-        <a class="nav-item nav-link" href="{{ url_for('signup') }}">Register!</a>
-        <a class="nav-item nav-link" href="{{ url_for('logout') }}">Log Out</a>
-
-      </div>
-    </div>
-  </nav>
-
-  <div class="container h-100">
-    <div class="row h-100">
-      <div class="col-12 my-auto">
-        <div class="masthead-content text-white py-5 py-md-0">
           <h2 class="mb-3">{{ username }}</h2>
           <div class="col-auto">{% autoescape false %}{% endautoescape %}</div>
           <p class="mb-5"></p>
@@ -42,12 +12,4 @@ Leaderboard
               </ul>
               {% endif %} {% endwith %}
             </p>
-            
-            <div class="input-group input-group-newsletter">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 {% endblock %}

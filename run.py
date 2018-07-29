@@ -18,6 +18,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -54,6 +55,7 @@ class SignUpForm(FlaskForm):
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
     
 
+
 #1
 def write_to_file(filename, data):
     #Handel the process of writing data to a text file
@@ -78,7 +80,10 @@ def storePlayerName(username, answer_given):
     Stores player names and wrong answer to a txt file.  Adapted
     from chat app tutorial that maintained the chat history: 
     """
-    write_to_file("data/users.txt", f"{username}'s answer was {answer_given}\n")
+    write_to_file("data/users.txt", "({0} {1} {2}\n".format(
+        datetime.now().strftime("%H:%M:%S"),
+        username.title(),
+        answer_given))
 
 
 
@@ -113,29 +118,46 @@ def countRiddles():
 
 
 
+#8 
+def writeScore(username, score):
+    """
+    User's score has to be saved before refreshing the page,
+    or score resets to 0 for each new riddle on page refresh.
+    """
+    write_to_file("data/score.txt", "{0} - {1} - {2}\n".format(
+        datetime.now().strftime("%H:%M:%S"),
+        username.title(),
+        score))
+
 
 
 @app.route('/')
 def index():
+    if 'username' in session:
+        username = session['username']
+        flash('Logged in as '+ username)
+        
     return render_template('index.html')
+
 
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login(): 
     form = LoginForm() 
-
+    error = None
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user:
             if check_password_hash(user.password, form.password.data):
                 login_user(user, remember=form.remember.data)
-                return redirect(url_for('game', username=form.username.data))
+                session['username'] = (form.username.data)
+                return redirect(url_for('game', username = session['username']))
 
-        flash('This is invalid username or password')
+        flash(u'This is invalid username or password', 'error')
         
 
-    return render_template('login.html', form = form)
+    return render_template('login.html', form = form, error = error)
 
 
 
@@ -172,6 +194,7 @@ def signup():
 def game(username):  
     
     
+    
     # riddles are stored in JSON file and are indexed
     data = []
 
@@ -185,14 +208,21 @@ def game(username):
     
     # Set the user score to start at 0
     score = 0
+    
 
     if request.method == "POST":
     
+        writeScore(username, score)
+
         # post riddle number x to the the the game template and
         # increment the riddle by 1 each time a correct answer is
         # given.
         riddleNumber = int(request.form["riddleNumber"])
-        image = int(request.form["riddleNumber"])
+
+        # I plan to only show the image if the user gets the riddle
+        # either right, or wrong. It serves two purposes:
+        # A reward as well as a hint.
+        image = int(request.form["riddleNumber"]) 
         
         
         # Call validateAnswer function
@@ -201,17 +231,20 @@ def game(username):
             
         
         if data[riddleNumber]["answer"] == answer_given:
-            
-            image=riddleNumber
-            render_template("game.html", riddle_me_this=data, riddleNumber=riddleNumber)  
-            time.sleep(0)            
             score += 1
             riddleNumber += 1
+            image=riddleNumber
 
+            render_template("game.html", riddle_me_this=data, riddleNumber=riddleNumber)
+
+            # Test to return message as fixed html
+            # render_template("game.html", riddle_me_this=data, riddleNumber=riddleNumber, score=f"Well done! Thats '{score}' out of '{countRiddles()}' right!")  
+                  
             #flash the number of riddles correct with the dynaminc total of the
             # number of riddles. Yes! The code will update for any number of riddles.
             flash(f'Well done! Thats {score} out of {countRiddles()} right!')
 
+            
                       
         else:
             # The project breif requires that the incorrect answer be
@@ -220,8 +253,9 @@ def game(username):
             storePlayerName(username, answer_given)
             flash(f'Incorrect {username}, \"{answer_given}" is not the right answer... \nTry again?')
 
-    if request.method == "POST":        
-        if answer_given ==  "mole" and countRiddles() == 2:
+    if request.method == "POST": 
+        if answer_given ==  "mole" and countRiddles() == 2:      # development if statement  
+        #if answer_given ==  "hour-glass" and riddleNumber == countRiddles():  # production if statement
             flash(f'Excellent, youve reached the end. Thats {score} out of {countRiddles()} right!')
             time.sleep(3)                
             return render_template('leaderboard.html')
@@ -246,6 +280,7 @@ def leaderboard(username):
 @login_required
 def logout():
     logout_user()
+    session.pop('username', None)
     return redirect(url_for('index'))
 
 
