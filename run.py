@@ -7,6 +7,7 @@ from the SQL database and pushed to the game.html
 """
 
 import os
+import shutil
 import json
 import time
 from flask import Flask, redirect, render_template, request, flash, session, url_for
@@ -17,7 +18,6 @@ from wtforms.validators import InputRequired, Length
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from datetime import datetime
 
 
@@ -33,6 +33,7 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view ='login'
+
 
 
 class User(UserMixin, db.Model):
@@ -61,6 +62,7 @@ def write_to_file(filename, data):
     #Handel the process of writing data to a text file
     with open(filename, "a") as file:
         file.writelines(data)
+
 
 #2
 def loadUsers():
@@ -98,12 +100,12 @@ def loadRiddles():
 
 
 
-#5 Redundant function from development
+#5
 def validateAnswer(riddle, answer):
     """
     check the player's answer against our own
     """
-    answer_given = request.form["message"].lower()
+    answer_given = request.form["answer"].lower()
     return answer_given
 
 
@@ -116,18 +118,72 @@ def countRiddles():
     numRiddles = len(loadRiddles())
     return numRiddles
 
+#7
+def newUserScore(username, score):
+    """
+    User's iniotal score has to be created.
+    This is set to 0 and the score file is
+    created on successful login. The file is
+    stored in a directory consisting of the
+    user's name, which will allow unique 
+    instances of the game, so long as the 
+    player names are unique. This is insured
+    but the login registration form, which 
+    specifies unique registration names. 
+    """
+    data ={}
+    data['game'] = []
+    data['game'].append({
+        'username': f'{username}',
+        'score': (score)
+    })
+    
+    """
+    Every instance of the game, requiers a dedicated
+    score board for the game. A pre-existing score,json file is
+    removed at login, if it is already present. 
+    So, our score alwasy starts from 0.
+    """
+    dir = f'data/player_data/{username}/'   
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+    else:
+        shutil.rmtree(dir)           #removes all the subdirectories!
+        os.makedirs(dir)
+
+
+    # The scor board will alwasy write over itself, permitting the score
+    # to increase.
+    with open(f"data/player_data/{username}/scores.json", 'w+') as json_data:
+        json.dump(data, json_data)
+
 
 
 #8 
 def writeScore(username, score):
     """
-    User's score has to be saved before refreshing the page,
-    or score resets to 0 for each new riddle on page refresh.
+    User's score has to be saved after answering each
+    riddle.  To do this, we rewrite the JSON file.
     """
-    write_to_file("data/score.txt", "{0} - {1} - {2}\n".format(
-        datetime.now().strftime("%H:%M:%S"),
-        username.title(),
-        score))
+    data ={}
+    data['game'] = []
+    data['game'].append({
+        'username': f'{username}',
+        'score': (score)
+    })
+
+    with open(f"data/player_data/{username}/scores.json", 'w+') as json_data:
+        json.dump(data, json_data)
+
+
+#9
+def loadScore(username):
+    """ 
+    Read player score: 
+    """
+    with open(f"data/player_data/{username}/scores.json", "r") as json_data:
+        data = json.load(json_data)
+        return data
 
 
 
@@ -146,12 +202,15 @@ def index():
 def login(): 
     form = LoginForm() 
     error = None
+    score = 0   # our score at login is 0
+
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user:
             if check_password_hash(user.password, form.password.data):
                 login_user(user, remember=form.remember.data)
                 session['username'] = (form.username.data)
+                newUserScore(form.username.data, score) # Create a score tracker.
                 return redirect(url_for('game', username = session['username']))
 
         flash(u'This is invalid username or password', 'error')
@@ -167,7 +226,7 @@ def login():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignUpForm()
-
+    
     # The code below was modified to return an exception if a duplicate user name was
     # attempted, during a new user registration.
     try: 
@@ -176,7 +235,7 @@ def signup():
             new_user = User(username=form.username.data, password=hashed_password)
             db.session.add(new_user)
             db.session.commit()
-
+            
             flash('The data is confimred. A new user has been added')
             
 
@@ -193,7 +252,7 @@ def signup():
 @login_required
 def game(username):  
     
-    
+   
     
     # riddles are stored in JSON file and are indexed
     data = []
@@ -206,14 +265,13 @@ def game(username):
     riddleNumber = 0
 
     
-    # Set the user score to start at 0
-    score = 0
+    # Get the current score from the scores json file
+    score = (loadScore(username)['game'][0]['score'])
+
     
 
     if request.method == "POST":
     
-        writeScore(username, score)
-
         # post riddle number x to the the the game template and
         # increment the riddle by 1 each time a correct answer is
         # given.
@@ -222,7 +280,7 @@ def game(username):
         # I plan to only show the image if the user gets the riddle
         # either right, or wrong. It serves two purposes:
         # A reward as well as a hint.
-        image = int(request.form["riddleNumber"]) 
+        # image = int(request.form["riddleNumber"]) 
         
         
         # Call validateAnswer function
@@ -232,20 +290,24 @@ def game(username):
         
         if data[riddleNumber]["answer"] == answer_given:
             score += 1
+            
             riddleNumber += 1
             image=riddleNumber
 
-            render_template("game.html", riddle_me_this=data, riddleNumber=riddleNumber)
+            # Write scores to a file that contains our username, score for each question and
+            # time the question was answered.            
+            writeScore(username, score)
 
-            # Test to return message as fixed html
-            # render_template("game.html", riddle_me_this=data, riddleNumber=riddleNumber, score=f"Well done! Thats '{score}' out of '{countRiddles()}' right!")  
-                  
             #flash the number of riddles correct with the dynaminc total of the
-            # number of riddles. Yes! The code will update for any number of riddles.
             flash(f'Well done! Thats {score} out of {countRiddles()} right!')
-
             
-                      
+            # number of riddles. Yes! The code will update for any number of riddles.
+
+            if riddleNumber == countRiddles():  # production if statement
+                flash(f'Excellent, youve reached the end. Now to compare your score with other players...')
+                time.sleep(3)                
+                return redirect('/leaderboard/{0}'.format(username))
+    
         else:
             # The project breif requires that the incorrect answer be
             # stored and presented back to the players.  See funcion
@@ -253,24 +315,14 @@ def game(username):
             storePlayerName(username, answer_given)
             flash(f'Incorrect {username}, \"{answer_given}" is not the right answer... \nTry again?')
 
-    if request.method == "POST": 
-        if answer_given ==  "mole" and countRiddles() == 2:      # development if statement  
-        #if answer_given ==  "hour-glass" and riddleNumber == countRiddles():  # production if statement
-            flash(f'Excellent, youve reached the end. Thats {score} out of {countRiddles()} right!')
-            time.sleep(3)                
-            return render_template('leaderboard.html')
-        
+      
    
     return render_template("game.html", username=username, riddle_me_this=data, riddleNumber=riddleNumber)
-    
-
-
-
 
 @app.route('/leaderboard/<username>')
 @login_required
 def leaderboard(username):
-    return render_template("leaderboard", name=current_user.username)
+    return render_template("leaderboard.html", name=current_user.username)
 
 
 
