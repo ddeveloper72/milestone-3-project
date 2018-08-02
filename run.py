@@ -9,6 +9,7 @@ from the SQL database and pushed to the game.html
 import os
 import shutil
 import json
+import datetime
 import time
 from flask import Flask, redirect, render_template, request, flash, session, url_for
 from flask_bootstrap import Bootstrap
@@ -35,7 +36,8 @@ login_manager.init_app(app)
 login_manager.login_view ='login'
 
 
-
+# SQL classes for managing user names and login data, providing a basic level
+# of security for our player's data.
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(15), unique=True, nullable=False)
@@ -56,15 +58,24 @@ class SignUpForm(FlaskForm):
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
     
 
-
+# Backend Python functions
 #1
 def write_to_file(filename, data):
-    #Handel the process of writing data to a text file
+    """
+    Handel multiple function calls to write data to a text file
+    """
     with open(filename, "a") as file:
         file.writelines(data)
 
-
 #2
+def write_to_json(filename, data):
+    """
+    Handel multiple function calls to write data to a json file
+    """
+    with open(filename, 'w+') as json_data:
+        json.dump(data, json_data)
+
+#3
 def loadUsers():
     """ 
     Gets our player names from a text file used to store
@@ -75,21 +86,18 @@ def loadUsers():
         answer_given = player_answer.readlines()
         return answer_given
 
-
-#3
+#4
 def storePlayerName(username, answer_given):
     """ 
     Stores player names and wrong answer to a txt file.  Adapted
     from chat app tutorial that maintained the chat history: 
     """
-    write_to_file("data/users.txt", "({0} {1} {2}\n".format(
-        datetime.now().strftime("%H:%M:%S"),
+    write_to_file("data/users.txt", "{0} {1} {2}\n".format(
+        datetime.now().strftime("%H/%M/%S"),
         username.title(),
         answer_given))
 
-
-
-#4
+#5
 def loadRiddles():
     """ 
     Read the riddles from the riddles txt: 
@@ -98,9 +106,7 @@ def loadRiddles():
         data = json.load(json_data)
         return data
 
-
-
-#5
+#6
 def validateAnswer(riddle, answer):
     """
     check the player's answer against our own
@@ -109,7 +115,7 @@ def validateAnswer(riddle, answer):
     return answer_given
 
 
-#6
+#7
 def countRiddles():
     """
     Count the number or riddle in out list so we
@@ -118,7 +124,7 @@ def countRiddles():
     numRiddles = len(loadRiddles())
     return numRiddles
 
-#7
+#8
 def newUserScore(username, score):
     """
     User's iniotal score has to be created.
@@ -134,6 +140,7 @@ def newUserScore(username, score):
     data ={}
     data['game'] = []
     data['game'].append({
+        'date': datetime.now().strftime("%d/%m/%Y"),
         'username': f'{username}',
         'score': (score)
     })
@@ -151,15 +158,13 @@ def newUserScore(username, score):
         shutil.rmtree(dir)           #removes all the subdirectories!
         os.makedirs(dir)
 
-
-    # The scor board will alwasy write over itself, permitting the score
+    # The score board will alwasy write over itself, permitting the score
     # to increase.
-    with open(f"data/player_data/{username}/scores.json", 'w+') as json_data:
-        json.dump(data, json_data)
+    write_to_json(f"data/player_data/{username}/scores.json", data)
 
 
 
-#8 
+#9
 def writeScore(username, score):
     """
     User's score has to be saved after answering each
@@ -168,15 +173,15 @@ def writeScore(username, score):
     data ={}
     data['game'] = []
     data['game'].append({
+        'date': datetime.now().strftime("%d:%m:%Y"),
         'username': f'{username}',
         'score': (score)
     })
 
-    with open(f"data/player_data/{username}/scores.json", 'w+') as json_data:
-        json.dump(data, json_data)
+    write_to_json(f"data/player_data/{username}/scores.json", data)
 
 
-#9
+#10
 def loadScore(username):
     """ 
     Read player score: 
@@ -186,12 +191,33 @@ def loadScore(username):
         return data
 
 
+#11
+def write_LeaderboardScores(score, username, date):
+    """
+    Writes all the different payer's score to player-scores.txt
+    """
+    file  =  open("data/player-scores.txt", "a")
+    file.write(f"Score: {score}, Player: {username}, Date: {date}" + '\n')
+    file.close()
 
+#12
+def get_leaderboardScores():
+    """
+    Get player-scores.txt and return the data to the leader board
+    """
+    scores = []
+    with open("data/player-scores.txt", "r") as player_scores:
+        scores = player_scores.readlines()        
+    return scores
+    
+
+# The Flask decorators below, process and render data to our front end
 @app.route('/')
 def index():
     if 'username' in session:
         username = session['username']
-        flash('Logged in as '+ username)
+        flash('Logged in as '+ username + '/nClick home on the nav bar to return to game')
+        return redirect(url_for('game', username = session['username']))
         
     return render_template('index.html')
 
@@ -213,8 +239,7 @@ def login():
                 newUserScore(form.username.data, score) # Create a score tracker.
                 return redirect(url_for('game', username = session['username']))
 
-        flash(u'This is invalid username or password', 'error')
-        
+        flash(u'This is an invalid username or password', 'error')        
 
     return render_template('login.html', form = form, error = error)
 
@@ -226,6 +251,7 @@ def login():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignUpForm()
+    error = None
     
     # The code below was modified to return an exception if a duplicate user name was
     # attempted, during a new user registration.
@@ -234,15 +260,13 @@ def signup():
             hashed_password = generate_password_hash(form.password.data, method='sha256')
             new_user = User(username=form.username.data, password=hashed_password)
             db.session.add(new_user)
-            db.session.commit()
-            
-            flash('The data is confimred. A new user has been added')
-            
+            db.session.commit()            
+            flash('The data is confimred. A new user has been added')            
 
     except Exception:
-        flash('This username already exists, please click register above and try a different name.')
+        flash(u'This username already exists, please click register above and try a different name.', 'error')
 
-    return render_template('signup.html', form=form)
+    return render_template('signup.html', form=form, error=error)
 
 
 
@@ -250,9 +274,7 @@ def signup():
 
 @app.route('/game/<username>', methods=["GET", "POST"])
 @login_required
-def game(username):  
-    
-   
+def game(username):     
     
     # riddles are stored in JSON file and are indexed
     data = []
@@ -268,7 +290,6 @@ def game(username):
     # Get the current score from the scores json file
     score = (loadScore(username)['game'][0]['score'])
 
-    
 
     if request.method == "POST":
     
@@ -289,24 +310,25 @@ def game(username):
             
         
         if data[riddleNumber]["answer"] == answer_given:
-            score += 1
-            
+            score += 1            
             riddleNumber += 1
-            image=riddleNumber
-
+            
             # Write scores to a file that contains our username, score for each question and
             # time the question was answered.            
-            writeScore(username, score)
-
-            #flash the number of riddles correct with the dynaminc total of the
+            writeScore(username, score)      
+            
+            # Flash the number of riddles correct with the dynaminc total of the
+            # number of riddles. Yes! The code will update for any number of riddles.
             flash(f'Well done! Thats {score} out of {countRiddles()} right!')
             
-            # number of riddles. Yes! The code will update for any number of riddles.
+            
 
             if riddleNumber == countRiddles():  # production if statement
-                flash(f'Excellent, youve reached the end. Now to compare your score with other players...')
+                
+                flash(f'Excellent, you\'ve reached the end. Now to compare your score with other players...')
+                           
                 time.sleep(3)                
-                return redirect('/leaderboard/{0}'.format(username))
+                return redirect('/leaderboard/{0}/{1}'.format(username, score))
     
         else:
             # The project breif requires that the incorrect answer be
@@ -316,13 +338,19 @@ def game(username):
             flash(f'Incorrect {username}, \"{answer_given}" is not the right answer... \nTry again?')
 
       
-   
+    
     return render_template("game.html", username=username, riddle_me_this=data, riddleNumber=riddleNumber)
 
-@app.route('/leaderboard/<username>')
+@app.route('/leaderboard/<username>/<score>')
 @login_required
-def leaderboard(username):
-    return render_template("leaderboard.html", name=current_user.username)
+def leaderboard(username, score):
+    date = datetime.now().strftime("%d/%m/%Y")
+    write_LeaderboardScores(score, username, date)
+    
+    
+    scores = get_leaderboardScores()
+
+    return render_template("leaderboard.html", name=current_user.username, player_scores=scores)
 
 
 

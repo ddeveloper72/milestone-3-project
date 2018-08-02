@@ -28,7 +28,7 @@
     
     <div class="overlay"></div>
     <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-      <source src="{{ url_for('static', filename='mp4/bg.mp4')}}" type="video/mp4">
+      <source src="{{ url_for('static', filename='mp4/pocket_watch.mp4')}}" type="video/mp4">
     </video>
 
 
@@ -69,7 +69,12 @@
                   {% endwith %}
                   {% block body %}{% endblock %}
                   {% endblock %}
-                  <div class="input-group input-group-newsletter">
+
+                  <!-- <div class="input-group input-group-newsletter"> -->
+                    <hr>
+                      <p>Milestone 3 Project<br>
+                      for the Code Institute</p>
+                      <p class="copyright text-muted">by <span class="strong">Duncan Falconer</span>, 2018</p>                   
                 </div>
               </div>
             </div>

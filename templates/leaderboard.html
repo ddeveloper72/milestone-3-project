@@ -11,6 +11,15 @@
               <li>{{ message }}</li>
               {% endfor %}
               </ul>
+              <div>
+                <h4>The Leaderboard</h4>
+              </div>
+              <ol class="flashes">
+              {% for scores in player_scores %}
+              <li>{{ scores }}</li>
+              {% endfor %}
               {% endif %} {% endwith %}
+              </ol>
+              
             </p>
 {% endblock %}
