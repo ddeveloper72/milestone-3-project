@@ -141,7 +141,7 @@ def newUserScore(username, score):
     data['game'] = []
     data['game'].append({
         'date': datetime.now().strftime("%d/%m/%Y"),
-        'username': f'{username}',
+        'username': '{}'.format("username"),
         'score': (score)
     })
     
@@ -151,7 +151,7 @@ def newUserScore(username, score):
     removed at login, if it is already present. 
     So, our score alwasy starts from 0.
     """
-    dir = f'data/player_data/{username}/'   
+    dir = 'data/player_data/{}/'.format("username")   
     if not os.path.exists(dir):
         os.makedirs(dir)
     else:
@@ -160,7 +160,7 @@ def newUserScore(username, score):
 
     # The score board will alwasy write over itself, permitting the score
     # to increase.
-    write_to_json(f"data/player_data/{username}/scores.json", data)
+    write_to_json("data/player_data/{}/scores.json".format("username"), data)
 
 
 
@@ -174,11 +174,11 @@ def writeScore(username, score):
     data['game'] = []
     data['game'].append({
         'date': datetime.now().strftime("%d:%m:%Y"),
-        'username': f'{username}',
+        'username': '{}'.format("username"),
         'score': (score)
     })
 
-    write_to_json(f"data/player_data/{username}/scores.json", data)
+    write_to_json("data/player_data/{}/scores.json".format("username"), data)
 
 
 #10
@@ -186,7 +186,7 @@ def loadScore(username):
     """ 
     Read player score: 
     """
-    with open(f"data/player_data/{username}/scores.json", "r") as json_data:
+    with open("data/player_data/{}/scores.json".format("username"), "r") as json_data:
         data = json.load(json_data)
         return data
 
@@ -197,7 +197,7 @@ def write_LeaderboardScores(score, username, date):
     Writes all the different payer's score to player-scores.txt
     """
     file  =  open("data/player-scores.txt", "a")
-    file.write(f"Score: {score}, Player: {username}, Date: {date}" + '\n')
+    file.write("Score: {0}, Player: {1}, Date: {2}".format("score","username","date") + '\n')
     file.close()
 
 #12
@@ -319,13 +319,13 @@ def game(username):
             
             # Flash the number of riddles correct with the dynaminc total of the
             # number of riddles. Yes! The code will update for any number of riddles.
-            flash(f'Well done! Thats {score} out of {countRiddles()} right!')
+            flash('Well done! Thats {0} out of {1} right!'.format("score", "countRiddles()"))
             
             
 
             if riddleNumber == countRiddles():  # production if statement
                 
-                flash(f'Excellent, you\'ve reached the end. Now to compare your score with other players...')
+                flash('Excellent, you\'ve reached the end. Now to compare your score with other players...')
                            
                 time.sleep(3)                
                 return redirect('/leaderboard/{0}/{1}'.format(username, score))
@@ -335,7 +335,7 @@ def game(username):
             # stored and presented back to the players.  See funcion
             # storePlayerName above, to see this happening.
             storePlayerName(username, answer_given)
-            flash(f'Incorrect {username}, \"{answer_given}" is not the right answer... \nTry again?')
+            flash('Incorrect {username}, \"{answer_given}" is not the right answer... \nTry again?'.format("username", "answer_given"))
 
       
     
