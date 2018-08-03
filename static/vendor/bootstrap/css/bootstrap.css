@@ -4106,7 +4106,7 @@ input[type="button"].btn-block {
   }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 767.98px) {
   .navbar-expand-lg > .container,
   .navbar-expand-lg > .container-fluid {
     padding-right: 0;
@@ -4114,12 +4114,14 @@ input[type="button"].btn-block {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .navbar-expand-lg {
     -ms-flex-flow: row nowrap;
     flex-flow: row nowrap;
     -ms-flex-pack: start;
     justify-content: flex-start;
+    transform: skewX(-8deg);
+    transform-origin: top right;
   }
   .navbar-expand-lg .navbar-nav {
     -ms-flex-direction: row;
@@ -6094,7 +6096,7 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: #343a40 !important;
+  background-color: #17324c !important;
 }
 
 a.bg-dark:hover, a.bg-dark:focus,
