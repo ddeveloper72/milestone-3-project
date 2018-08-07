@@ -1,6 +1,1 @@
-Score: 2, Player: Niamh, Date: 02:08:2018
-Score: 2, Player: Duncan, Date: 02:08:2018
-Score: 2, Player: Miro, Date: 02:08:2018
-Score: 2, Player: Yoni, Date: 02:08:2018
-Score: 4, Player: Yoni, Date: 02:08:2018
-Score: 14, Player: Yoni, Date: 03/08/2018
+

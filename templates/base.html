@@ -1,118 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Riddle-Me-This</title>
+  <title>Riddle-Me-This</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
 
-    <!-- Custom fonts for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-    <link href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="{{ url_for('static', filename='css/coming-soon.min.css')}}" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/coming-soon.css')}}" rel="stylesheet">
 
-  </head>
-    
-  <body>            
-    <!-- Main Content -->
-    
-    <div class="overlay"></div>
-    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-      <source src="{{ url_for('static', filename='mp4/pocket_watch.mp4')}}" type="video/mp4">
-    </video>
+</head>
 
+<body>
+  <!-- Main Content -->
 
-    <div class="masthead">
-        <div class="masthead-bg"></div>
-        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
-            <nav class="navbar navbar-expand-lg navbar-dark"> 
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-item nav-link active" href="{{ url_for('index') }}">Home
-                <span class="sr-only">(current)</span>
-              </a>
-              <a class="nav-item nav-link" href="{{ url_for('login') }}">Login here</a>
-              <a class="nav-item nav-link" href="{{ url_for('signup') }}">Register!</a>
-              <a class="nav-item nav-link" href="{{ url_for('logout') }}">Log Out</a>
-      
-            </div>
-          </div>
-        </nav>
-      
-        <div class="container h-100">
-          <div class="row h-100">
-            <div class="col-12 my-auto">
-              <div class="masthead-content text-white py-5 py-md-0">
-                  {% block content %}
-                  <title>My Application</title>
-                  {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                      <ul class=flashes>
-                      {% for message in messages %}
-                        <li>{{ message }}</li>
-                      {% endfor %}
-                      </ul>
-                    {% endif %}
-                  {% endwith %}
-                  {% block body %}{% endblock %}
-                  {% endblock %}
-
-                  <!-- <div class="input-group input-group-newsletter"> -->
-                    <hr>
-                      <p>Milestone 3 Project<br>
-                      for the Code Institute</p>
-                      <p class="copyright text-muted">by <span class="strong">Duncan Falconer</span>, 2018</p>                   
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    
-    <div class="social-icons">
-      <ul class="list-unstyled text-center mb-0">
-        <li class="list-unstyled-item">
-          <a href="https://twitter.com/DGFalconer" target="_blank">
-            <i class="fa fa-twitter"></i>
-          </a>
-        </li>
-        <li class="list-unstyled-item">
-          <a href="https://www.linkedin.com/in/duncanfalconer/" target="_blank">
-            <i class="fa fa-linkedin"></i>
-          </a>
-        </li>
-        <li class="list-unstyled-item">
-          <a href="https://github.com/ddeveloper72" target="_blank">
-            <i class="fa fa-github"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  
+  <div class="overlay"></div>
+  <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+    <source src="{{ url_for('static', filename='mp4/pocket_watch.mp4')}}" type="video/mp4">
+  </video>
 
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
-    <!-- Custom scripts for this template -->
-    <script src="{{ url_for('static', filename='js/coming-soon.min.js')}}"></script>
+  {% block content %}
+  <title>My Application</title>
+  {% with messages = get_flashed_messages() %} {% if messages %}
+  <ul class=flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %} {% endwith %} {% block body %}{% endblock %} {% endblock %}
 
-  </body>
+
+
+  <div class="social-icons">
+    <ul class="list-unstyled text-center mb-0">
+      <li class="list-unstyled-item">
+        <a href="https://twitter.com/DGFalconer" target="_blank">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+      <li class="list-unstyled-item">
+        <a href="https://www.linkedin.com/in/duncanfalconer/" target="_blank">
+          <i class="fa fa-linkedin"></i>
+        </a>
+      </li>
+      <li class="list-unstyled-item">
+        <a href="https://github.com/ddeveloper72" target="_blank">
+          <i class="fa fa-github"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="{{ url_for('static', filename='js/coming-soon.min.js')}}"></script>
+
+</body>
 
 </html>

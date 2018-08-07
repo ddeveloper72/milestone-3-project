@@ -49,12 +49,12 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 class LoginForm(FlaskForm):
-    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+    username = StringField('username', validators=[InputRequired(), Length(min=3, max=15)])
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
     remember = BooleanField('remember me')
 
 class SignUpForm(FlaskForm):
-    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+    username = StringField('username', validators=[InputRequired(), Length(min=3, max=15)])
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
     
 
@@ -92,10 +92,7 @@ def storePlayerName(username, answer_given):
     Stores player names and wrong answer to a txt file.  Adapted
     from chat app tutorial that maintained the chat history: 
     """
-    write_to_file("data/users.txt", "{0} {1} {2}\n".format(
-        datetime.now().strftime("%H/%M/%S"),
-        username.title(),
-        answer_given))
+    write_to_file('data/users.txt', f'{datetime.now().strftime("%H:%M:%S")}, {username.title()}, {answer_given}\n')
 
 #5
 def loadRiddles():
@@ -141,7 +138,7 @@ def newUserScore(username, score):
     data['game'] = []
     data['game'].append({
         'date': datetime.now().strftime("%d/%m/%Y"),
-        'username': '{}'.format("username"),
+        'username': f'{username}',
         'score': (score)
     })
     
@@ -151,7 +148,7 @@ def newUserScore(username, score):
     removed at login, if it is already present. 
     So, our score alwasy starts from 0.
     """
-    dir = 'data/player_data/{}/'.format("username")   
+    dir = f'data/player_data/{username}/'  
     if not os.path.exists(dir):
         os.makedirs(dir)
     else:
@@ -160,7 +157,7 @@ def newUserScore(username, score):
 
     # The score board will alwasy write over itself, permitting the score
     # to increase.
-    write_to_json("data/player_data/{}/scores.json".format("username"), data)
+    write_to_json(f'data/player_data/{username}/scores.json', data)
 
 
 
@@ -173,12 +170,12 @@ def writeScore(username, score):
     data ={}
     data['game'] = []
     data['game'].append({
-        'date': datetime.now().strftime("%d:%m:%Y"),
-        'username': '{}'.format("username"),
+        'date': datetime.now().strftime("%d/%m/%Y"),
+        'username': f'{username}',
         'score': (score)
     })
 
-    write_to_json("data/player_data/{}/scores.json".format("username"), data)
+    write_to_json(f'data/player_data/{username}/scores.json', data)
 
 
 #10
@@ -186,7 +183,7 @@ def loadScore(username):
     """ 
     Read player score: 
     """
-    with open("data/player_data/{}/scores.json".format("username"), "r") as json_data:
+    with open(f'data/player_data/{username}/scores.json', 'r') as json_data:
         data = json.load(json_data)
         return data
 
@@ -196,8 +193,8 @@ def write_LeaderboardScores(score, username, date):
     """
     Writes all the different payer's score to player-scores.txt
     """
-    file  =  open("data/player-scores.txt", "a")
-    file.write("Score: {0}, Player: {1}, Date: {2}".format("score","username","date") + '\n')
+    file  =  open('data/player-scores.txt', 'a')
+    file.write(f"Score: {score}, Player: {username}, Date: {date}" + '\n')
     file.close()
 
 #12
@@ -206,7 +203,7 @@ def get_leaderboardScores():
     Get player-scores.txt and return the data to the leader board
     """
     scores = []
-    with open("data/player-scores.txt", "r") as player_scores:
+    with open('data/player-scores.txt', 'r') as player_scores:
         scores = player_scores.readlines()        
     return scores
     
@@ -216,7 +213,7 @@ def get_leaderboardScores():
 def index():
     if 'username' in session:
         username = session['username']
-        flash('Logged in as '+ username + '/nClick home on the nav bar to return to game')
+        flash('You are logged in as '+ username + '.  Click home on the nav bar to return to game')
         return redirect(url_for('game', username = session['username']))
         
     return render_template('index.html')
@@ -319,7 +316,7 @@ def game(username):
             
             # Flash the number of riddles correct with the dynaminc total of the
             # number of riddles. Yes! The code will update for any number of riddles.
-            flash('Well done! Thats {0} out of {1} right!'.format("score", "countRiddles()"))
+            flash(f'Well done! Thats {score} out of {countRiddles()} right!')
             
             
 
@@ -328,14 +325,14 @@ def game(username):
                 flash('Excellent, you\'ve reached the end. Now to compare your score with other players...')
                            
                 time.sleep(3)                
-                return redirect('/leaderboard/{0}/{1}'.format(username, score))
-    
+                return redirect(f'/leaderboard/{username}/{score}')
+   
         else:
             # The project breif requires that the incorrect answer be
             # stored and presented back to the players.  See funcion
             # storePlayerName above, to see this happening.
             storePlayerName(username, answer_given)
-            flash('Incorrect {username}, \"{answer_given}" is not the right answer... \nTry again?'.format("username", "answer_given"))
+            flash(f'Sorry {username}, \"{answer_given}\" is not the right answer... \nLook at the clue above and try again')
 
       
     
