@@ -307,6 +307,7 @@ def game(username):
             
         
         if data[riddleNumber]["answer"] == answer_given:
+        
             score += 1            
             riddleNumber += 1
             
@@ -320,7 +321,7 @@ def game(username):
             
             
 
-            if riddleNumber == countRiddles():  # production if statement
+            if riddleNumber == countRiddles():  # Determins what happens next when the last riddle is used.
                 
                 flash('Excellent, you\'ve reached the end. Now to compare your score with other players...')
                            
@@ -332,20 +333,28 @@ def game(username):
             # stored and presented back to the players.  See funcion
             # storePlayerName above, to see this happening.
             storePlayerName(username, answer_given)
-            flash(f'Sorry {username}, \"{answer_given}\" is not the right answer... \nLook at the clue above and try again')
+            flash(f'Sorry {username}, \"{answer_given}\" is not the right answer... \nIt was \"{data[riddleNumber]["answer"]}\". \nLets try another.\nUse the picture clue above for help')
+            time.sleep(3)
+            riddleNumber += 1
+
+            if riddleNumber == countRiddles():  # Determins what happens next when the last riddle is used.
+                
+                flash('Excellent, you\'ve reached the end. Now to compare your score with other players...')
+                           
+                time.sleep(3)                
+                return redirect(f'/leaderboard/{username}/{score}')
 
       
     
     return render_template("game.html", username=username, riddle_me_this=data, riddleNumber=riddleNumber)
 
-@app.route('/leaderboard/<username>/<score>')
+@app.route('/leaderboard/<username>/<score>', methods=["GET", "POST"])
 @login_required
 def leaderboard(username, score):
     date = datetime.now().strftime("%d/%m/%Y")
-    write_LeaderboardScores(score, username, date)
-    
-    
+    write_LeaderboardScores(score, username, date)   
     scores = get_leaderboardScores()
+
 
     return render_template("leaderboard.html", name=current_user.username, player_scores=scores)
 
