@@ -78,8 +78,7 @@ def write_to_json(filename, data):
 #3
 def loadUsers():
     """ 
-    Gets our player names from a text file used to store
-    their wrong guesses: 
+    Gets our player names from a text file used to store their wrong guesses: 
     """
     answer_given = []
     with open("data/users.txt", "r") as player_answer:
@@ -89,8 +88,8 @@ def loadUsers():
 #4
 def storePlayerName(username, answer_given):
     """ 
-    Stores player names and wrong answer to a txt file.  Adapted
-    from chat app tutorial that maintained the chat history: 
+    Stores player names and wrong answer to a txt file.  Adapted from chat app tutorial 
+    that maintained the chat history: 
     """
     write_to_file('data/users.txt', f'{datetime.now().strftime("%H:%M:%S")}, {username.title()}, {answer_given}\n')
 
@@ -115,8 +114,7 @@ def validateAnswer(riddle, answer):
 #7
 def countRiddles():
     """
-    Count the number or riddle in out list so we
-    can keep score! This makes our count dynamic.
+    Count the number or riddle in out list so we can keep score! This makes our count dynamic.
     """
     numRiddles = len(loadRiddles())
     return numRiddles
@@ -124,14 +122,10 @@ def countRiddles():
 #8
 def newUserScore(username, score):
     """
-    User's iniotal score has to be created.
-    This is set to 0 and the score file is
-    created on successful login. The file is
-    stored in a directory consisting of the
-    user's name, which will allow unique 
-    instances of the game, so long as the 
-    player names are unique. This is insured
-    but the login registration form, which 
+    User's iniotal score has to be created. This is set to 0 and the score file is
+    created on successful login. The file is stored in a directory consisting of the
+    user's name, which will allow unique instances of the game, so long as the 
+    player names are unique. This is insured but the login registration form, which 
     specifies unique registration names. 
     """
     data ={}
@@ -197,6 +191,7 @@ def write_LeaderboardScores(score, username, date):
     file.write(f"Score: {score}, Player: {username}, Date: {date}" + '\n')
     file.close()
 
+
 #12
 def get_leaderboardScores():
     """
@@ -206,9 +201,8 @@ def get_leaderboardScores():
     with open('data/player-scores.txt', 'r') as player_scores:
         scores = player_scores.readlines()        
     return scores
-    
 
-# The Flask decorators below, process and render data to our front end
+# The Flask decorators below, process and render data to our front end templates.
 @app.route('/')
 def index():
     if 'username' in session:
@@ -217,8 +211,6 @@ def index():
         return redirect(url_for('game', username = session['username']))
         
     return render_template('index.html')
-
-
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -241,10 +233,6 @@ def login():
     return render_template('login.html', form = form, error = error)
 
 
-
-
-
-
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignUpForm()
@@ -264,9 +252,6 @@ def signup():
         flash(u'This username already exists, please click register above and try a different name.', 'error')
 
     return render_template('signup.html', form=form, error=error)
-
-
-
     
 
 @app.route('/game/<username>', methods=["GET", "POST"])
@@ -277,35 +262,23 @@ def game(username):
     data = []
 
     # Load JSON data from riddles.json
-    data = loadRiddles()
-        
+    data = loadRiddles()        
         
     # Set the first riddle
     riddleNumber = 0
-
     
     # Get the current score from the scores json file
     score = (loadScore(username)['game'][0]['score'])
-
 
     if request.method == "POST":
     
         # post riddle number x to the the the game template and
         # increment the riddle by 1 each time a correct answer is
         # given.
-        riddleNumber = int(request.form["riddleNumber"])
-
-        # I plan to only show the image if the user gets the riddle
-        # either right, or wrong. It serves two purposes:
-        # A reward as well as a hint.
-        # image = int(request.form["riddleNumber"]) 
-        
-        
+        riddleNumber = int(request.form["riddleNumber"])  
         # Call validateAnswer function
-        answer_given = validateAnswer("riddle", "answer")
+        answer_given = validateAnswer("riddle", "answer")        
             
-            
-        
         if data[riddleNumber]["answer"] == answer_given:
         
             score += 1            
@@ -317,10 +290,8 @@ def game(username):
             
             # Flash the number of riddles correct with the dynaminc total of the
             # number of riddles. Yes! The code will update for any number of riddles.
-            flash(f'Well done! Thats {score} out of {countRiddles()} right!')
+            flash(f'Well done! Thats {score} out of {countRiddles()} right!')          
             
-            
-
             if riddleNumber == countRiddles():  # Determins what happens next when the last riddle is used.
                 
                 flash('Excellent, you\'ve reached the end. Now to compare your score with other players...')
@@ -342,25 +313,20 @@ def game(username):
                 flash('Excellent, you\'ve reached the end. Now to compare your score with other players...')
                            
                 time.sleep(3)                
-                return redirect(f'/leaderboard/{username}/{score}')
-
-      
+                return redirect(f'/leaderboard/{username}/{score}')      
     
     return render_template("game.html", username=username, riddle_me_this=data, riddleNumber=riddleNumber)
 
 @app.route('/leaderboard/<username>/<score>', methods=["GET", "POST"])
 @login_required
 def leaderboard(username, score):
+    scores = score
     date = datetime.now().strftime("%d/%m/%Y")
-    write_LeaderboardScores(score, username, date)   
+    write_LeaderboardScores(score, username, date)
     scores = get_leaderboardScores()
 
 
     return render_template("leaderboard.html", name=current_user.username, player_scores=scores)
-
-
-
-
 
 @app.route('/logout')
 @login_required
@@ -370,12 +336,9 @@ def logout():
     return redirect(url_for('index'))
 
 
-
-
 if __name__ == '__main__':
     """
-    assign a port ID works with both vscode
-    and Heroku
+    assign a port ID works with both vscode and Cloud9
     """
     app.run(host=os.getenv('IP'),
             port=os.getenv('PORT'),

@@ -3,84 +3,84 @@
         "number": "0",
         "riddle": "'Tis true I have both face and hands, \nAnd move before your eyes, \nYet when I go, my body stands, \nAnd when I stand, I lie.",
         "answer": "clock",
-        "image":   "<img style=\"max-width: 40%;\" src=\"/static/images/p003-illus.jpg\" alt=\"Clock\">"
+        "image":   "<img class=\"riddle-image\" style=\"max-width: 40%;\" src=\"/static/images/p003-illus.jpg\" alt=\"Clock\">"
     },
     {
         "number": "1",
         "riddle": "My clothing's fine as velvet rare, \nThough under earth my dwellings are; \nAnd when above it I appear, \nMy enemies put me oft in fear. \nThe gard'ner does at me repine, \nI spoil his works as he does mine.",
         "answer": "mole",
-        "image":   "<img style=\"max-width: 40%;\" src=\"/static/images/p004-illus.jpg\" alt=\"Mole\">"
+        "image":   "<img class=\"riddle-image\" style=\"max-width: 40%;\" src=\"/static/images/p004-illus.jpg\" alt=\"Mole\">"
     },
     {
         "number": "2",
         "riddle": "My form is beauteous to the ravish'd sight, \nMy habit gay, my color gold or white;  \nWhen ladies take the air, I without pride, \nA faithful partner am close by their side. \nI near their persons constantly remain, \nA favorite slave, bound with a golden chain; \nAnd though I can both speak and go alone, \nYet are my motions to myself unknown.",
         "answer": "watch",
-        "image":   "<img style=\"max-width: 40%;\" src=\"/static/images/p005-illus.jpg\" alt=\"Watch\">"
+        "image":   "<img class=\"riddle-image\" style=\"max-width: 40%;\" src=\"/static/images/p005-illus.jpg\" alt=\"Watch\">"
     },
     {
         "number": "3",
         "riddle": "Emblem of youth and innocence \nWith walls enclosed for my defence, \n\tAnd with no care opprest, \nI boldly spread my charms around, \n'Till some rude lover breaks the mound, \n\tAnd takes me to his breast. \nHere soon I sicken and decay: \nMy beauty lost, I'm turned away,  \nAnd thrown into the street;  \nWhere I despised, neglected lie, \nSee no Samaritans pass by, \n\tBut numerous insults meet.",
         "answer": "rose",
-        "image":   "<img style=\"max-width: 40%;\" src=\"/static/images/p006-illus.jpg\" alt=\"Rose\">"
+        "image":   "<img class=\"riddle-image\" style=\"max-width: 40%;\" src=\"/static/images/p006-illus.jpg\" alt=\"Rose\">"
     },
     {
         "number": "4",
         "riddle": "Two twins we are, and, let it not surprise, \nAlike in every feature, shape, and size: \nWe're square, or round, of brass or iron made, \nSometimes of wood, yet useful found in trade; \nBut, to conclude, for all our daily pains, \nWe by the neck are often hung in chains.",
         "answer": "pair of scales",
-        "image":   "<img style=\"max-width: 40%;\" src=\"/static/images/p007-illus.jpg\" alt=\"A pair of scales\">"
+        "image":   "<img class=\"riddle-image\" style=\"max-width: 40%;\" src=\"/static/images/p007-illus.jpg\" alt=\"A pair of scales\">"
     },
     {
         "number": "5",
         "riddle": "I was before the world began, \n\tAnd shall forever last; \nEre father Adam was a man, \n\tOr out of Eden cast. Your youthful moments I attend, \n\tAnd mitigate your grief; \nThe industrious peasant I befriend, \n\tTo pris'ners give relief. \nMake much of me if you are wise, \n\tAnd use me while you may, \nFor you will lose me in a trice. \n\tAs I for no man stay.",
         "answer": "time",
-        "image":   "<img style=\"max-width: 40%;\" src=\"/static/images/p008-illus.jpg\" alt=\"Time\">"
+        "image":   "<img class=\"riddle-image\" style=\"max-width: 40%;\" src=\"/static/images/p008-illus.jpg\" alt=\"Time\">"
     },
     {
         "number": "6",
         "riddle": "It foams without anger, \nIt flies without wings, \nIt cuts without edge, \nAnd without tongue it sings.",
         "answer": "bottle of ale",
-        "image":   "<img style=\"max-width: 40%;\" src=\"/static/images/p002-illus.jpg\"alt=\"Bottle of ale\">"
+        "image":   "<img img class=\"riddle-image\" class=\"riddle-image\" style=\"max-width: 20%;\" src=\"/static/images/p002-illus.jpg\"alt=\"Bottle of ale\">"
     },
     {
         "number": "7",
         "riddle": "What force and strength cannot get through \nI with a gentle touch can do; \nAnd many in the streets would stand, \nWere I not, as friend, at hand.",
         "answer": "key",
-        "image":   "<img style=\"max-width: 40%;\" src=\"/static/images/p010-illus.jpg\" alt=\"Key\">"
+        "image":   "<img class=\"riddle-image\" style=\"max-width: 40%;\" src=\"/static/images/p010-illus.jpg\" alt=\"Key\">"
     },
     {
         "number": "8",
         "riddle": "My habitation's in a wood, \nAnd I'm at any one's command; \nI often do more hurt than good, \nIf I once get the upper hand: \nI never fear the champion's frown, \nStout things I oftentimes have done;  \nBrave soldiers I have oft laid down, \nI never fear their sword and gun.",
         "answer": "barrel of beer",
-        "image":   "<img style=\"max-width: 40%;\" src=\"/static/images/p011-illus.jpg\" alt=\"Barrel of beer\">"
+        "image":   "<img class=\"riddle-image\" style=\"max-width: 40%;\" src=\"/static/images/p011-illus.jpg\" alt=\"Barrel of beer\">"
     },
     {
         "number": "9",
         "riddle": "My nose is long, my back is broad and round, \nAnd in cold weather of great use I'm found; \nNo load I carry, yet I puff and blow, \nAs much as heavy loaded porters do.",
         "answer": "pair of bellows",
-        "image":   "<img style=\"max-width: 40%;\" src=\"/static/images/p012-illus.jpg\" alt=\"Pair of bellows\">"
+        "image":   "<img class=\"riddle-image\" style=\"max-width: 40%;\" src=\"/static/images/p012-illus.jpg\" alt=\"Pair of bellows\">"
     },
     {
         "number": "10",
         "riddle": "I never offend thee, \nYet thou dost me whip, \nWhich doth not amend me, \nThough I dance and skip;  \nWhen I'm upright thou dost like me best, \nAnd severely dost whip me when I want to rest.",
         "answer": "spinning-top",
-        "image":   "<img style=\"max-width: 40%;\" src=\"/static/images/p013-illus.jpg\" alt=\"spinning-top\">"
+        "image":   "<img class=\"riddle-image\" style=\"max-width: 40%;\" src=\"/static/images/p013-illus.jpg\" alt=\"spinning-top\">"
     },
     {
         "number": "11",
         "riddle": "I'm a busy active creature, \nFashioned with a sportive nature, \nI nimbly skip from tree to tree, \nUnder a well-wrought canopy;  \nAnd for cleanliness and air, \nAm a pattern to the fair;  \nI, to arms and blood a stranger, \nApprehensive of no danger, \nLike the ant, for winter store, \nSearching, treasures to explore, \nAll on a sudden hear the foe, \nThe cause and object of my woe \nBy whom I'm soon a prisoner made \nChain'd, and in a dungeon laid: \nBid Chloe then, and Myra tell, \nWhat's my name and where I dwell.",
         "answer": "squirrel",
-        "image":   "<img style=\"max-width: 40%;\" src=\"/static/images/p014-illus.jpg\"alt=\"Squirrel\">"
+        "image":   "<img class=\"riddle-image\" style=\"max-width: 40%;\" src=\"/static/images/p014-illus.jpg\"alt=\"Squirrel\">"
     },
     {
         "number": "12",
         "riddle": "My body is light, my head is white, \nWith a cord I am laced around, \nI am beaten with sticks, yet not for bad tricks, \nBut to animate my sound. \nThe unthinking youth, who heed not the truth \nWhich would save them from every alarm, \nTo fight, kill, and die, and cause much misery \nTo those who have done them no harm.",
         "answer": "drum",
-        "image":   "<img style=\"max-width: 40%;\" src=\"/static/images/p015-illus.jpg\"alt=\"Drum\">"
+        "image":   "<img class=\"riddle-image\" class=\"riddle-image\"  style=\"max-width: 40%;\" src=\"/static/images/p015-illus.jpg\"alt=\"Drum\">"
     },
     {
         "number": "13",
         "riddle": "Two bodies have I, \nThough both joined in one \nThe stiller I stand, \nThe faster I run.",
         "answer": "hour-glass",
-        "image":   "<img style=\"max-width: 40%;\" src=\"/static/images/p016-illus.jpg\" alt=\"Hour-glass\">"
+        "image":   "<img class=\"riddle-image\" style=\"max-width: 40%;\" src=\"/static/images/p016-illus.jpg\" alt=\"Hour-glass\">"
     } 
 ]

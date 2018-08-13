@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block body %}
 <div class="masthead">
     <div class="masthead-bg"></div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,18 +21,20 @@
 
     <div class="container h-100">
         <div class="row h-100">
-            <div class="col-12 my-auto">
+            <div class="col-12 my-auto riddle-image">
                 <div class="masthead-content text-white py-5 py-md-0">
 
                     <h2 class="mb-3">Riddle Me This!</h2>
-                    <p class="mb-5">Old Style Riddles from The Project Gutenberg</p>
+                    <h5 class="mb-5">Old Style Riddles from The Project Gutenberg</h5>
 
-                    <!-- <div class="input-group input-group-newsletter"> -->
-                    <hr>
+                    <img class="cover-image" src="{{ url_for('static', filename='images/cover.jpg')}}" alt="The Book of Riddles">
+                    <hr class="line">
+                    <div class="footer">
                     <p>Milestone 3 Project
                         <br> for the Code Institute</p>
                     <p class="copyright text-muted">by
                         <span class="strong">Duncan Falconer</span>, 2018</p>
+                    </div>
                 </div>
             </div>
         </div>
