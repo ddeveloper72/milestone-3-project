@@ -24,7 +24,7 @@
 
   <div class="container h-100">
     <div class="row h-100">
-      <div class="col-12 my-auto">
+      <div class="col-12 my-5">
         <div class="masthead-content text-white py-5 py-md-0">
 
           <h2 class="mb-3">Welcome {{ username }}, to Riddle-me-this!</h2>
@@ -32,9 +32,9 @@
           <p class="mb-5">{{ riddle_me_this[riddleNumber]["riddle"] }}</p>
 
           {% with messages = get_flashed_messages() %} {% if messages %}
-          <div class="flashes success-warning" role="alert">
+          <div class="flashes success" role="alert">
             {% for message in messages %}
-            <h6>{{ message }}</h6>
+            <div class="notice">{{ message }}</div>
             {% endfor %}
           </div>
           {% endif %} {% endwith %}
@@ -44,12 +44,13 @@
           <form method="POST" class="form-inline">
             <input type="text" class="form-control" placeholder="answer" name="answer" id="answer" autofocus>
             <input type="hidden" name="riddleNumber" id="riddleNumber" value={{riddleNumber}}>
-            <button class="btn btn-secondary">send</button>
+            <button class="btn btn-secondary type="button" onclick="getData">send</button>
           </form>
 
           <!-- <div class="input-group input-group-newsletter"> -->
-          <hr class="line">
-          <div class="footer">
+          
+          <div class="footer col-auto py-5 py-md-0">
+              <hr class="line">
               <p>Milestone 3 Project
                   <br> for the Code Institute</p>
               <p class="copyright text-muted">by

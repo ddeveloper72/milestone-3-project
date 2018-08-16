@@ -1,68 +1,12 @@
-23:20:20 Duncan hour-glass
-23:42:04 Niamh 
-23:57:07 Duncan hour-glass
-13:40:47 Duncan h
-00/06/24 Niamh ffaf
-00/06/34 Niamh 
-08/37/12 Niamh 
-11/35/05 Duncan 
-11:41:35 Duncan 
-11:44:53 Duncan 
-11:45:00 Duncan 
-11:46:56 Duncan 
-20:51:12 Yoni clock
-20:52:58 Yoni sh
-20:54:21 Yoni xgh
-20:54:55 Yoni dfg
-20:55:10 Yoni dfg
-20:55:27 Yoni dfg
-20:56:29 Yoni dfg
-20:56:39 Yoni dh
-20:57:45 Yoni sg
-20:58:06 Yoni sfg
-20:59:42 Yoni barrel of beer
-21:12:10 Niamh gnz
-21:24:54 Niamh gnz
-21:25:13 Niamh sfh
-21:25:29 Niamh sfh
-21:33:57, Niamh, hjb
-21:36:57, Niamh, drum
-21:38:34, Niamh, drum
-21:38:53, Niamh, drum
-10:12:12, Duncan, watch
-10:12:15, Duncan, watch
-10:12:17, Duncan, watch
-10:12:45, Duncan, snake
-10:15:53, Duncan, house
-10:16:20, Duncan, scales
-10:20:02, Duncan, beer
-10:22:55, Duncan, house
-10:25:14, Duncan, hour-glass
-10:26:48, Duncan, clown
-10:27:08, Duncan, beer
-10:27:42, Duncan, bellows
-10:28:17, Duncan, mouse
-10:28:39, Duncan, stool
-10:30:22, Duncan, stool
-10:31:31, Duncan, stool
-10:36:13, Yoni, rodent
-10:36:46, Yoni, clock
-10:37:02, Yoni, scales
-10:37:32, Yoni, angel
-10:37:39, Yoni, beer
-10:37:53, Yoni, barrel
-10:38:01, Yoni, bellows
-10:48:49, Miro, scales
-10:48:57, Miro, 
-10:49:08, Miro, beer
-10:49:57, Miro, chair
-16:13:22, Niamh, drum
-16:58:30, Niamh, scales
-16:58:39, Niamh, beer
-16:58:51, Niamh, beer
-16:58:58, Niamh, bellows
-16:59:30, Niamh, glass
-13:48:25, Duncan, clock
-13:48:35, Duncan, clock
-13:52:56, Duncan, clock
-18:48:43, Duncan, clock
+21:28:43, Duncan, deliberate
+21:28:52, Duncan, deliberate
+21:28:58, Duncan, deliberate
+21:30:00, Duncan, deliberate
+21:30:11, Duncan, deliberate
+21:30:20, Duncan, deliberate
+22:24:07, Duncan, drum
+22:24:23, Duncan, hour-glass
+22:24:37, Duncan, hour-glass
+22:35:47, Duncan, bottle of beer
+22:36:00, Duncan, top
+22:36:05, Duncan, mole

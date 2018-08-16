@@ -7,10 +7,11 @@ from the SQL database and pushed to the game.html
 """
 
 import os
+import os.path
+os.path.isfile('player-scores.txt')
 import shutil
 import json
 import datetime
-import time
 from flask import Flask, redirect, render_template, request, flash, session, url_for
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
@@ -20,6 +21,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from pathlib import Path
+from shutil import copyfile
 
 
 app = Flask(__name__)
@@ -122,7 +125,7 @@ def countRiddles():
 #8
 def newUserScore(username, score):
     """
-    User's iniotal score has to be created. This is set to 0 and the score file is
+    User's inital score has to be created. This is set to 0 and the score file is
     created on successful login. The file is stored in a directory consisting of the
     user's name, which will allow unique instances of the game, so long as the 
     player names are unique. This is insured but the login registration form, which 
@@ -154,7 +157,6 @@ def newUserScore(username, score):
     write_to_json(f'data/player_data/{username}/scores.json', data)
 
 
-
 #9
 def writeScore(username, score):
     """
@@ -181,26 +183,49 @@ def loadScore(username):
         data = json.load(json_data)
         return data
 
-
 #11
+def leaderborardCheck():
+    """
+    The game requires at least 3 scores to exist, to carry out the top 3 scores
+    function, scores_list() at the end of the game for the firs ever player. 
+    As a work around, a scores-template.txt file is used to create the 
+    player-scores.txt file, on first login of the first
+    player.
+    """
+    import os
+    try:
+        os.stat('data/player-score.txt')
+        ...# file exists
+    except:
+        copyfile('data/scores-template.txt', 'data/player-scores.txt')
+            # only if the file doesn't exist
+
+#12
 def write_LeaderboardScores(score, username, date):
     """
     Writes all the different payer's score to player-scores.txt
     """
     file  =  open('data/player-scores.txt', 'a')
-    file.write(f"Score: {score}, Player: {username}, Date: {date}" + '\n')
+    file.write(f"'\n'Score: {(score)}, Player: {username}, Date: {date}")
     file.close()
 
 
-#12
-def get_leaderboardScores():
+#13
+def scores_list():
     """
-    Get player-scores.txt and return the data to the leader board
+    Get player-scores.txt and convert to tuples.  Sort the score in each tuple 
+    to return the top 3 scores to the leader board.
     """
-    scores = []
-    with open('data/player-scores.txt', 'r') as player_scores:
-        scores = player_scores.readlines()        
-    return scores
+    li = [i.replace("," , "").replace("'" , "").split() for i in open('data/player-scores.txt').readlines()]
+    li.sort(key=lambda tup: tup[1]) # picks out the score from (Score:, 10, Player:, MyName, Date:, 16/08/2018)
+    li.sort(reverse=True) # sorts scores from highest to lowest
+
+    # Cleanup the tuple data by striping and replacing unwanted characters, for rendering to html
+    first = str(li[0])[1:-1].replace("'" , " ").replace("," , " ")
+    second = str(li[1])[1:-1].replace("'" , " ").replace("," , " ")
+    third = str(li[2])[1:-1].replace("'" , " ").replace("," , " ")
+    return first, second, third        
+    
 
 # The Flask decorators below, process and render data to our front end templates.
 @app.route('/')
@@ -225,6 +250,7 @@ def login():
             if check_password_hash(user.password, form.password.data):
                 login_user(user, remember=form.remember.data)
                 session['username'] = (form.username.data)
+                leaderborardCheck() # Create a leaderboard if one doesn't already exist.
                 newUserScore(form.username.data, score) # Create a score tracker.
                 return redirect(url_for('game', username = session['username']))
 
@@ -295,8 +321,6 @@ def game(username):
             if riddleNumber == countRiddles():  # Determins what happens next when the last riddle is used.
                 
                 flash('Excellent, you\'ve reached the end. Now to compare your score with other players...')
-                           
-                time.sleep(3)                
                 return redirect(f'/leaderboard/{username}/{score}')
    
         else:
@@ -305,14 +329,11 @@ def game(username):
             # storePlayerName above, to see this happening.
             storePlayerName(username, answer_given)
             flash(f'Sorry {username}, \"{answer_given}\" is not the right answer... \nIt was \"{data[riddleNumber]["answer"]}\". \nLets try another.\nUse the picture clue above for help')
-            time.sleep(3)
             riddleNumber += 1
 
             if riddleNumber == countRiddles():  # Determins what happens next when the last riddle is used.
                 
                 flash('Excellent, you\'ve reached the end. Now to compare your score with other players...')
-                           
-                time.sleep(3)                
                 return redirect(f'/leaderboard/{username}/{score}')      
     
     return render_template("game.html", username=username, riddle_me_this=data, riddleNumber=riddleNumber)
@@ -323,7 +344,8 @@ def leaderboard(username, score):
     scores = score
     date = datetime.now().strftime("%d/%m/%Y")
     write_LeaderboardScores(score, username, date)
-    scores = get_leaderboardScores()
+    #scores = get_leaderboardScores()
+    scores = scores_list()
 
 
     return render_template("leaderboard.html", name=current_user.username, player_scores=scores)
