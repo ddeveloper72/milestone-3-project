@@ -6,4 +6,7 @@ __pycache__/byotest.cpython-36.pyc
 __pycache__/run.cpython-36.pyc
 __pycache__/test_game.cpython-36.pyc
 node_modules
+/Python-3.6.4
+data/player_data/
+data/player-scores.txt
 

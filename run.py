@@ -1,3 +1,4 @@
+#!/usr/bin/env python3.6
 """
 The login system for players uses SQLAlchemy.  The code has been adapted and 
 reworked from a tutorial by PrettyPrinted to suit this game environment.  

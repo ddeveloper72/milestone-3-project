@@ -10,3 +10,12 @@
 22:35:47, Duncan, bottle of beer
 22:36:00, Duncan, top
 22:36:05, Duncan, mole
+13:05:27, Nakita, otter
+13:05:52, Nakita, locket
+13:10:17, Nakita, weighing scales
+13:11:13, Nakita, cain
+13:12:10, Nakita, acid
+13:12:49, Nakita, gunpowder
+13:13:04, Nakita, rpojrj
+13:13:30, Nakita, spinning top
+13:14:18, Nakita, egg-timer
