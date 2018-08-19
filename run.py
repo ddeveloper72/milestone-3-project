@@ -9,7 +9,8 @@ from the SQL database and pushed to the game.html
 
 import os
 import os.path
-os.path.isfile('player-scores.txt')
+os.path.exists('player-scores.txt')
+import glob
 import shutil
 import json
 import datetime
@@ -195,11 +196,13 @@ def leaderborardCheck():
     """
     import os
     try:
-        os.stat('data/player-score.txt')
-        ...# file exists
+        if os.stat('data/player-scores.txt'):
+           os.stat('data/player-scores.txt')
     except:
-        copyfile('data/scores-template.txt', 'data/player-scores.txt')
-            # only if the file doesn't exist
+        shutil.copyfile('data/score_template/player-scores.txt', 'data/player-scores.txt')
+        # only if the file doesn't exist
+
+
 
 #12
 def write_LeaderboardScores(score, username, date):
@@ -207,7 +210,7 @@ def write_LeaderboardScores(score, username, date):
     Writes all the different payer's score to player-scores.txt
     """
     file  =  open('data/player-scores.txt', 'a')
-    file.write(f"'\n'Score: {(score)}, Player: {username}, Date: {date}")
+    file.write(f"\nScore: {(score)}, Player: {username}, Date: {date}")
     file.close()
 
 
@@ -359,21 +362,21 @@ def logout():
     return redirect(url_for('index'))
 
 
-# if __name__ == '__main__':
-    """
-    assign a port ID works with Vscode
+if __name__ == '__main__':
+    
+    # assign a port ID works with Vscode
    
     app.run(host=os.getenv('IP'),
-            port=os.getenv('PORT'),
-            #debug set to true to help during development
-            debug=True)
-    """        
+        port=os.getenv('PORT'),
+        # debug set to true to help during development
+        debug=True)
+          
             
             
-if __name__ == '__main__':
+""" if __name__ == '__main__':
     """
-    assign a port ID works with cloud9
-    """
+    #assign a port ID works with cloud9
+"""
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
-        debug=True)
+        debug=True) """
