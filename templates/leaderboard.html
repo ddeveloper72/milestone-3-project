@@ -1,10 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 <div class="masthead">
   <div class="masthead-bg"></div>
-  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
+
   <nav class="navbar navbar-expand-md navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-      aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -19,45 +18,37 @@
     </div>
   </nav>
 
-
   <div class="container h-100">
     <div class="row h-100">
       <div class="col-12 my-5">
         <div class="masthead-content text-white py-5 py-md-0">
-            <h2 class="mb-3">Riddle Me This!</h2>
-            <h5 class="mb-5">Old Style Riddles from The Project Gutenberg</h5>
-            <img class="cover-image" src="{{ url_for('static', filename='images/p001-illus.jpg')}}" alt="The Book of Riddles">
-          
-          <div class="col-auto">{% autoescape false %}{% endautoescape %}</div>
-          <h2 class="mb-3">{{ username }}</h2>
-          <p class="mb-5"></p>
-          <p>
-            {% with messages = get_flashed_messages() %} {% if messages %}
-            <ul class="flashes">
-              {% for message in messages %}
-              <li>{{ message }}</li>
-              {% endfor %}
-            </ul>
-            <div>
-              <h4>The Leaderboard</h4>
-            </div>
+          <h2 class="mb-3 title">Riddle Me This!</h2>
+          <h5 class="mb-5 subtitle">{{ username }}'s Leaderboard</h5>
+          <img class="cover-image" src="{{ url_for('static', filename='images/p001-illus.jpg')}}" alt="The Book of Riddles"> {% with messages = get_flashed_messages() %} {% if messages %}
+          <div class="flashes">
             <ol class="flashes">
+
               {% for scores in player_scores %}
               <li>{{ scores }}</li>
-              {% endfor %} {% endif %} {% endwith %}
+              {% endfor %}
             </ol>
-          </p>
+            <hr class="line"> {% for message in messages %}
+            <div class="flashes">
+              <ul>
+                <li>
+                  {{ message }}</li>
+              </ul>
+            </div>
+            {% endfor %} {% endif %} {% endwith %}
 
-
-          <!-- <div class="input-group input-group-newsletter"> -->
-          
-          <div class="footer col-auto py-5 py-md-0">
-              <hr class="line">
+            <div class="footer">
+              <hr class="line ">
               <p>Milestone 3 Project
-                  <br> for the Code Institute</p>
-              <p class="copyright text-muted">by
-                  <span class="strong">Duncan Falconer</span>, 2018</p>
-              </div>
+                <br> for the Code Institute</p>
+              <p class="copyright text-muted ">by
+                <span class="strong">Duncan Falconer</span>, 2018</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

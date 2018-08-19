@@ -3,8 +3,7 @@
   <div class="masthead-bg"></div>
   <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
   <nav class="navbar navbar-expand-md navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-      aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -27,9 +26,9 @@
       <div class="col-12 my-5">
         <div class="masthead-content text-white py-5 py-md-0">
 
-          <h2 class="mb-3">Welcome {{ username }}, to Riddle-me-this!</h2>
+          <h2 class="mb-3 title">Welcome {{ username }}, to Riddle-me-this!</h2>
           <div class="col-auto">{% autoescape false %}{{ riddle_me_this[riddleNumber]["image"] }}{% endautoescape %}</div>
-          <p class="mb-5">{{ riddle_me_this[riddleNumber]["riddle"] }}</p>
+          <p class="mb-5 riddle">{{ riddle_me_this[riddleNumber]["riddle"] }}</p>
 
           {% with messages = get_flashed_messages() %} {% if messages %}
           <div class="flashes success" role="alert">
@@ -44,18 +43,16 @@
           <form method="POST" class="form-inline">
             <input type="text" class="form-control" placeholder="answer" name="answer" id="answer" autofocus>
             <input type="hidden" name="riddleNumber" id="riddleNumber" value={{riddleNumber}}>
-            <button class="btn btn-secondary type="button" onclick="getData">send</button>
+            <button class="btn btn-secondary type=" button " onclick="getData ">send</button>
           </form>
-
-          <!-- <div class="input-group input-group-newsletter"> -->
           
-          <div class="footer col-auto py-5 py-md-0">
-              <hr class="line">
+          <div class="footer ">
+              <hr class="line ">
               <p>Milestone 3 Project
                   <br> for the Code Institute</p>
-              <p class="copyright text-muted">by
-                  <span class="strong">Duncan Falconer</span>, 2018</p>
-              </div>
+              <p class="copyright text-muted ">by
+                  <span class="strong ">Duncan Falconer</span>, 2018</p>
+          </div>
         </div>
       </div>
     </div>
