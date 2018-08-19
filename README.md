@@ -6,15 +6,18 @@
 <h2>Riddle-Me-This</h2>
 <h3>by Duncan Falconer for the Code Institute, 2018
 
-<h2>Project Goals:</h2>
-This project is all about having fun, while making a game which demonstrates Python as the backbone programming language.
-
-The Game is designed to run on Heroku and will facilitate multiple players, playing the same game at the same time.  The players will be able to register their own unique usernames when they log into the game.  Their usernames will be used to tack their progress throughout the game.
-
-A leader-board will show the scores of players from highest to lowest.
-
-<h2>The UX Design:</h2>
 <ol>
+<li>
+    <h2>Project Goals:</h2>
+    This project is all about having fun, while making a game which demonstrates Python as the backbone programming language.
+
+    The Game is designed to run on Heroku and will facilitate multiple players, playing the same game at the same time.  The players will be able to register their own unique usernames when they log into the game.  Their usernames will be used to tack their progress throughout the game.
+
+    A leader-board will show the scores of players from highest to lowest.
+</li>
+<li>
+    <h2>The UX Design:</h2>
+    <ol>
     <li><h4>Strategy:</h4>
         <h4>Focus:</h4>
             <ul style="list-style-type:disc">
@@ -105,7 +108,7 @@ A leader-board will show the scores of players from highest to lowest.
     </li>    
     <li><h4>Skeleton:</h4>
         <h4>Focus:</h4>
-            <ol>
+            <ol list-style-type:decimal>
                 <li> How will the information be represented?
                 </li>
                 <li>How will the user navigate to the   information and features?
@@ -144,30 +147,212 @@ A leader-board will show the scores of players from highest to lowest.
             </ul>        
     </li>
 </ol>
+</li>
+<li>
 <h2>Wireframes:</h2>
 
+![Index](https://raw.githubusercontent.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Index.png)
+
+![Register!](https://raw.githubusercontent.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Register!.png)
+
+![Login here!](https://raw.githubusercontent.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Login_here!.png)
+
+![Game](https://raw.githubusercontent.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Game.png)
+
+![Leader-board](https://raw.githubusercontent.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Leaderboard.png)
+
+
+
+
+</li>
+<li>
 <h2>Game construction:</h2>
-<h3>Work in Progress</h3>
-This game is still in development mode.
-<ol>
-<li>The wire frames are under construction.</li>
-<li>The development tests are being written</li>
-<li>The game code is being developed</li>
-<li>The leader board has to be planned along with the game code</li>
+    <h3>Work in Progress</h3>
+<p>The project brief was to follow a a pattern of <strong>Test Driven Development</strong>.  A series of tests were written at the start of this project and then the run time function was written, based on the test.</P>
+
+<p>Not all functions were written in this way and these will be followed up with tests.</p>
+
+<h3>Test 1</h3>
+
+```python
+def test_loadUsers(self):
+        """
+        test to check that the plyers can be loaded from the
+        users file which stores player names and wrong answers.
+        """
+        users = run.loadUsers()
+        self.assertEqual(len(users), 3)
+```
+
+<h3>Test 1: Run-time function</h3>
+
+```python
+def loadUsers():
+    """ 
+    Gets our player names from a text file used to store their wrong guesses: 
+    """
+    answer_given = []
+    with open("data/users.txt", "r") as player_answer:
+        answer_given = player_answer.readlines()
+        return answer_given
+
+```
+<hr>
+
+<h3>Test 2</h3>
+
+```python
+def test_storePlayerName(self):
+        users = run.storePlayerName()
+        self.assertGreater(len(users), 0)  
+```
+
+<h3>Test 2: Run-time function</h3>
+
+```python
+def storePlayerName(username, answer_given):
+    """ 
+    Stores player names and wrong answer to a txt file.  Adapted from chat app tutorial 
+    that maintained the chat history: 
+    """
+    write_to_file('data/users.txt', f'{datetime.now().strftime("%H:%M:%S")}, {username.title()}, {answer_given}\n')
+
+```
+
+<hr>
+
+<h3>Test 3</h3>
+
+```python
+def test_loadRiddles(self):
+    """
+    test to check that the users can be loaded from the
+    json file
+    """
+    riddles = run.loadRiddles()
+    self.assertEqual(len(riddles), 14)
+```
+
+
+<h3>Test 3: Run-time function</h3>
+
+```python
+def loadRiddles():
+    """ 
+    Read the riddles from the riddles txt: 
+    """
+    with open("data/riddles.json", "r") as json_data:
+        data = json.load(json_data)
+        return data
+```
+
+<hr>
+
+<h3>Test 4</h3>
+
+```python
+def test_validateAnswer(self):
+    """
+    test to vslidate the user's answer against our own
+    from our json file.
+    """
+    riddles = run.loadRiddles()
+    self.assertEqual(run.validateAnswer(riddles[0],"clock"), True)
+    self.assertEqual(run.validateAnswer(riddles[0],"house"), False)
+```
+
+<h3>Test 4: Run-time function</h3>
+
+```python
+def validateAnswer(riddle, answer):
+    """
+    check the player's answer against our own
+    """
+    answer_given = request.form["answer"].lower()
+    return answer_given
+```
+
+<hr>
+
+<h3>Test 5</h3>
+
+```python
+def test_count_eq(self):
+    """Will succeed"""
+    self.assertCountEqual(self.result, self.expected)
+```
+
+<h3>Test 5: Run-time function</h3>
+
+```python
+def countRiddles():
+    """
+    Count the number or riddle in out list so we can keep score! This makes our count dynamic.
+    """
+    numRiddles = len(loadRiddles())
+    return numRiddles
+```
+
+<hr>
+
+<h4>Selection of Specialist Functions</h4>
+<h3>Run-time function #8</h3>
+
+```python
+def newUserScore(username, score):
+    """
+    User's inital score has to be created. This is set to 0 and the score file is created on successful login. 
+    """
+    data ={}
+    data['game'] = []
+    data['game'].append({
+        'date': datetime.now().strftime("%d/%m/%Y"),
+        'username': f'{username}',
+        'score': (score)
+    })
+
+    """
+    Every instance of the game, requiers a dedicated
+    score board for the game. A pre-existing score,json file is
+    removed at login, if it is already present. 
+    So, our score alwasy starts from 0.
+    """
+    dir = f'data/player_data/{username}/'  
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+    else:
+        shutil.rmtree(dir)           #removes all the subdirectories!
+        os.makedirs(dir)
+
+    # The score board will alwasy write over itself, permitting the score
+    # to increase.
+    write_to_json(f'data/player_data/{username}/scores.json', data)
+```
+<hr>
+
+<h3>Run-time function #9</h3>
+
+```python
+def writeScore(username, score):
+    """
+    User's score has to be saved after answering each
+    riddle.  To do this, we rewrite the JSON file.
+    """
+    data ={}
+    data['game'] = []
+    data['game'].append({
+        'date': datetime.now().strftime("%d/%m/%Y"),
+        'username': f'{username}',
+        'score': (score)
+    })
+
+    write_to_json(f'data/player_data/{username}/scores.json', data)
+```
+<hr>
+
+</li>
+<li>
+<h2>Deployment Instructions:</h2>
+</li>
+<p>Instructions for deployment to a hosing site: Heroku</p>
 </ol>
-
-The game core is written in Python, using Flask to inject player and game information into an off the shelf bootstrap template.
-
-The user names and passwords are stored in a SQL database and processed by SQLAlchemy.  Again, SQLAlchemy is an off the shelf product and is imported into Flask.
-
-The passwords for users logging into the game are protected by encryption.  The passwords are hashed before being written to the database.
-
-The riddles in this game are stored in a JSON file. The format of the game will be that the player is presented with a riddle when the enter the game after login in.
-
-The riddle will the rendered from the JSON using basic escaping characters within the riddle string.
-The answer is also contained within the JSON along with an image of the answer which will render when the riddle is answered correctly. Again, inline styles will be used to manage the image size being injected by Flask to the html elements on the game page.
-
-The method of keeping track of the players score is still in development, but will be rendered and incremented as the player progresses through the game.
-
-The leader board will then  display the top 5 player names and scores.  Again this is still under development.
-
