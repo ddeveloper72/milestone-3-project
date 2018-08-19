@@ -62,21 +62,25 @@ video {
     background-color: rgba(0, 46, 102, 0.8);
     transform: skewY(4deg);
     transform-origin: bottom right; }
-  .masthead .masthead-content h1 {
-    font-size: 2.5rem; }
-  .masthead .masthead-content p {
-    font-size: 1rem; }
-    .masthead .masthead-content p strong {
-      font-weight: 700; }
-  .masthead .masthead-content .input-group-newsletter input {
-    font-size: 1rem;
-    padding: 1rem; }
-  .masthead .masthead-content .input-group-newsletter button {
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 1rem; }
+  .masthead .masthead-content {
+    /* Modified for Milestone 3 Project */ }
+    .masthead .masthead-content h1 {
+      font-size: 2.5rem; }
+    .masthead .masthead-content .title, .masthead .masthead-content .subtitle {
+      text-align: center; }
+    .masthead .masthead-content p {
+      font-size: 1rem; }
+      .masthead .masthead-content p strong {
+        font-weight: 700; }
+    .masthead .masthead-content .input-group-newsletter input {
+      font-size: 1rem;
+      padding: 1rem; }
+    .masthead .masthead-content .input-group-newsletter button {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 1rem; }
 
 @media (min-width: 768px) {
   .masthead {
@@ -90,9 +94,12 @@ video {
       transform-origin: top right; }
     .masthead .masthead-content {
       padding-left: 3rem;
-      padding-right: 10rem; }
+      padding-right: 10rem;
+      /* Modified for Milestone 3 Project */ }
       .masthead .masthead-content h1 {
         font-size: 3.5rem; }
+      .masthead .masthead-content .title, .masthead .masthead-content .subtitle {
+        text-align: center; }
       .masthead .masthead-content p {
         font-size: 1rem; } }
 .social-icons {

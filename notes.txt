@@ -1,0 +1,2 @@
+Commandline for sass watch:
+sass --watch static/scss/coming-soon.scss:static/css/coming-soon.css 

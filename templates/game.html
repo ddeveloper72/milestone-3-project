@@ -26,13 +26,15 @@
       <div class="col-12 my-5">
         <div class="masthead-content text-white py-5 py-md-0">
 
-          <h2 class="mb-3" id="title">Welcome {{ username }}, to Riddle Me This!</h2>
-          <div class="col-auto">{% autoescape false %}{{ riddle_me_this[riddleNumber]["image"] }}{% endautoescape %}</div>
-          <p class="mb-5 riddle">{{ riddle_me_this[riddleNumber]["riddle"] }}</p>
+          <h2 class="mb-3 title">Welcome {{ username }}, to Riddle Me This!</h2>
+          <div class="col-auto">
+            <img class="riddle-image"{% autoescape false %}{{ riddle_me_this[riddleNumber]["image"] }}{% endautoescape %}
+            <p class="mb-5 riddle">{{ riddle_me_this[riddleNumber]["riddle"] }}</p>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 </section>
 <section>
