@@ -9,11 +9,11 @@
 <ol>
 <li>
     <h2>Project Goals:</h2>
-    This project is all about having fun, while making a game which demonstrates Python as the backbone programming language.
+    <p>This project is all about having fun, while making a game which demonstrates Python as the backbone programming language.</p>
 
-    The Game is designed to run on Heroku and will facilitate multiple players, playing the same game at the same time.  The players will be able to register their own unique usernames when they log into the game.  Their usernames will be used to tack their progress throughout the game.
+    <p>The Game is designed to run on Heroku and will facilitate multiple players, playing the same game at the same time.  The players will be able to register their own unique usernames when they log into the game.  Their usernames will be used to tack their progress throughout the game.</p>
 
-    A leader-board will show the scores of players from highest to lowest.
+    <p>A leader-board will show the scores of players from highest to lowest.</p>
 </li>
 <li>
     <h2>The UX Design:</h2>
@@ -151,15 +151,15 @@
 <li>
 <h2>Wireframes:</h2>
 
-![Index](https://raw.githubusercontent.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Index.png)
+![Index](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Index.png)
 
-![Register!](https://raw.githubusercontent.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Register!.png)
+![Register!](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Register!.png)
 
-![Login here!](https://raw.githubusercontent.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Login_here!.png)
+![Login here!](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Login_here!.png)
 
-![Game](https://raw.githubusercontent.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Game.png)
+![Game](github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Game.png)
 
-![Leader-board](https://raw.githubusercontent.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Leaderboard.png)
+![Leader-board](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Leaderboard.png)
 
 
 
