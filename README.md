@@ -144,6 +144,7 @@ A leader-board will show the scores of players from highest to lowest.
             </ul>        
     </li>
 </ol>
+<h2>Wireframes:</h2>
 
 <h2>Game construction:</h2>
 <h3>Work in Progress</h3>
