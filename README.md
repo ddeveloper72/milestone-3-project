@@ -155,7 +155,7 @@
 
 ![Login here!](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Login_here!.png)
 
-![Game](github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Game.png)
+![Game](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Game.png)
 
 ![Leader-board](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Leaderboard.png)
 
