@@ -10,9 +10,7 @@
 <li>
     <h2>Project Goals:</h2>
     <p>This project is all about having fun, while making a game which demonstrates Python as the backbone programming language.</p>
-
     <p>The Game is designed to run on Heroku and will facilitate multiple players, playing the same game at the same time.  The players will be able to register their own unique usernames when they log into the game.  Their usernames will be used to tack their progress throughout the game.</p>
-
     <p>A leader-board will show the scores of players from highest to lowest.</p>
 </li>
 <li>
