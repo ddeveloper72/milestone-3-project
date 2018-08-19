@@ -349,7 +349,7 @@ def leaderboard(username, score):
     scores = scores_list()
 
 
-    return render_template("leaderboard.html", name=current_user.username, player_scores=scores)
+    return render_template("leaderboard.html", username=current_user.username, player_scores=scores)
 
 @app.route('/logout')
 @login_required
