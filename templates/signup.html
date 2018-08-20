@@ -1,76 +1,38 @@
-{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block content %}
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} 
 
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="{{ url_for('index') }}">Home
-        <span class="sr-only">(current)</span>
-      </a>
-      <a class="nav-item nav-link" href="{{ url_for('login') }}">Login here</a>
-      <a class="nav-item nav-link" href="{{ url_for('signup') }}">Register!</a>
-      <a class="nav-item nav-link" href="{{ url_for('logout') }}">Log Out</a>
-    </div>
-  </div>
-</nav>
+{% block head_nav %}
+  <a class="nav-item nav-link" href="{{ url_for('login') }}">Login here</a>
+  <a class="nav-item nav-link" href="{{ url_for('signup') }}">Register!</a>
+  <a class="nav-item nav-link disabled" href="#">Log Out</a>
+{% endblock head_nav %}
+
+
+{% block content %}
 
 <section>
-  <div class="container h-100">
-    <div class="row h-100">
-      <div class="col-12 my-5">
-        <div class="masthead-content text-white py-5 py-md-0">
-          <h2 class="mb-3 title">Riddle Me This!</h2>
-          <h5 class="mb-5 subtitle">Old Style Riddles from The Project Gutenberg</h5>
-        </div>
-      </div>
-    </div>
-  </div>
+
+  <h2 class="mb-3 title">Riddle Me This!</h2>
+  <h5 class="mb-5 subtitle">Old Style Riddles from The Project Gutenberg</h5>
+
 </section>
 
 <section>
-  <div class="container h-100">
-    <div class="row h-100">
-      <div class="col-12 my-5">
-        <div class="masthead-content text-white py-5 py-md-0">
-          <p>
-            <strong>To Register</strong>! Type in a uername and password, into the form below!</p>
-          <form class="form-signin" method="POST" action="/signup">
-            {{ form.hidden_tag() }} {{ wtf.form_field(form.username) }} {% with messages = get_flashed_messages() %} {% if messages %}
-            <ul class="flashes">
-              {% for message in messages %}
-              <li>{{ message }}</li>
-              {% endfor %}
-            </ul>
-            {% endif %} {% endwith %} {{ wtf.form_field(form.password) }}
-            <div class="input-group-append">
-              <button class="btn btn-secondary" type="submit" value="Log in">Lets Play!</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section>
-  <div class="container h-100">
-    <div class="row h-100">
-      <div class="col-12 my-5">
-        <div class="masthead-content text-white py-5 py-md-0">
-          <div class="footer">
-            <hr class="line">
-            <p>Milestone 3 Project
-              <br> for the Code Institute</p>
-            <p class="copyright text-muted">by
-              <span class="strong">Duncan Falconer</span>, 2018</p>
-          </div>
-        </div>
-      </div>
+  <p>
+    <strong>To Register</strong>! Type in a uername and password, into the form below!</p>
+  <form class="form-signin" method="POST" action="/signup">
+    {{ form.hidden_tag() }} {{ wtf.form_field(form.username) }} {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul class="flashes">
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %} {{ wtf.form_field(form.password) }}
+    <div class="input-group-append">
+      <button class="btn btn-secondary" type="submit" value="Log in">Lets Play!</button>
     </div>
-  </div>
+  </form>
+
 </section>
 
 {% endblock %}

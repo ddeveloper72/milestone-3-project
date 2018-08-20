@@ -1,93 +1,45 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+
+        {% block head_nav %}
+              <a class="nav-item nav-link disabled" href="#">Login here</a>
+              <a class="nav-item nav-link disabled" href="#">Register!</a>
+              <a class="nav-item nav-link" href="{{ url_for('logout') }}">Log Out</a>
+        {% endblock head_nav %}
 
 
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="{{ url_for('index') }}">Home
-        <span class="sr-only">(current)</span>
-      </a>
-      <a class="nav-item nav-link disable" href="#">Login here</a>
-      <a class="nav-item nav-link disable" href="#">Register!</a>
-      <a class="nav-item nav-link" href="{{ url_for('logout') }}">Log Out</a>
-
-    </div>
-  </div>
-</nav>
-
+{% block content %}
 
 <section>
-  <div class="container h-100">
-    <div class="row h-100">
-      <div class="col-12 my-5">
-        <div class="masthead-content text-white py-5 py-md-0">
 
-          <h2 class="mb-3 title">Welcome {{ username }}, to Riddle Me This!</h2>
-          <div class="col-auto">
-            <img class="riddle-image"{% autoescape false %}{{ riddle_me_this[riddleNumber]["image"] }}{% endautoescape %}
-            <p class="mb-5 riddle">{{ riddle_me_this[riddleNumber]["riddle"] }}</p>
-        </div>
-      </div>
+    <h2 class="mb-3 title">Welcome {{ username }}, to Riddle Me This!</h2>
+    <div class="col-auto">
+        <img class="riddle-image" {% autoescape false %}{{ riddle_me_this[riddleNumber][ "image"] }}{% endautoescape %} <p class="mb-5 riddle noselect">{{ riddle_me_this[riddleNumber]["riddle"] }}</p>
     </div>
-  </div>
-</div>
 
 </section>
+
 <section>
-  <div class="container h-100">
-    <div class="row h-100">
-      <div class="col-12 my-5">
-        <div class="masthead-content text-white py-5 py-md-0">
-          {% with messages = get_flashed_messages() %} {% if messages %}
-          <div class="flashes success" role="alert">
-            {% for message in messages %}
-            <div class="notice">{{ message }}</div>
-            {% endfor %}
-          </div>
-          {% endif %} {% endwith %}
-        </div>
-      </div>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="flashes success" role="alert">
+        {% for message in messages %}
+        <div class="notice">{{ message }}</div>
+        {% endfor %}
     </div>
-  </div>
+    {% endif %} {% endwith %}
+
 </section>
+
 <section>
-  <div class="container h-100">
-    <div class="row h-100">
-      <div class="col-12 my-5">
-        <div class="masthead-content text-white py-5 py-md-0">
-          <p>
-            <strong>Have you the answer?</strong> Type in your answer below!
-            <br>(eg. glass of wine)</p>
-          <form method="POST" class="form-inline">
-            <input type="text" class="form-control" placeholder="answer" name="answer" id="answer" autofocus>
-            <input type="hidden" name="riddleNumber" id="riddleNumber" value={{riddleNumber}}>
-            <button class="btn btn-secondary type=" button " onclick="getData ">send</button>
-          </form>
-          </div>
-        </div>
-      </div>
-    </div>
-</section>
-<section>
-            <div class="container h-100 ">
-                <div class="row h-100 ">
-                  <div class="col-12 my-5 ">
-                    <div class="masthead-content text-white py-5 py-md-0 ">
-          <div class="footer ">
-              <hr class="line ">
-              <p>Milestone 3 Project
-                  <br> for the Code Institute</p>
-              <p class="copyright text-muted ">by
-                  <span class="strong ">Duncan Falconer</span>, 2018</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
+    <p>
+        <strong>Have you the answer?</strong> Type in your answer below!
+        <br>(eg. glass of wine)</p>
+    <form method="POST" class="form-inline">
+        <input type="text" class="form-control" placeholder="answer" name="answer" id="answer" required autofocus>
+        <input type="hidden" name="riddleNumber" id="riddleNumber" value={{riddleNumber}}>
+        <button class="btn btn-secondary" type="submit" onclick="getData">submit</button>
+    </form>
+
 </section>
 
 {% endblock %}

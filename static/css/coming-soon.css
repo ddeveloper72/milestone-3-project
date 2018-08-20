@@ -36,7 +36,8 @@ video {
   body video {
     display: none; } }
 .overlay {
-  position: absolute;
+  /*position: absolute;*/
+  position: fixed;
   top: 0;
   left: 0;
   height: 100%;
@@ -60,7 +61,8 @@ video {
     min-height: 35rem;
     height: 100%;
     background-color: rgba(0, 46, 102, 0.8);
-    transform: skewY(4deg);
+    /*transform: skewY(4deg);*/
+    transform: skewY(0deg);
     transform-origin: bottom right; }
   .masthead .masthead-content {
     /* Modified for Milestone 3 Project */ }

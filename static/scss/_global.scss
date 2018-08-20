@@ -43,7 +43,8 @@ video {
 }
 
 .overlay {
-  position: absolute;
+  /*position: absolute;*/
+  position:fixed; //modified for Milestone 3 Project
   top: 0;
   left: 0;
   height: 100%;

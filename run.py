@@ -277,7 +277,7 @@ def signup():
             db.session.add(new_user)
             db.session.commit()            
             flash('The data is confimred. A new user has been added')
-            return redirect(url_for('game', username = session['username']))
+            return redirect(url_for('game', username = form.username.data))
             
     except Exception:
         flash(u'This username already exists, please click register above and try a different name.', 'error')
@@ -322,11 +322,10 @@ def game(username):
             
             # Flash the number of riddles correct with the dynaminc total of the
             # number of riddles. Yes! The code will update for any number of riddles.
-            flash(f'Well done! Thats {score} out of {countRiddles()} right!')          
+            flash(f'Well done! Thats a score of {score} out of {countRiddles()} questions right!')          
             
             if riddleNumber == countRiddles():  # Determins what happens next when the last riddle is used.
                 
-                flash('Excellent, you\'ve reached the end. Now to compare your score with other players...')
                 return redirect(f'/leaderboard/{username}/{score}')
    
         else:
@@ -339,7 +338,6 @@ def game(username):
 
             if riddleNumber == countRiddles():  # Determins what happens next when the last riddle is used.
                 
-                flash('Excellent, you\'ve reached the end. Now to compare your score with other players...')
                 return redirect(f'/leaderboard/{username}/{score}')      
     
     return render_template("game.html", username=username, riddle_me_this=data, riddleNumber=riddleNumber)
