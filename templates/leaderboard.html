@@ -1,10 +1,10 @@
 {% extends 'base.html' %} 
 
-{% block head_nav %}
-<a class="nav-item nav-link disabled" href="#">Login here</a>
-<a class="nav-item nav-link disabled" href="#">Register!</a>
-<a class="nav-item nav-link" href="{{ url_for('logout') }}">Log Out</a> 
-{% endblock head_nav %} 
+  {% block head_nav %}
+    <a class="nav-item nav-link disabled" href="#">Login here</a>
+    <a class="nav-item nav-link disabled" href="#">Register!</a>
+    <a class="nav-item nav-link" href="{{ url_for('logout') }}">Log Out</a> 
+  {% endblock head_nav %} 
 
 {% block content %}
 
