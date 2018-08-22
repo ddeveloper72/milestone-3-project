@@ -26,88 +26,90 @@
 </head>
 
 <body>
-  <!-- Main Content -->
+  <wrapper>
+    <!-- Main Content -->
 
-  <div class="overlay"></div>
-  <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+    <div class="overlay"></div>
+    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
     <source src="{{ url_for('static', filename='mp4/pocket_watch.mp4')}}" type="video/mp4">
   </video>
 
-  <div class="masthead">
-    <div class="masthead-bg"></div>
+    <div class="masthead">
+      <div class="masthead-bg"></div>
 
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="{{ url_for('index') }}">Home
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="{{ url_for('index') }}">Home
                 <span class="sr-only">(current)</span>
-            </a>
-          {% block head_nav %}
-          <a class="nav-item nav-link" href="{{ url_for('login') }}">Login here</a>
-          <a class="nav-item nav-link" href="{{ url_for('signup') }}">Register!</a>
-          <a class="nav-item nav-link" href="{{ url_for('logout') }}">Log Out</a>
-          {% endblock head_nav %}
-        </div>
-      </div>
-    </nav>
-
-    <div class="container h-100">
-      <div class="row h-100">
-        <div class="col-12 my-auto">
-          <div class="masthead-content text-white py-5 py-md-0">
-            {% block content %}
-            <title>My Application</title>
-            {% with messages = get_flashed_messages() %} {% if messages %}
-            <ul class="notice">
-              {% for message in messages %}
-              <li>{{ message }}</li>
-              {% endfor %}
-            </ul>
-            {% endif %} {% endwith %} {% block body %}{% endblock %} {% endblock %}
-            <footer>
-            <hr class="line ">
-          <p>Milestone 3 Project
-          <br> for the Code Institute</p>
-          <p class="copyright text-muted ">by
-          <span class="strong ">Duncan Falconer</span>, 2018</p>
-          </footer>
+            </a> {% block head_nav %}
+            <a class="nav-item nav-link" href="{{ url_for('login') }}">Login here</a>
+            <a class="nav-item nav-link" href="{{ url_for('signup') }}">Register!</a>
+            <a class="nav-item nav-link" href="{{ url_for('logout') }}">Log Out</a> {% endblock head_nav %}
           </div>
-          
+        </div>
+      </nav>
+
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="col-12 my-auto">
+            <div class="masthead-content text-white py-5 py-md-0">
+              {% block content %}
+              <title>My Application</title>
+              {% with messages = get_flashed_messages() %} {% if messages %}
+              <ul class="notice">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %} {% endwith %} {% block body %}{% endblock %} {% endblock %}
+              </div>
+              <section class="footer masthead-content py-5 py-md-0">
+                <hr class="line ">
+                <p>Milestone 3 Project
+                  <br> for the Code Institute</p>
+                <p class="copyright text-muted ">by
+                  <span class="strong ">Duncan Falconer</span>, 2018</p>
+              </section>
+            </div>
+
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="social-icons">
-    <ul class="list-unstyled text-center mb-0">
-      <li class="list-unstyled-item">
-        <a href="https://twitter.com/DGFalconer" target="_blank">
+    </div>
+
+
+    <div class="social-icons">
+      <ul class="list-unstyled text-center mb-0">
+        <li class="list-unstyled-item">
+          <a href="https://twitter.com/DGFalconer" target="_blank">
           <i class="fa fa-twitter"></i>
         </a>
-      </li>
-      <li class="list-unstyled-item">
-        <a href="https://www.linkedin.com/in/duncanfalconer/" target="_blank">
+        </li>
+        <li class="list-unstyled-item">
+          <a href="https://www.linkedin.com/in/duncanfalconer/" target="_blank">
           <i class="fa fa-linkedin"></i>
         </a>
-      </li>
-      <li class="list-unstyled-item">
-        <a href="https://github.com/ddeveloper72" target="_blank">
+        </li>
+        <li class="list-unstyled-item">
+          <a href="https://github.com/ddeveloper72" target="_blank">
           <i class="fa fa-github"></i>
         </a>
-      </li>
-    </ul>
-  </div>
+        </li>
+      </ul>
+    </div>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
-  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
-  <!-- Custom scripts for this template -->
-  <script src="{{ url_for('static', filename='js/coming-soon.min.js')}}"></script>
-
+    <!-- Custom scripts for this template -->
+    <script src="{{ url_for('static', filename='js/coming-soon.min.js')}}"></script>
+  </wrapper>
 </body>
 
 </html>

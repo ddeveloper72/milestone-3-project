@@ -72,3 +72,8 @@
 22:52:45, Niamh, mole
 10:03:02, Duncan, jam
 10:04:01, Duncan, sq
+21:17:54, Sam, scales
+21:27:16, Niamh, mole 
+21:28:28, Niamh, sqirrel
+21:56:41, Yoni, drom
+22:19:17, Niamh, clock

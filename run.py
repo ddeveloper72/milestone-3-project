@@ -228,7 +228,7 @@ def scores_list():
     first = str(li[0])[1:-1].replace("'" , " ").replace("," , " ")
     second = str(li[1])[1:-1].replace("'" , " ").replace("," , " ")
     third = str(li[2])[1:-1].replace("'" , " ").replace("," , " ")
-    return first, second, third        
+    return(first, second, third)     
     
 
 # The Flask decorators below, process and render data to our front end templates.
@@ -301,6 +301,9 @@ def game(username):
     
     # Get the current score from the scores json file
     score = (loadScore(username)['game'][0]['score'])
+    
+    # Get the current date for logging with the score at the end of our game
+    date = datetime.now().strftime("%d/%m/%Y")
 
     if request.method == "POST":
     
@@ -322,10 +325,10 @@ def game(username):
             
             # Flash the number of riddles correct with the dynaminc total of the
             # number of riddles. Yes! The code will update for any number of riddles.
-            flash(f'Well done! Thats a score of {score} out of {countRiddles()} questions right!')          
+            flash(f'Well done! Thats a score of {score} out of {countRiddles()} riddles right!')          
             
             if riddleNumber == countRiddles():  # Determins what happens next when the last riddle is used.
-                
+                write_LeaderboardScores(score, username, date)
                 return redirect(f'/leaderboard/{username}/{score}')
    
         else:
@@ -337,18 +340,15 @@ def game(username):
             riddleNumber += 1
 
             if riddleNumber == countRiddles():  # Determins what happens next when the last riddle is used.
-                
+                write_LeaderboardScores(score, username, date)
                 return redirect(f'/leaderboard/{username}/{score}')      
     
     return render_template("game.html", username=username, riddle_me_this=data, riddleNumber=riddleNumber)
 
-@app.route('/leaderboard/<username>/<score>', methods=["GET", "POST"])
+@app.route('/leaderboard/<username>/<score>')
 @login_required
 def leaderboard(username, score):
     scores = score
-    date = datetime.now().strftime("%d/%m/%Y")
-    write_LeaderboardScores(score, username, date)
-    #scores = get_leaderboardScores()
     scores = scores_list()
 
 

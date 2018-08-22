@@ -1,17 +1,12 @@
-{% extends 'base.html' %} 
-
-  {% block head_nav %}
-    <a class="nav-item nav-link disabled" href="#">Login here</a>
-    <a class="nav-item nav-link disabled" href="#">Register!</a>
-    <a class="nav-item nav-link" href="{{ url_for('logout') }}">Log Out</a> 
-  {% endblock head_nav %} 
-
-{% block content %}
+{% extends 'base.html' %} {% block head_nav %}
+<a class="nav-item nav-link disabled" href="#">Login here</a>
+<a class="nav-item nav-link disabled" href="#">Register!</a>
+<a class="nav-item nav-link" href="{{ url_for('logout') }}">Log Out</a> {% endblock head_nav %} {% block content %}
 
 <section>
 
-  <h2 class="mb-3 title">Riddle Me This!</h2>
-  <h5 class="mb-5 subtitle">{{ username }}'s Leaderboard</h5>
+  <h2 class="mb-3 title">Leaderboard!</h2>
+  <h5 class="mb-5 subtitle">Riddle Me This!</h5>
   <img class="leader-image" src="{{ url_for('static', filename='images/p001-illus.jpg')}}" alt="The Book of Riddles">
 
 </section>
@@ -19,20 +14,23 @@
 <section>
 
   {% with messages = get_flashed_messages() %} {% if messages %}
-  <div class="flashes">
-    <ol class="flashes">
-      {% for scores in player_scores %}
-      <li>{{ scores }}</li>
-      {% endfor %}
-    </ol>
-    <hr class="line"> {% for message in messages %}
-    <div class="flashes">
-      <ul>
-        <li>
-          {{ message }}</li>
-      </ul>
+  <div class="card">
+    <div class="card-body">
+      {% for message in messages %}
+      <div class="flashes">
+        <h5 class="subtitle">
+            {{ message }}
+        </h5>
+        <hr class="line"> 
+      </div>
+      <ol class="card-text">
+        {% for scores in player_scores %}
+        <li>{{ scores }}</li>
+        {% endfor %}
+      </ol>
+
+      {% endfor %} {% endif %} {% endwith %}
     </div>
-    {% endfor %} {% endif %} {% endwith %}
   </div>
 
 </section>
