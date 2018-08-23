@@ -1,176 +1,106 @@
 
 
-<h1>Milestone 3 Project</h1>
+# Milestone 3 Project
 
 
-<h2>Riddle-Me-This</h2>
-<h3>by Duncan Falconer for the Code Institute, 2018
+## Riddle-Me-This
+### by Duncan Falconer for the Code Institute, 2018
 
-<ol>
-<li>
-    <h2>Project Goals:</h2>
-    <p>This project is all about having fun, while making a game which demonstrates Python as the backbone programming language.</p>
-    <p>The Game is designed to run on Heroku and will facilitate multiple players, playing the same game at the same time.  The players will be able to register their own unique usernames when they log into the game.  Their usernames will be used to tack their progress throughout the game.</p>
-    <p>A leader-board will show the scores of players from highest to lowest.</p>
-</li>
-<li>
-    <h2>The UX Design:</h2>
-    <ol>
-    <li><h4>Strategy:</h4>
-        <h4>Focus:</h4>
-            <ul style="list-style-type:disc">
-                <li>My project is to create a game for lovers of old style  Victorian Era Riddles that have been sourced from the <a href="www.gutenberg.net"><strong>Gutenberg Project</strong></a>
-                </li>
-            </ul>
-        <h4>User Needs:</h4>
-            <ul style="list-style-type:disc">
-                <li>To provide a game that a player can log into, so that   they  will then be able to play by answering a number of  riddles. If a     riddle is answered wrong, the game will    respond with the    player's incorrect answer as well as   provide the correct answer    along with a hint for   answering the next questions.
-                </li>
-                <li>The player's score will be added each time they answer a riddle correctly.  When the game is finished, the player can see their final score along with the scores of other players.
-                </li>
-            </ul>
-        <h4>Business Objectives:</h4>
-            <ul style="list-style-type:disc">
-                <li>To demonstrate my use of the Python programming language in a game for my graded projects portfolio.
-                </li>
-            </ul>
-    </li>
-    <li><h4>Scope:</h4>
-        <h4>Focus:</h4>
-            <ul style="list-style-type:disc">
-                <li>Features of this design. The requirements of this project from the brief.
-                </li>
-            </ul>
-        <h4>Functional Specification:</h4>
-            <ol>
-                <li>The player must be able to use a    unique     player   name to play the     game.
-                </li>
-                <li>The player must also be able to     respond     to a    riddle by being able to    type in an     answer.
-                </li>
-                <li>There has to be process which checks    the    player's     answer and provides    feedback to them  about their    answer.
-                </li>
-                <li>The play must be able to see their      score.
-                </li>
-                <li>The player needs to be asked another      riddle.
-                </li>
-                <li>The player needs to be able to see  the  scores of other    players along with  their own.
-                <li>The player needs to be able to play     the     game    again.
-                </li>
-            </ol>   
-        <h4>Content Requirements:</h4>
-            <ol>
-                <li>The game needs a way for users to   create    a unique  user name; a login     facility.
-                </li>
-                <li>This is a riddle game, so it has to     have    a source    of riddles to ask.
-                </li>
-                <li>The player must be able to submit    their  answer, so a    answer field and  submit button     is needed.
-                </li>
-                <li>A logic engine is needed to check the     player's  answer to the correct answer   for a   riddle, with feedback     provided to     the player,     of a wrong or right         answer.
-                </li>
-                <li>The game has to increment the score     for     right   answers.
-                </li>
-                <li>The game has to show a score board  with     the results    from other  players.
-                </li>
-            </ol>
-    </li>     
-    <li><h4>Structure:</h4>
-        <h4>Focus:</h4>
-            <ul style="list-style-type:disc">
-                <li>What are the steps, the progression/flow of information throughout the game process?
-                </li>
-            </ul>
-        <h4>Interaction Design:</h4>
-            <ol> 
-                <li>The player login function -> is a data filter.  It is a process which manages and insures the  player uses a unique player name, or else the game wouldn't work properly.
-                </li>
-                <li>The unique player is given a riddle to  answer.
-                </li>
-                <li>If the answer is correct, the score is  added and they are given the next riddle.
-                </li>
-                <li>If the answer is wrong, they are    presented the wrong answer as well as  provided a hint. They are asked to try again.
-                </li>
-                <li>When the last riddle is answered    correctly, the player is shown a leader board  of all the players.
-                </li>
-                <li>If the player wishes to quit the game at    any time, they can log out, or play again by   logging back in.
-                </li>
-            </ol>
-        <h4>Information Architecture:</h4>
-            <ul style="list-style-type:disc">
-                <li>The processes of this game follows a    tree/branch structure from start to    finish.
-                </li>
-                <li><strong>Start:</strong> Riddle, Answer =    Right, Next Riddle + Score, Answer = Right,    Next Riddle + Score  +1, End
-                </li>
-                <li><strong>Start:</strong> Riddle, Answer =   Wrong, Next Riddle, Answer = Right, Next  Riddle + Score +1, End
-                </li>
-            </ul>
-    </li>    
-    <li><h4>Skeleton:</h4>
-        <h4>Focus:</h4>
-            <ol list-style-type:decimal>
-                <li> How will the information be represented?
-                </li>
-                <li>How will the user navigate to the   information and features?
-                </li>
-            </ol>
-        <h4>Interface Design:</h4>
-            <ul style="list-style-type:disc">
-                <li>The best way to show the design, was as in the Wireframes.  See below.
-                </li>
-            </ul>
-    <h4>Navigational Design:</h4>
-            <ul style="list-style-type:disc">
-                <li>The user follows prompts from the index page to either register or login to play the game.  Once in the game, the page will refresh each time an answer is input, which again prompts the player toward completion of the game.  This then ends with the player being brought to the leader-board.
-                </li>
-            </ul>
-    <h4>Information Design:</h4>
-            <ul style="list-style-type:disc">
-                <li>The player is prompted by both text and imagery throughout their visit to the game.
-                </li>
-            </ul>
-    </li>  
-    <li><h4>Surface:</h4>
-        <h4>Focus:</h4>
-            <ul style="list-style-type:disc">
-                <li>The focus is on the triangular layout of the    page, when viewed  on a large screen device.
-                </li>
-                <li>To play the riddle game, a player will need     to register their name and then log into the game.   Information is laid out    clearly with little to no     other page distraction.  
-                </li>
-            </ul>
-        <h4>Visual Design:</h4>
-            <ul style="list-style-type:disc">
-                <li>The Bootstrap 4 template used in this project   was from <a href="https://startbootstrap.com/    template-overviews/coming-soon/"><strong>Start Bootstrap - Coming Soon</strong></a>   
-                </li>   
-                <li>A    video background of an old style ticking  timepiece, marks the passage of time while the   player deliberates over the     answer to  a   riddle.  
-                </li> 
-            </ul>        
-    </li>
-</ol>
-</li>
-<li>
-<h2>Wireframes:</h2>
+## 1. Project Goals:
+This project is all about having fun, while making a game which demonstrates Python as the backbone programming language.
 
-![Index](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Index.png)
+The Game is designed to run on Heroku and will facilitate multiple players, playing the same game at the same time.  The players will be able to register their own unique usernames when they log into the game.  Their usernames will be used to tack their progress throughout the game.
 
-![Register!](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Register!.png)
+A leader-board will show the scores of players from highest to lowest.
+## 2 .The UX Design:
+### 1. Strategy:
+1. Focus:
+    * My project is to create a game for lovers of old style  Victorian Era Riddles that have been sourced from the [**Gutenberg Project**](https://www.gutenberg.org/)
+2. User Needs:
+    - To provide a game that a player can log into, so that   they  will then be able to play by answering a number of  riddles. If a     riddle is answered wrong, the game will    respond with the    player's incorrect answer as well as   provide the correct answer    along with a hint for   answering the next questions.
+    - The player's score will be added each time they answer a riddle correctly.  When the game is finished, the player can see their final score along with the scores of other players.
+  
+3.  Business Objectives:
+    - To demonstrate my use of the Python programming language in a game for my graded projects portfolio.
+ 
+### 3. Scope:
+1. Focus:
+    - Features of this design. The requirements of this project from the brief.
+2. Functional Specification:
+    1. The player must be able to use a    unique     player   name to play the     game.
+    2. The player must also be able to     respond     to a    riddle by being able to    type in an     answer.
+    3. There has to be process which checks    the    player's     answer and provides    feedback to them  about their    answer.
+    4. The play must be able to see their      score.
+    5. The player needs to be asked another      riddle.
+    6. The player needs to be able to see  the  scores of other    players along with  their own.
+    7. The player needs to be able to play     the     game    again.
+       
+3. Content Requirements:
+    1. The game needs a way for users to   create    a unique  user name; a login     facility.
+    2.  This is a riddle game, so it has to     have    a source    of riddles to ask.
+    3.  The player must be able to submit    their  answer, so a    answer field and  submit button     is needed.
+    4.  A logic engine is needed to check the     player's  answer to the correct answer   for a   riddle, with feedback     provided to     the player,     of a wrong or right         answer.
+    5.  The game has to increment the score     for     right   answers.    
+    6.  The game has to show a score board  with     the results    from other  players.
+### 4. Structure:
+1. Focus:
+   - What are the steps, the progression/flow of information throughout the game process?
 
-![Login here!](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Login_here!.png)
+2. Interaction Design:
+    1. The player login function -> is a data filter.  It is a process which manages and insures the  player uses a unique player name, or else the game wouldn't work properly.
+    2. The unique player is given a riddle to  answer.
+    3. If the answer is correct, the score is  added and they are given the next riddle.
+    4. If the answer is wrong, they are presented the wrong answer as well as  provided a hint. They are asked to try again.
+    5. When the last riddle is answered correctly, the player is shown a leader board  of all the players.
+    6. If the player wishes to quit the game at any time, they can log out, or play again by   logging back in.
+   
+3. Information Architecture:
+    - The processes of this game follows a:    
+        - *Start:* Riddle, Answer =    Right, Next Riddle + Score, Answer = Right,    Next Riddle + Score  +1, End
+        - *Start:* Riddle, Answer =   Wrong, Next Riddle, Answer = Right, Next  Riddle + Score +1, End
+    
+### 5. Skeleton:
+1. Focus:
+    1. How will the information be represented?
+    2. How will the user navigate to the   information and features?
+2. Interface Design:
+    - The best way to show the design, was as in the Wireframes.  See below.
+3. Navigational Design:
+    - The user follows prompts from the index page to either register or login to play the game.  Once in the game, the page will refresh each time an answer is input, which again prompts the player toward completion of the game.  This then ends with the player being brought to the leader-board.
+4. Information Design:
+    - The player is prompted by both text and imagery throughout their visit to the game.
+     
+### 6. Surface:
+1. Focus:
+    The focus is on the triangular layout of the   page, when viewed  on a large screen device.
+    
+    - To play the riddle game, a player will need  to register their name and then log into the game.   Information is laid out    clearly with little to no     other page distraction.
+2. Visual Design:
+    The Bootstrap 4 template used in this project  was from [Start Bootstrap - Coming Soon](https://startbootstrap.com/template-overviews/coming-soon/).   
+    
+    A    video background of an old style ticking  timepiece, marks the passage of time while the   player deliberates over the     answer to  a   riddle.  
 
-![Game](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Game.png)
+### 7. Wireframes:
 
-![Leader-board](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Leaderboard.png)
+![Index](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Index.png "Fig 1 showing Index page")
+
+![Register!](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Register!.png "Fig 2 showing Register page")
+
+![Login here!](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Login_here!.png "Fig 3 showing Log-in page")
+
+![Game](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Game.png "Fig 4 showing Game page")
+
+![Leader-board](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Leaderboard.png "Fig 5 showing Leader-board")
 
 
 
+## 3. Game construction:
+    1. Code Development
+   The project brief was to follow a a pattern of **Test Driven Development**.  A series of tests were written at the start of this project and then the run time function was written, based on the test.
 
-</li>
-<li>
-<h2>Game construction:</h2>
-    <h3>Work in Progress</h3>
-<p>The project brief was to follow a a pattern of <strong>Test Driven Development</strong>.  A series of tests were written at the start of this project and then the run time function was written, based on the test.</P>
+Not all functions were written in this way and these will be followed up with tests.
 
-<p>Not all functions were written in this way and these will be followed up with tests.</p>
-
-<h3>Test 1</h3>
+### Test 1
 
 ```python
 def test_loadUsers(self):
@@ -182,7 +112,7 @@ def test_loadUsers(self):
         self.assertEqual(len(users), 3)
 ```
 
-<h3>Test 1: Run-time function</h3>
+### Test 1: Run-time function
 
 ```python
 def loadUsers():
@@ -197,7 +127,7 @@ def loadUsers():
 ```
 <hr>
 
-<h3>Test 2</h3>
+### Test 2
 
 ```python
 def test_storePlayerName(self):
@@ -205,7 +135,7 @@ def test_storePlayerName(self):
         self.assertGreater(len(users), 0)  
 ```
 
-<h3>Test 2: Run-time function</h3>
+### Test 2: Run-time function
 
 ```python
 def storePlayerName(username, answer_given):
@@ -219,7 +149,7 @@ def storePlayerName(username, answer_given):
 
 <hr>
 
-<h3>Test 3</h3>
+### Test 3
 
 ```python
 def test_loadRiddles(self):
@@ -232,7 +162,7 @@ def test_loadRiddles(self):
 ```
 
 
-<h3>Test 3: Run-time function</h3>
+### Test 3: Run-time function
 
 ```python
 def loadRiddles():
@@ -246,7 +176,7 @@ def loadRiddles():
 
 <hr>
 
-<h3>Test 4</h3>
+### Test 4
 
 ```python
 def test_validateAnswer(self):
@@ -259,7 +189,7 @@ def test_validateAnswer(self):
     self.assertEqual(run.validateAnswer(riddles[0],"house"), False)
 ```
 
-<h3>Test 4: Run-time function</h3>
+### Test 4: Run-time function
 
 ```python
 def validateAnswer(riddle, answer):
@@ -272,7 +202,7 @@ def validateAnswer(riddle, answer):
 
 <hr>
 
-<h3>Test 5</h3>
+### Test 5
 
 ```python
 def test_count_eq(self):
@@ -280,7 +210,7 @@ def test_count_eq(self):
     self.assertCountEqual(self.result, self.expected)
 ```
 
-<h3>Test 5: Run-time function</h3>
+### Test 5: Run-time function
 
 ```python
 def countRiddles():
@@ -293,8 +223,8 @@ def countRiddles():
 
 <hr>
 
-<h4>Selection of Specialist Functions</h4>
-<h3>Run-time function #8</h3>
+#### Selection of Specialist Functions
+### Run-time function #8
 
 ```python
 def newUserScore(username, score):
@@ -328,7 +258,7 @@ def newUserScore(username, score):
 ```
 <hr>
 
-<h3>Run-time function #9</h3>
+### Run-time function #9
 
 ```python
 def writeScore(username, score):
@@ -348,9 +278,48 @@ def writeScore(username, score):
 ```
 <hr>
 
-</li>
-<li>
-<h2>Deployment Instructions:</h2>
-</li>
-<p>Instructions for deployment to a hosing site: Heroku</p>
-</ol>
+
+## 4. Deployment Instructions:
+1. Instructions for deployment to a hosing site: [Heroku](https://www.heroku.com/)
+    1. In Heroku - Part 1:
+        1. Log into Heroku
+        2. Select New and Create new App.
+        3. Create a App name, select the region.
+            - then Create app.
+        4. Select Resources.
+            -  then select Find more add-ons.
+            - Select Heroku Postgres.
+            - Install Heroku Postgres, using the hobby plan.
+        5. Return to Personal menu then select ddeveloper72-riddle-me-this.
+        6. select Deploy 
+            - Note the deployment instructions.
+    2. From Cloud 9:
+        1. Log in to Heroku: `$ heroku login`
+        2. Verify the app name is present, created in step 1 above: `$ heroku apps`
+        3. Connect git to new app location on Heroku: `$ heroku git:remote -a ddeveloper72-riddle-me-this
+ set git remote heroku to https://git.heroku.com/ddeveloper72-riddle-me-this.git`
+        1. Add all project files: `$ git add .`
+        2. Create a default message for the first commit to Heroku: `$ git commit -am "make it better- Use Heroku"`
+        3. Push the project to Heroku: `$ git push heroku master`
+        4. `$ heroku buildpacks:clear`
+        5. Push the project to Heroku `$ git push heroku master` and watch the installation log for errors.
+        6. Scale the app dynos for Heroku: `$ heroku ps:scale web=1`
+        7. Set `app.run(debug=False)` to disable Flask developer-mode. Save and execute  `git add run.py`
+        8. Execute `$ git commit -m "Turned off server developer mode"`
+        9. Execute `$ git push heroku master`
+        10. Save above changes to existing git profile `$ git push`
+    1. In Heroku - Part 2:
+        1. Select Settings
+            - Select Config Vars:
+            - set IP to 0.0.0.0
+            - set PORT to 5000
+        2. Select More, beside Open app:
+            - Click Restart all dynos.
+        3. Click Open app
+            - Select new tab, [Riddle Me This](https://ddeveloper72-riddle-me-this.herokuapp.com/)
+2.  Credits:
+    - There are loads, to be updated.
+3. Boilerplate 
+    - [Start Bootstrap - Coming Soon](https://startbootstrap.com/template-overviews/coming-soon/) Free Bootstrap Themes and Templates
+4. Riddles
+    - Victorian Era Riddles that have been sourced from the [Gutenberg Project](https://www.gutenberg.org/).
