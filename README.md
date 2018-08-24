@@ -298,16 +298,30 @@ def writeScore(username, score):
         2. Verify the app name is present, created in step 1 above: `$ heroku apps`
         3. Connect git to new app location on Heroku: `$ heroku git:remote -a ddeveloper72-riddle-me-this
  set git remote heroku to https://git.heroku.com/ddeveloper72-riddle-me-this.git`
-        1. Add all project files: `$ git add .`
-        2. Create a default message for the first commit to Heroku: `$ git commit -am "make it better- Use Heroku"`
-        3. Push the project to Heroku: `$ git push heroku master`
-        4. `$ heroku buildpacks:clear`
-        5. Push the project to Heroku `$ git push heroku master` and watch the installation log for errors.
-        6. Scale the app dynos for Heroku: `$ heroku ps:scale web=1`
-        7. Set `app.run(debug=False)` to disable Flask developer-mode. Save and execute  `git add run.py`
-        8. Execute `$ git commit -m "Turned off server developer mode"`
-        9. Execute `$ git push heroku master`
-        10. Save above changes to existing git profile `$ git push`
+        1. Create the requirements file, defining the modules imported to Heroku: `sudo pip3 freeze --local > requirements.txt`
+        2. Create the proc file: `echo web: python run.py > Procfile`
+        3. Add all project files: `$ git add .`
+        4. Create a default message for the first commit to Heroku: `$ git commit -am "make it better- Use Heroku"`
+        5. Push the project to Heroku: `$ git push heroku master`
+        6. `$ heroku buildpacks:clear`
+        7. Push the project to Heroku `$ git push heroku master` and watch the installation log for errors.
+        8. Scale the app dynos for Heroku: `$ heroku ps:scale web=1`
+        9. Set run.py debug to false before publishing: 
+            ```python
+            if __name__ == '__main__':
+             """
+             #assign a port ID works with cloud9
+             """
+             app.run(host=os.environ.get('IP'),
+                 port=int(os.environ.get('PORT')),
+                 debug=False) 
+            ``` 
+            Disable Flask developer-mode by setting debug=True to False. Save and execute  `git add run.py`
+            
+
+        13.  Execute `$ git commit -m "Turned off server developer mode"`
+        14.  Execute `$ git push heroku master`
+        14.  Save above changes to existing git profile `$ git push`
     1. In Heroku - Part 2:
         1. Select Settings
             - Select Config Vars:
@@ -317,7 +331,7 @@ def writeScore(username, score):
             - Click Restart all dynos.
         3. Click Open app
             - Select new tab, [Riddle Me This](https://ddeveloper72-riddle-me-this.herokuapp.com/)
-2.  Credits:
+2. Credits:
     - There are loads, to be updated.
 3. Boilerplate 
     - [Start Bootstrap - Coming Soon](https://startbootstrap.com/template-overviews/coming-soon/) Free Bootstrap Themes and Templates
