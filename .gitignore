@@ -9,4 +9,5 @@ node_modules
 /Python-3.6.4
 data/player_data/
 data/player-scores.txt
+data/users.txt
 
