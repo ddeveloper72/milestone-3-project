@@ -228,7 +228,9 @@ def scores_list():
     first = str(li[0])[1:-1].replace("'" , " ").replace("," , " ")
     second = str(li[1])[1:-1].replace("'" , " ").replace("," , " ")
     third = str(li[2])[1:-1].replace("'" , " ").replace("," , " ")
-    return first, second, third    
+    fourth = str(li[3])[1:-1].replace("'" , " ").replace("," , " ")
+    fith = str(li[4])[1:-1].replace("'" , " ").replace("," , " ")
+    return first, second, third, fourth, fith   
     
 
 # The Flask decorators below, process and render data to our front end templates.
