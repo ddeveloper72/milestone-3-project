@@ -333,7 +333,24 @@ def writeScore(username, score):
             - Select new tab, [Riddle Me This](https://ddeveloper72-riddle-me-this.herokuapp.com/)
 2. Credits:
     - There are loads, to be updated.
-3. Boilerplate 
+3. Bugs & Debugging:
+    - Debugging Strategy:
+    I thought that the best way to test this game was to run a beta test by putting the game on Heroku and then letting everyone in my college play it.  While doing so, I asked for feedback on the game. This is the feedback I got:
+    1. The riddle answer checks were too literal. eg `A clock failed`, but `Clock` passed.
+    2. The bottom of the masthead template gets cut-off, hiding my footer so it is no longer visible.
+    3. The ordering of the scores from highest to lowest was in random order.
+    4. Clicking the home button on the nav bar started the riddle game again, but didn't reset the score to 0.
+    5. The image on the index page was too big when seen on a mobile device.
+    6. If a player closes the browser without logging out of the game, they remain in session, when they open game again.
+   
+   - The fixes:
+    1. I changed the checking system between player answer and riddle answer from the same as to is in. (from `==` to `ìs`).
+    2. I still need to look at debugging the masthead template.
+    3. I had been experimenting with the leaderboard code and had left the return result in brackets when I shouldn't have.
+    4. In the @app.route('/') I added a line to the if statement which I use on the login decorator.  It creates a new player score, which is set at 0. So the player can play the game again without having to log out and log back in again.
+    5. I added a media query in the style.css to change the max-width for the image to 30% on a max screen width of 415px.
+    6. I haven't implemented a solution yet, to log a player out of the game, if they close the browser window. I am currently researching [Flask.session persisting after close browser](https://stackoverflow.com/questions/37227780/flask-session-persisting-after-close-browser). 
+4. Boilerplate 
     - [Start Bootstrap - Coming Soon](https://startbootstrap.com/template-overviews/coming-soon/) Free Bootstrap Themes and Templates
-4. Riddles
+5. Riddles
     - Victorian Era Riddles that have been sourced from the [Gutenberg Project](https://www.gutenberg.org/).
