@@ -362,21 +362,21 @@ def logout():
     return redirect(url_for('index'))
 
 
-if __name__ == '__main__':
+"""if __name__ == '__main__':
     
     # assign a port ID works with Vscode
    
     app.run(host=os.getenv('IP'),
         port=os.getenv('PORT'),
         # debug set to true to help during development
-        debug=True)
+        debug=True)"""
           
             
             
-"""if __name__ == '__main__':
+if __name__ == '__main__':
     """
     #assign a port ID works with cloud9
-"""
+    """
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
-        debug=False)"""
+        debug=False)
