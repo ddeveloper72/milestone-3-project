@@ -88,6 +88,11 @@
     max-width: 60%;
   }
 }
+@media only screen and (max-width: 415px){
+  .cover-image{
+    max-width: 30%;
+  }
+}
 @media (min-height: 768px) {
   .riddle-image{
     max-width: 40%;
