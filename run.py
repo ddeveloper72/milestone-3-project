@@ -236,8 +236,10 @@ def scores_list():
 # The Flask decorators below, process and render data to our front end templates.
 @app.route('/')
 def index():
+    score = 0   # our score is set to 0
     if 'username' in session:
         username = session['username']
+        newUserScore(session['username'], score) # Create a score tracker.
         flash('You are logged in as '+ username + '.  Click home on the nav bar to return to game')
         return redirect(url_for('game', username = session['username']))
         
@@ -327,7 +329,8 @@ def game(username):
             
             # Flash the number of riddles correct with the dynaminc total of the
             # number of riddles. Yes! The code will update for any number of riddles.
-            flash(f'Well done! Thats a score of {score} out of {countRiddles()} riddles right!')          
+            flash(f'Well done! Thats a score of {score} out of {countRiddles()} riddles right!')
+            
             
             if riddleNumber == countRiddles():  # Determins what happens next when the last riddle is used.
                 write_LeaderboardScores(score, username, date)
@@ -352,7 +355,7 @@ def game(username):
 def leaderboard(username, score):
     scores = score
     scores = scores_list()
-
+    
 
     return render_template("leaderboard.html", username=current_user.username, player_scores=scores)
 
@@ -381,4 +384,4 @@ if __name__ == '__main__':
     """
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
-        debug=False)
+        debug=True)
