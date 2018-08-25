@@ -3,7 +3,7 @@
 # Milestone 3 Project
 
 
-## Riddle-Me-This
+## [Riddle Me This](https://ddeveloper72-riddle-me-this.herokuapp.com/)
 ### by Duncan Falconer for the Code Institute, 2018
 
 ## 1. Project Goals:
@@ -52,7 +52,7 @@ A leader-board will show the scores of players from highest to lowest.
     3. If the answer is correct, the score is  added and they are given the next riddle.
     4. If the answer is wrong, they are presented the wrong answer as well as  provided a hint. They are asked to try again.
     5. When the last riddle is answered correctly, the player is shown a leader board  of all the players.
-    6. If the player wishes to quit the game at any time, they can log out, or play again by   logging back in.
+    6. If the player wishes to quit the game at any time, they can log out, or play again by   selecting the Home button on the navigation bar.
    
 3. Information Architecture:
     - The processes of this game follows a:    
