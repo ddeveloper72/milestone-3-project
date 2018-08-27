@@ -46,11 +46,11 @@ A leader-board will show the scores of players from highest to lowest.
 1. Focus:
    - What are the steps, the progression/flow of information throughout the game process?
 
-2. Interaction Design:
+2. Interactive Design:
     1. The player login function -> is a data filter.  It is a process which manages and insures the  player uses a unique player name, or else the game wouldn't work properly.
     2. The unique player is given a riddle to  answer.
     3. If the answer is correct, the score is  added and they are given the next riddle.
-    4. If the answer is wrong, they are presented the wrong answer as well as  provided a hint. They are asked to try again.
+    4. If the answer is wrong, they are presented the wrong answer as well as  provided a hint.
     5. When the last riddle is answered correctly, the player is shown a leader board  of all the players.
     6. If the player wishes to quit the game at any time, they can log out, or play again by   selecting the Home button on the navigation bar.
    
@@ -336,7 +336,7 @@ def writeScore(username, score):
 3. Bugs & Debugging:
     - Debugging Strategy:
       I thought that the best way to test this game was to run a beta test by putting the game on Heroku and then letting everyone in my college play it.  While doing so, I asked for feedback on the game. This is the feedback I got:
-      1. The riddle answer checks were too literal. eg `A clock failed`, but `Clock` passed.
+      1. The riddle answer checks were too literal. eg `A clock` failed, but `Clock` passed.
       2. The bottom of the masthead template gets cut-off, hiding my footer so it is no longer visible.
       3. The ordering of the scores from highest to lowest was in random order.
       4. Clicking the home button on the nav bar started the riddle game again, but didn't reset the score to 0.
