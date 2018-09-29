@@ -23,7 +23,7 @@ A leader-board will show the scores of players from highest to lowest.
 3.  Business Objectives:
     - To demonstrate my use of the Python programming language in a game for my graded projects portfolio.
  
-### 3. Scope:
+### 2. Scope:
 1. Focus:
     - Features of this design. The requirements of this project from the brief.
 2. Functional Specification:
@@ -42,7 +42,7 @@ A leader-board will show the scores of players from highest to lowest.
     4.  A logic engine is needed to check the     player's  answer to the correct answer   for a   riddle, with feedback     provided to     the player,     of a wrong or right         answer.
     5.  The game has to increment the score     for     right   answers.    
     6.  The game has to show a score board  with     the results    from other  players.
-### 4. Structure:
+### 3. Structure:
 1. Focus:
    - What are the steps, the progression/flow of information throughout the game process?
 
@@ -59,7 +59,7 @@ A leader-board will show the scores of players from highest to lowest.
         - *Start:* Riddle, Answer =    Right, Next Riddle + Score, Answer = Right,    Next Riddle + Score  +1, End
         - *Start:* Riddle, Answer =   Wrong, Next Riddle, Answer = Right, Next  Riddle + Score +1, End
     
-### 5. Skeleton:
+### 4. Skeleton:
 1. Focus:
     1. How will the information be represented?
     2. How will the user navigate to the   information and features?
@@ -70,7 +70,7 @@ A leader-board will show the scores of players from highest to lowest.
 4. Information Design:
     - The player is prompted by both text and imagery throughout their visit to the game.
      
-### 6. Surface:
+### 5. Surface:
 1. Focus:
     The focus is on the triangular layout of the   page, when viewed  on a large screen device.
     
@@ -80,7 +80,7 @@ A leader-board will show the scores of players from highest to lowest.
     
     A    video background of an old style ticking  timepiece, marks the passage of time while the   player deliberates over the     answer to  a   riddle.  
 
-### 7. Wireframes:
+### 6. Wireframes:
 
 ![Index](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Index.png "Fig 1 showing Index page")
 
@@ -332,8 +332,22 @@ def writeScore(username, score):
         3. Click Open app
             - Select new tab, [Riddle Me This](https://ddeveloper72-riddle-me-this.herokuapp.com/)
 2. Credits:
-    - There are loads, to be updated.
+    - There are loads of people that I want to give credit to.  These include, first and foremeost my family for thier support!
+    - My friends withinn the Code Institute who go by the Slack handles @Eventret, @Miro, @saraloh, my Mentor, Nishant and tutors @niel_ci and @nakita_ci.  You guys have helped me to find my way to using various online resources like [Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ) and personally shared resources like UXD design templates- to help keep my thoughts on task and ontrack and help with my C9 coding environment.  Thank you ladies and gentlement!
+    - To create a login function for my game site, I adapted the tutorial from Pretty Printed to create an SQL datase for storing my player names and passwords in an secure environment.  The tutorial which I followed was called: [Build a User Login System With Flask-Login, Flask-WTForms, Flask-Bootstrap, and Flask-SQLAlchemy](https://youtu.be/8aTnmsDMldY).  
+  
 3. Bugs & Debugging:
+    - Development Testing:
+      * The during developent the media responsiveness of the game was tested using Chrome dev tools to simulate different small and large screen devices.  
+      * I later shared my game with family and friends on WhatsApp so that they could follow the Heroku link to the game app and see the game on their mobile handsets.  In this way, I fould that I ahd to limit the sizes of my riddle images as well as title page images.  
+      * I found response issues when viewing the game when switiching between portrate and landscape modes in my development environment.  I was able to correct these by adding in media queries to my css file.
+      * When testing the game in multiplayer mode-  I created several player logins by running different browsers simultaineously.  The browsers that I used were:
+            * Chrome
+            * Firefox
+            * Opra Browser
+            * Internet Explorer
+            * Edge
+      
     - Debugging Strategy:
       I thought that the best way to test this game was to run a beta test by putting the game on Heroku and then letting everyone in my college play it.  While doing so, I asked for feedback on the game. This is the feedback I got:
       1. The riddle answer checks were too literal. eg `A clock` failed, but `Clock` passed.
