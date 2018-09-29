@@ -338,15 +338,16 @@ def writeScore(username, score):
   
 3. Bugs & Debugging:
     - Development Testing:
-      * The during developent the media responsiveness of the game was tested using Chrome dev tools to simulate different small and large screen devices.  
-      * I later shared my game with family and friends on WhatsApp so that they could follow the Heroku link to the game app and see the game on their mobile handsets.  In this way, I fould that I ahd to limit the sizes of my riddle images as well as title page images.  
+      * During developent, media responsiveness of the game was tested using Chrome dev tools to simulate different small and large screen devices.  
+      * I later shared my game with family and friends on WhatsApp so that they could follow the Heroku link to the game app and see the game on their mobile handsets.  In this way, I fould that I had to limit the sizes of my riddle images as well as title page images.  
       * I found response issues when viewing the game when switiching between portrate and landscape modes in my development environment.  I was able to correct these by adding in media queries to my css file.
       * When testing the game in multiplayer mode-  I created several player logins by running different browsers simultaineously.  The browsers that I used were:
-            * Chrome
-            * Firefox
-            * Opra Browser
-            * Internet Explorer
-            * Edge
+      
+        1.  Chrome
+        2.  Firefox
+        3.  Opra Browser
+        4.  Internet Explorer
+        5.  Edge
       
     - Debugging Strategy:
       I thought that the best way to test this game was to run a beta test by putting the game on Heroku and then letting everyone in my college play it.  While doing so, I asked for feedback on the game. This is the feedback I got:
