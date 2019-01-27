@@ -1,17 +1,65 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*                               Custom Style Sheet                          */
+/*                                                                           */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.card {
+ background-color: #a06a1b;
+}
+
+.cover-image {
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 1.5rem
+}
+
+.footer {
+  color: white;
+  font-size: 1rem;
+  font-family: Source Sans Pro;
+  bottom: 0;
+  text-align: center;
+}
+
+.leader-image {
+  max-width: 40%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 1.5rem;
+}
+
+.line {
+border-top: 1px solid rgba(251, 249, 249, 0.53);
+}
+
 .nav-link{
   font-weight: 600;
 }
-@media (min-width: 768px){
-.navbar-expand-md {
-  transform: skewX(-8deg);
-  transform-origin: top right;
-  }
+
+.noselect {
+  -webkit-touch-callout: auto; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
+
+
+.notice {
+font-size: 1rem;
+font-family: Source Sans Pro;
+}
+
 .my-5 {
     margin-top: 1rem !important;
-    margin-bottom: 0 !important;
- 
+    margin-bottom: 0 !important; 
 }
+
 /* Riddle textbox styles */
 .riddle {
   cursor: pointer;
@@ -27,44 +75,7 @@
   padding:10px;
   border-radius: 10px;
 }
-@media (min-height: 768px) {
-  .riddle{
-    height: auto;
-  }
-}
-.noselect {
-  -webkit-touch-callout: auto; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
-}
 
-/* Scrollbar styles */
-::-webkit-scrollbar {
-  width: 16px;
-  height: 12px;
-}
-::-webkit-scrollbar-track {
-  border: 1px solid #cd9557;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-  background: #cd9557;  
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #ba7c37;  
-}
-.cover-image {
-  height: auto;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 1.5rem
-}
 .riddle-image {
   display: block;
   position: relative;
@@ -73,57 +84,83 @@
   max-height: auto;
   max-width: auto;
 }
+
+.text-muted {
+  padding-bottom: 0.5rem;
+  margin:0;
+}
+
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  border: 1px solid #cd9557;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cd9557;  
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ba7c37;  
+}
+
+
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*                               Media Queries                               */
+/*                                                                           */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+@media (min-width: 768px){
+  .navbar-expand-md {
+    transform: skewX(-8deg);
+    transform-origin: top right;
+    }
+  }
+  
+
+@media (min-height: 768px) {
+  .riddle{
+    height: auto;
+  }
+}
+
 @media (min-width: 768px) {
   .cover-image{
     max-width: 40%;
   }
 }
-@media (min-width: 768px) {
-  .riddle-image{
-    max-width: 30%;
-  }
-}
+
+
 @media (min-height: 768px) {
   .cover-image{
     max-width: 60%;
   }
 }
+
 @media only screen and (max-width: 415px){
   .cover-image{
     max-width: 30%;
   }
 }
+
 @media (min-height: 768px) {
   .riddle-image{
     max-width: 40%;
   }
 }
-.leader-image {
-    max-width: 40%;
-    height: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 1.5rem;
-}
-.notice {
-  font-size: 1rem;
-  font-family: Source Sans Pro;
-}
-.line {
-  border-top: 1px solid rgba(251, 249, 249, 0.53);
-}
-.text-muted {
-  padding-bottom: 0.5rem;
-  margin:0;
-}
-.card {
-   background-color: #a06a1b;
-}
-.footer{
-  color: white;
-  font-size: 1rem;
-  font-family: Source Sans Pro;
-  bottom: 0;
-  text-align: center;
+
+@media (min-width: 768px) {
+  .riddle-image{
+    max-width: 30%;
+  }
 }
