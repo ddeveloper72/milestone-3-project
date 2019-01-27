@@ -10,4 +10,5 @@ node_modules
 data/player_data/
 data/player-scores.txt
 data/users.txt
+.venv
 
