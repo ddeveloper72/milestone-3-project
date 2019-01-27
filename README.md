@@ -23,7 +23,7 @@ A leader-board will show the scores of players from highest to lowest.
 3.  Business Objectives:
     - To demonstrate my use of the Python programming language in a game for my graded projects portfolio.
  
-### 3. Scope:
+### 2. Scope:
 1. Focus:
     - Features of this design. The requirements of this project from the brief.
 2. Functional Specification:
@@ -42,15 +42,15 @@ A leader-board will show the scores of players from highest to lowest.
     4.  A logic engine is needed to check the     player's  answer to the correct answer   for a   riddle, with feedback     provided to     the player,     of a wrong or right         answer.
     5.  The game has to increment the score     for     right   answers.    
     6.  The game has to show a score board  with     the results    from other  players.
-### 4. Structure:
+### 3. Structure:
 1. Focus:
    - What are the steps, the progression/flow of information throughout the game process?
 
-2. Interaction Design:
+2. Interactive Design:
     1. The player login function -> is a data filter.  It is a process which manages and insures the  player uses a unique player name, or else the game wouldn't work properly.
     2. The unique player is given a riddle to  answer.
     3. If the answer is correct, the score is  added and they are given the next riddle.
-    4. If the answer is wrong, they are presented the wrong answer as well as  provided a hint. They are asked to try again.
+    4. If the answer is wrong, they are presented the wrong answer as well as  provided a hint.
     5. When the last riddle is answered correctly, the player is shown a leader board  of all the players.
     6. If the player wishes to quit the game at any time, they can log out, or play again by   selecting the Home button on the navigation bar.
    
@@ -59,7 +59,7 @@ A leader-board will show the scores of players from highest to lowest.
         - *Start:* Riddle, Answer =    Right, Next Riddle + Score, Answer = Right,    Next Riddle + Score  +1, End
         - *Start:* Riddle, Answer =   Wrong, Next Riddle, Answer = Right, Next  Riddle + Score +1, End
     
-### 5. Skeleton:
+### 4. Skeleton:
 1. Focus:
     1. How will the information be represented?
     2. How will the user navigate to the   information and features?
@@ -70,7 +70,7 @@ A leader-board will show the scores of players from highest to lowest.
 4. Information Design:
     - The player is prompted by both text and imagery throughout their visit to the game.
      
-### 6. Surface:
+### 5. Surface:
 1. Focus:
     The focus is on the triangular layout of the   page, when viewed  on a large screen device.
     
@@ -80,7 +80,7 @@ A leader-board will show the scores of players from highest to lowest.
     
     A    video background of an old style ticking  timepiece, marks the passage of time while the   player deliberates over the     answer to  a   riddle.  
 
-### 7. Wireframes:
+### 6. Wireframes:
 
 ![Index](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/Index.png "Fig 1 showing Index page")
 
@@ -332,24 +332,39 @@ def writeScore(username, score):
         3. Click Open app
             - Select new tab, [Riddle Me This](https://ddeveloper72-riddle-me-this.herokuapp.com/)
 2. Credits:
-    - There are loads, to be updated.
+    - There are loads of people that I want to give credit to.  These include, first and foremeost my family for thier support!
+    - My friends withinn the Code Institute who go by the Slack handles @Eventret, @Miro, @saraloh, my Mentor, Nishant and tutors @niel_ci and @nakita_ci.  You guys have helped me to find my way to using various online resources like [Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ) and personally shared resources like UXD design templates- to help keep my thoughts on task and ontrack and help with my C9 coding environment.  Thank you ladies and gentlement!
+    - To create a login function for my game site, I adapted the tutorial from Pretty Printed to create an SQL datase for storing my player names and passwords in an secure environment.  The tutorial which I followed was called: [Build a User Login System With Flask-Login, Flask-WTForms, Flask-Bootstrap, and Flask-SQLAlchemy](https://youtu.be/8aTnmsDMldY).  
+  
 3. Bugs & Debugging:
+    - Development Testing:
+      * During developent, media responsiveness of the game was tested using Chrome dev tools to simulate different small and large screen devices.  
+      * I later shared my game with family and friends on WhatsApp so that they could follow the Heroku link to the game app and see the game on their mobile handsets.  In this way, I fould that I had to limit the sizes of my riddle images as well as title page images.  
+      * I found response issues when viewing the game when switiching between portrate and landscape modes in my development environment.  I was able to correct these by adding in media queries to my css file.
+      * When testing the game in multiplayer mode-  I created several player logins by running different browsers simultaineously.  The browsers that I used were:
+      
+        1.  Chrome
+        2.  Firefox
+        3.  Opra Browser
+        4.  Internet Explorer
+        5.  Edge
+      
     - Debugging Strategy:
-    I thought that the best way to test this game was to run a beta test by putting the game on Heroku and then letting everyone in my college play it.  While doing so, I asked for feedback on the game. This is the feedback I got:
-    1. The riddle answer checks were too literal. eg `A clock failed`, but `Clock` passed.
-    2. The bottom of the masthead template gets cut-off, hiding my footer so it is no longer visible.
-    3. The ordering of the scores from highest to lowest was in random order.
-    4. Clicking the home button on the nav bar started the riddle game again, but didn't reset the score to 0.
-    5. The image on the index page was too big when seen on a mobile device.
-    6. If a player closes the browser without logging out of the game, they remain in session, when they open game again.
+      I thought that the best way to test this game was to run a beta test by putting the game on Heroku and then letting everyone in my college play it.  While doing so, I asked for feedback on the game. This is the feedback I got:
+      1. The riddle answer checks were too literal. eg `A clock` failed, but `Clock` passed.
+      2. The bottom of the masthead template gets cut-off, hiding my footer so it is no longer visible.
+      3. The ordering of the scores from highest to lowest was in random order.
+      4. Clicking the home button on the nav bar started the riddle game again, but didn't reset the score to 0.
+      5. The image on the index page was too big when seen on a mobile device.
+      6. If a player closes the browser without logging out of the game, they remain in session, when they open game again.
    
    - The fixes:
-    1. I changed the checking system between player answer and riddle answer from the same as to is in. (from `==` to `ìs`).
-    2. I still need to look at debugging the masthead template.
-    3. I had been experimenting with the leaderboard code and had left the return result in brackets when I shouldn't have.
-    4. In the @app.route('/') I added a line to the if statement which I use on the login decorator.  It creates a new player score, which is set at 0. So the player can play the game again without having to log out and log back in again.
-    5. I added a media query in the style.css to change the max-width for the image to 30% on a max screen width of 415px.
-    6. I haven't implemented a solution yet, to log a player out of the game, if they close the browser window. I am currently researching [Flask.session persisting after close browser](https://stackoverflow.com/questions/37227780/flask-session-persisting-after-close-browser). 
+      1. I changed the checking system between player answer and riddle answer from the same as to is in. (from `==` to `ìs`).
+      2. I still need to look at debugging the masthead template.
+      3. I had been experimenting with the leaderboard code and had left the return result in brackets when I shouldn't have.
+      4. In the @app.route('/') I added a line to the if statement which I use on the login decorator.  It creates a new player score, which is set at 0. So the player can play the game again without having to log out and log back in again.
+      5. I added a media query in the style.css to change the max-width for the image to 30% on a max screen width of 415px.
+      6. I haven't implemented a solution yet, to log a player out of the game, if they close the browser window. I am currently researching [Flask.session persisting after close browser](https://stackoverflow.com/questions/37227780/flask-session-persisting-after-close-browser). 
 4. Boilerplate 
     - [Start Bootstrap - Coming Soon](https://startbootstrap.com/template-overviews/coming-soon/) Free Bootstrap Themes and Templates
 5. Riddles
