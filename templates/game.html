@@ -8,20 +8,20 @@
 {% block content %}
 
 <section>
-    <h2 class="mb-3 title">Welcome {{ username }}, to Riddle Me This!</h2>
-    <h5 class="mb-5 subtitle">Old Style Riddles from The Project Gutenberg</h5>
+    <h2 class="title">Welcome {{ username }}, to Riddle Me This!</h2>
+    <h5 class="subtitle">Old Style Riddles from The Project Gutenberg</h5>
 </section>
 
 
 <section>
     <div class="col-12 my-auto mt-auto py-3">        
-        <div class="row col-12">
+        <div class="row">
             <img class="riddle-image" {% autoescape false %}
             {{ riddle_me_this[riddleNumber][ "image"] }}
             {% endautoescape %}>                
                     
             <div class="row">
-                <p class="mb-5 riddle noselect">{{ riddle_me_this[riddleNumber]["riddle"] }}</p>
+                <p class="riddle noselect">{{ riddle_me_this[riddleNumber]["riddle"] }}</p>
             </div>
         </div>         
         
@@ -50,7 +50,7 @@
                     <input type="text" class="form-control" placeholder="answer" name="answer" id="answer" required autofocus>
                     <input type="hidden" name="riddleNumber" id="riddleNumber" value={{riddleNumber}}>
                 </div>
-                <div class="row ml-4">
+                <div class="row mt-2 ml-4">
                     <button class="btn btn-secondary" type="submit" onclick="getData">submit</button>                        
                 </div>
             </form>
