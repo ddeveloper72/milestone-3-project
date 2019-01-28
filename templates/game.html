@@ -1,41 +1,66 @@
 {% extends 'base.html' %} {% block head_nav %}
 <a class="nav-item nav-link disabled" href="#">Login here</a>
 <a class="nav-item nav-link disabled" href="#">Register!</a>
-<a class="nav-item nav-link" href="{{ url_for('logout') }}">Log Out</a> {% endblock head_nav %} {% block content %}
+<a class="nav-item nav-link" href="{{ url_for('logout') }}">Log Out</a> 
+{% endblock head_nav %} 
+
+
+{% block content %}
 
 <section>
-
     <h2 class="mb-3 title">Welcome {{ username }}, to Riddle Me This!</h2>
-    <div class="col-auto">
-        <img class="riddle-image" 
-                {% autoescape false %}{{ riddle_me_this[riddleNumber][ "image"] }}{% endautoescape %} 
+    <h5 class="mb-5 subtitle">Old Style Riddles from The Project Gutenberg</h5>
+</section>
+
+
+<section>
+    <div class="col-12 my-auto mt-auto py-3">        
+        <div class="row col-12">
+            <img class="riddle-image" {% autoescape false %}
+            {{ riddle_me_this[riddleNumber][ "image"] }}
+            {% endautoescape %}>                
+                    
+            <div class="row">
                 <p class="mb-5 riddle noselect">{{ riddle_me_this[riddleNumber]["riddle"] }}</p>
+            </div>
+        </div>         
+        
+        
+        <div class="col-12">
+            <div class="row ml-4">
+                {% with messages = get_flashed_messages() %} {% if messages %}
+                <div class="flashes success" role="alert">
+                    {% for message in messages %}
+                    <div class="notice">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %} 
+                {% endwith %}
+                
+            </div>
+            
+            
+            <div class="row ml-4">
+                <p><strong>Have you the answer?</strong> Type in your answer below!
+                    <br>(eg. glass of wine)</p>
+            </div>
+
+            <form method="POST" class="form-inline">
+                <div class="row ml-4">
+                    <input type="text" class="form-control" placeholder="answer" name="answer" id="answer" required autofocus>
+                    <input type="hidden" name="riddleNumber" id="riddleNumber" value={{riddleNumber}}>
+                </div>
+                <div class="row ml-4">
+                    <button class="btn btn-secondary" type="submit" onclick="getData">submit</button>                        
+                </div>
+            </form>
+
+        </div>
     </div>
-
 </section>
 
-<section>
-    {% with messages = get_flashed_messages() %} {% if messages %}
-    <div class="flashes success" role="alert">
-        {% for message in messages %}
-        <div class="notice">{{ message }}</div>
-        {% endfor %}
-    </div>
-    {% endif %} {% endwith %}
+{% endblock content %}
 
-</section>
 
-<section>
-
-    <p>
-        <strong>Have you the answer?</strong> Type in your answer below!
-        <br>(eg. glass of wine)</p>
-    <form method="POST" class="form-inline">
-        <input type="text" class="form-control" placeholder="answer" name="answer" id="answer" required autofocus>
-        <input type="hidden" name="riddleNumber" id="riddleNumber" value={{riddleNumber}}>
-        <button class="btn btn-secondary" type="submit" onclick="getData">submit</button>
-    </form>
-
-</section>
-
-{% endblock %}
+{% block footer %}
+{% endblock footer %}

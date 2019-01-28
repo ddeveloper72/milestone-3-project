@@ -21,15 +21,20 @@
     <strong>To Play</strong>! Sign in with your username, using the form below!</p>
     {% if error %}
     <p class=error>
-        <strong>Error:</strong> {{ error }} {% endif %}
+        <strong>Error:</strong> {{ error }} 
+    {% endif %}
         <form class="form-signin" method="POST" action="/login">
-            {{ form.hidden_tag() }} {{ wtf.form_field(form.username) }} {% with messages = get_flashed_messages() %} {% if messages %}
+            {{ form.hidden_tag() }} {{ wtf.form_field(form.username) }} 
+            {% with messages = get_flashed_messages() %} 
+            {% if messages %}
             <ul class="flashes">
                 {% for message in messages %}
                 <li>{{ message }}</li>
                 {% endfor %}
             </ul>
-            {% endif %} {% endwith %} {{ wtf.form_field(form.password) }} {{ wtf.form_field(form.remember) }}
+            {% endif %} 
+            {% endwith %} 
+            {{ wtf.form_field(form.password) }} {{ wtf.form_field(form.remember) }}
             <div class="input-group-append">
                 <button class="btn btn-secondary" type="submit" value="Log in">Lets Play!</button>
             </div>
