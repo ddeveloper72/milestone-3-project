@@ -25,14 +25,16 @@
     {% endif %}
         <form class="form-signin" method="POST" action="/login">
             {{ form.hidden_tag() }} {{ wtf.form_field(form.username) }} 
-            {% with messages = get_flashed_messages() %} 
+            {% with messages = get_flashed_messages(with_categories=true) %} 
             {% if messages %}
-            <ul class="flashes">
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %} 
+            {% for category, message in messages %}
+              <div class="alert {{ category }}">
+                <div class="messages">          
+                  {{ message }}              
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}   
             {% endwith %} 
             {{ wtf.form_field(form.password) }} {{ wtf.form_field(form.remember) }}
             <div class="input-group-append">

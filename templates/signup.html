@@ -21,13 +21,19 @@
   <p>
     <strong>To Register</strong>! Type in a uername and password, into the form below!</p>
   <form class="form-signin" method="POST" action="/signup">
-    {{ form.hidden_tag() }} {{ wtf.form_field(form.username) }} {% with messages = get_flashed_messages() %} {% if messages %}
-    <ul class="flashes">
-      {% for message in messages %}
-      <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %} {% endwith %} {{ wtf.form_field(form.password) }}
+    {{ form.hidden_tag() }} {{ wtf.form_field(form.username) }} 
+    {% with messages = get_flashed_messages(with_categories=true) %} 
+            {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert {{ category }}">
+                <div class="messages">          
+                  {{ message }}              
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}   
+            {% endwith %} 
+    {{ wtf.form_field(form.password) }}
     <div class="input-group-append">
       <button class="btn btn-secondary" type="submit" value="Log in">Lets Play!</button>
     </div>

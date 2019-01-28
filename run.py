@@ -262,7 +262,7 @@ def login():
                 newUserScore(form.username.data, score) # Create a score tracker.
                 return redirect(url_for('game', username = session['username']))
 
-        flash(u'This is an invalid username or password', 'error')        
+        flash('This is an invalid username or password', 'alert-danger')        
 
     return render_template('login.html', form = form, error = error)
 
@@ -279,12 +279,13 @@ def signup():
             hashed_password = generate_password_hash(form.password.data, method='sha256')
             new_user = User(username=form.username.data, password=hashed_password)
             db.session.add(new_user)
-            db.session.commit()            
-            flash('The data is confimred. A new user has been added')
-            return redirect(url_for('game', username = form.username.data))
+            db.session.commit() 
+            session['username'] = (form.username.data)           
+            flash('The data is confimred. A new user has been added', 'alert-success')
+            return redirect(url_for('game', username =  session['username']))
             
     except Exception:
-        flash(u'This username already exists, please click register above and try a different name.', 'error')
+        flash('This username already exists, please click register above and try a different name.', 'alert-warning')
             
 
     return render_template('signup.html', form=form, error=error)
