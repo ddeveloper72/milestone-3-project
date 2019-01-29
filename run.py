@@ -258,11 +258,12 @@ def login():
             if check_password_hash(user.password, form.password.data):
                 login_user(user, remember=form.remember.data)
                 session['username'] = (form.username.data)
+                session['logged_in'] = True
                 leaderborardCheck() # Create a leaderboard if one doesn't already exist.
                 newUserScore(form.username.data, score) # Create a score tracker.
                 return redirect(url_for('game', username = session['username']))
 
-        flash('This is an invalid username or password', 'alert-danger')        
+            flash('This is an invalid username or password', 'alert-danger')        
 
     return render_template('login.html', form = form, error = error)
 
@@ -271,6 +272,7 @@ def login():
 def signup():
     form = SignUpForm()
     error = None
+    score = 0   # our score at login is 0
     
     # The code below was modified to return an exception if a duplicate user name was
     # attempted, during a new user registration.
@@ -280,12 +282,16 @@ def signup():
             new_user = User(username=form.username.data, password=hashed_password)
             db.session.add(new_user)
             db.session.commit() 
-            session['username'] = (form.username.data)           
+            session['username'] = (form.username.data)   
+            session['logged_in'] = True
+            leaderborardCheck() # Create a leaderboard if one doesn't already exist.
+            newUserScore(form.username.data, score) # Create a score tracker.
             flash('Thank you, your information has been added', 'alert-success')
-            return redirect(url_for('game', username =  session['username']))
+            return redirect(url_for('game', username = session['username'])) 
+
             
     except Exception:
-        flash('This username already exists, please click register above and try a different name.', 'alert-warning')
+        flash('This username already exists, please try a different name.', 'alert-warning')
             
 
     return render_template('signup.html', form=form, error=error)
@@ -293,7 +299,7 @@ def signup():
 
 @app.route('/game/<username>', methods=["GET", "POST"])
 @login_required
-def game(username):     
+def game(username):
     
     # riddles are stored in JSON file and are indexed
     data = []
@@ -361,10 +367,9 @@ def leaderboard(username, score):
     return render_template("leaderboard.html", username=current_user.username, player_scores=scores)
 
 @app.route('/logout')
-@login_required
 def logout():
-    logout_user()
-    session.pop('username', None)
+    session.clear()
+    flash('You are currently logged out', 'alert-success') 
     return redirect(url_for('index'))
 
 
@@ -375,7 +380,7 @@ if __name__ == '__main__':
     app.run(host=os.getenv('IP'),
         port=os.getenv('PORT'),
         # debug set to true to help during development
-        debug=True)
+        debug=False)
           
             
             

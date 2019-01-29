@@ -1,17 +1,11 @@
 {% extends 'base.html' %}
 
-{% block head_nav %}
-    <a class="nav-item nav-link" href="{{ url_for('login') }}">Login here</a>
-    <a class="nav-item nav-link" href="{{ url_for('signup') }}">Register!</a>
-    <a class="nav-item nav-link disabled" href="#">Log Out</a>
-{% endblock head_nav %}
-
 {% block content %}
 
 <section>
 
-    <h2 class="mb-3 title">Riddle Me This!</h2>
-    <h5 class="mb-5 subtitle">Old Style Riddles from The Project Gutenberg</h5>
+    <h2 class="mb-3 title title-script">Riddle Me This!</h2>
+    <h5 class="mb-5 subtitle title-script">Old Style Riddles from The Project Gutenberg</h5>
     <img class="cover-image" src="{{ url_for('static', filename='images/cover.jpg')}}" alt="The Book of Riddles">
 
 </section>

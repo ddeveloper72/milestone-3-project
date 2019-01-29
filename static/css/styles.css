@@ -2,6 +2,8 @@
 /*                               Custom Style Sheet                          */
 /*                                                                           */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
 .card {
  background-color: #a06a1b;
 }
@@ -35,29 +37,34 @@
 border-top: 1px solid rgba(251, 249, 249, 0.53);
 }
 
+
+.nav-light {
+  background-color: #b7b9ba;
+}
+
 .nav-link{
   font-weight: 600;
 }
 
 .noselect {
   -webkit-touch-callout: auto; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+  supported by Chrome and Opera */
 }
 
 
 .notice {
-font-size: 1rem;
-font-family: Source Sans Pro;
+  font-size: 1rem;
+  font-family: Source Sans Pro;
 }
 
 .my-5 {
-    margin-top: 1rem !important;
-    margin-bottom: 0 !important; 
+  margin-top: 1rem !important;
+  margin-bottom: 0 !important; 
 }
 
 /* Riddle textbox styles */
@@ -90,6 +97,13 @@ font-family: Source Sans Pro;
   margin:0;
 }
 
+.title-script {
+  font-family: 'Merienda', cursive;
+}
+
+.text-script {
+  font-family: 'Dancing Script', cursive;
+}
 
 /* Scrollbar styles */
 ::-webkit-scrollbar {
