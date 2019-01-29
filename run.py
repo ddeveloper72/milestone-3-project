@@ -281,7 +281,7 @@ def signup():
             db.session.add(new_user)
             db.session.commit() 
             session['username'] = (form.username.data)           
-            flash('The data is confimred. A new user has been added', 'alert-success')
+            flash('Thank you, your information has been added', 'alert-success')
             return redirect(url_for('game', username =  session['username']))
             
     except Exception:

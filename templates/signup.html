@@ -19,7 +19,7 @@
 <section>
 
   <p>
-    <strong>To Register</strong>! Type in a uername and password, into the form below!</p>
+    <strong>To Register</strong>! Type in a username and password, into the form below!</p>
   <form class="form-signin" method="POST" action="/signup">
     {{ form.hidden_tag() }} {{ wtf.form_field(form.username) }} 
     {% with messages = get_flashed_messages(with_categories=true) %} 
