@@ -2,11 +2,25 @@
 /*                               Custom Style Sheet                          */
 /*                                                                           */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.alert-danger {
+  color: #820611;
+}
+
+
+.alert-success {
+  color: #064214;
+}
+
+
+.alert-warning {
+  color: #000000;
+}
 
 
 .card {
  background-color: #a06a1b;
 }
+
 
 .cover-image {
   height: auto;
@@ -16,6 +30,7 @@
   padding-bottom: 1.5rem
 }
 
+
 .footer {
   color: white;
   font-size: 1rem;
@@ -23,6 +38,7 @@
   bottom: 0;
   text-align: center;
 }
+
 
 .leader-image {
   max-width: 40%;
@@ -33,6 +49,7 @@
   padding-bottom: 1.5rem;
 }
 
+
 .line {
 border-top: 1px solid rgba(251, 249, 249, 0.53);
 }
@@ -42,9 +59,11 @@ border-top: 1px solid rgba(251, 249, 249, 0.53);
   background-color: #b7b9ba;
 }
 
+
 .nav-link{
   font-weight: 600;
 }
+
 
 .noselect {
   -webkit-touch-callout: auto; /* iOS Safari */
@@ -62,10 +81,12 @@ border-top: 1px solid rgba(251, 249, 249, 0.53);
   font-family: Source Sans Pro;
 }
 
+
 .my-5 {
   margin-top: 1rem !important;
   margin-bottom: 0 !important; 
 }
+
 
 /* Riddle textbox styles */
 .riddle {
@@ -86,24 +107,29 @@ border-top: 1px solid rgba(251, 249, 249, 0.53);
   border-radius: 10px;
 }
 
+
 .riddle-image {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
+
 .text-muted {
   padding-bottom: 0.5rem;
   margin:0;
 }
 
+
 .title-script {
   font-family: 'Merienda', cursive;
 }
 
+
 .text-script {
   font-family: 'Dancing Script', cursive;
 }
+
 
 /* Scrollbar styles */
 ::-webkit-scrollbar {
@@ -111,15 +137,18 @@ border-top: 1px solid rgba(251, 249, 249, 0.53);
   height: 12px;
 }
 
+
 ::-webkit-scrollbar-track {
   border: 1px solid #cd9557;
   border-radius: 10px;
 }
 
+
 ::-webkit-scrollbar-thumb {
   background: #cd9557;  
   border-radius: 10px;
 }
+
 
 ::-webkit-scrollbar-thumb:hover {
   background: #ba7c37;  
@@ -148,6 +177,7 @@ border-top: 1px solid rgba(251, 249, 249, 0.53);
   }
 }
 
+
 @media (min-width: 768px) {
   .cover-image{
     max-width: 40%;
@@ -167,11 +197,13 @@ border-top: 1px solid rgba(251, 249, 249, 0.53);
   }
 }
 
+
 @media (min-height: 768px) {
   .riddle-image{
     max-width: 40%;
   }
 }
+
 
 @media (min-width: 768px) {
   .riddle-image{

@@ -11,10 +11,11 @@
 
 <section>
 
-    <strong>To Play</strong>! Sign in with your username, using the form below!</p>
+    <strong>To Play !</strong> Sign in with your username, using the form below!</p>
     {% if error %}
     <p class=error>
         <strong>Error:</strong> {{ error }} 
+    </p>
     {% endif %}
         <form class="form-signin" method="POST" action="/login">
             {{ form.hidden_tag() }} {{ wtf.form_field(form.username) }} 
@@ -23,7 +24,7 @@
             {% for category, message in messages %}
               <div class="alert {{ category }}">
                 <div class="messages">          
-                  {{ message }}              
+                  {{ message }}         
                 </div>
               </div>
             {% endfor %}
