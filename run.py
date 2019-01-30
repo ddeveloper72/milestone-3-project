@@ -310,11 +310,11 @@ def signup():
                             password=hashed_password)
             db.session.add(new_user)
             db.session.commit()
-            """ session['username'] = (form.username.data)
-            session['logged_in'] = True """
+            session['username'] = (form.username.data)
+            session['logged_in'] = True
             # Create a leaderboard if one doesn't already exist.
-            """ leaderborardCheck()
-            newUserScore(form.username.data, score)  # Create a score tracker. """
+            leaderborardCheck()
+            newUserScore(form.username.data, score)  # Create a score tracker.
             flash('Thank you, your information has been added', 'alert-success')
             return redirect(url_for('game', username=session['username']))
 
