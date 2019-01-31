@@ -308,10 +308,7 @@ def login():
 def signup():
     form = SignUpForm()
     error = None
-    score = 0   # our score at login is 0
-
-    # The code below was modified to return an exception if a duplicate user name was
-    # attempted, during a new user registration.
+    score = 0 
 
     try:
         if form.validate_on_submit():  
@@ -330,7 +327,7 @@ def signup():
             
     except Exception:
         db.session.rollback()
-        flash('This username already exists, please different User Name.', 'alert-danger')
+        flash('This username already exists. Please choose again', 'alert-danger')
     
     return render_template('signup.html', form = form, error = error)
 
