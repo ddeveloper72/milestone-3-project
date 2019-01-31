@@ -28,7 +28,7 @@ from flask_wtf import FlaskForm
 
 
 app = Flask(__name__)
-app.secret_key = 'some_secret'
+app.secret_key = os.environ.get('SECRET_KEY')
 # I've used a relative path from sqlite to my database.db file
 # becase an absolute path failed to work.
 # I believe that this was because of an error in the path neame or sqlite3
@@ -280,6 +280,13 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash('You are currently logged out', 'alert-success')
+    return redirect(url_for('index'))
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -405,27 +412,8 @@ def leaderboard(username, score):
     return render_template("leaderboard.html", username=current_user.username, player_scores=scores)
 
 
-@app.route('/logout')
-def logout():
-    session.clear()
-    flash('You are currently logged out', 'alert-success')
-    return redirect(url_for('index'))
-
 
 if __name__ == '__main__':
-
-    # assign a port ID works with Vscode
-
     app.run(host=os.getenv('IP'),
             port=os.getenv('PORT'),
-            # debug set to true to help during development
             debug=False)
-
-
-# if __name__ == '__main__':
-    """
-    #assign a port ID works with cloud9
-    """
-#    app.run(host=os.environ.get('IP'),
-#        port=int(os.environ.get('PORT')),
-#        debug=True)
