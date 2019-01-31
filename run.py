@@ -1,19 +1,4 @@
 #!/usr/bin/env python3.6
-from shutil import copyfile
-from pathlib import Path
-from datetime import datetime
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from flask_sqlalchemy import SQLAlchemy
-from wtforms.validators import InputRequired, Length
-from wtforms import StringField, PasswordField, BooleanField
-from flask_wtf import FlaskForm
-from flask_bootstrap import Bootstrap
-from flask import Flask, redirect, render_template, request, flash, session, url_for
-import datetime
-import json
-import shutil
-import glob
 """
 The login system for players uses SQLAlchemy.  The code has been adapted and 
 reworked from a tutorial by PrettyPrinted to suit this game environment.  
@@ -21,10 +6,25 @@ Exception handling was added to def signup() function to inform a player
 that a user name has already been taken.  The username for the game is pulled
 from the SQL database and pushed to the game.html
 """
-
 import os
 import os.path
 os.path.exists('player-scores.txt')
+import glob
+import shutil
+import json
+import datetime
+from shutil import copyfile
+from pathlib import Path
+from datetime import datetime
+from flask_bootstrap import Bootstrap
+from flask import Flask, redirect, render_template, request, flash, session, url_for
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
+from wtforms.validators import InputRequired, Length
+from wtforms import Form, BooleanField, StringField, PasswordField, validators
+from flask_wtf import FlaskForm
+
 
 
 app = Flask(__name__)
@@ -134,6 +134,8 @@ def validateAnswer(riddle, answer):
 
 
 # 7
+
+
 def countRiddles():
     """
     Count the number or riddle in out list so we can keep score! This makes our count dynamic.
@@ -170,7 +172,7 @@ def newUserScore(username, score):
     if not os.path.exists(dir):
         os.makedirs(dir)
     else:
-        shutil.rmtree(dir)  # removes all the subdirectories!
+        shutil.rmtree(dir)  
         os.makedirs(dir)
 
     # The score board will alwasy write over itself, permitting the score
@@ -179,6 +181,8 @@ def newUserScore(username, score):
 
 
 # 9
+
+
 def writeScore(username, score):
     """
     User's score has to be saved after answering each
@@ -196,6 +200,8 @@ def writeScore(username, score):
 
 
 # 10
+
+
 def loadScore(username):
     """ 
     Read player score: 
@@ -226,6 +232,8 @@ def leaderborardCheck():
 
 
 # 12
+
+
 def write_LeaderboardScores(score, username, date):
     """
     Writes all the different payer's score to player-scores.txt
@@ -236,6 +244,8 @@ def write_LeaderboardScores(score, username, date):
 
 
 # 13
+
+
 def scores_list():
     """
     Get player-scores.txt and convert to tuples.  Sort the score in each tuple 
@@ -302,27 +312,27 @@ def signup():
 
     # The code below was modified to return an exception if a duplicate user name was
     # attempted, during a new user registration.
+
     try:
-        if form.validate_on_submit():
-            hashed_password = generate_password_hash(
-                form.password.data, method='sha256')
-            new_user = User(username=form.username.data,
-                            password=hashed_password)
-            db.session.add(new_user)
+        if form.validate_on_submit():  
+            hashed_password = generate_password_hash(form.password.data, method='sha256')
+            user = User(username=form.username.data, password=hashed_password)
+            db.session.add(user)
             db.session.commit()
             session['username'] = (form.username.data)
-            session['logged_in'] = True
-            # Create a leaderboard if one doesn't already exist.
+            session['logged_in'] = True 
+             # Create a leaderboard if one doesn't already exist.
             leaderborardCheck()
-            newUserScore(form.username.data, score)  # Create a score tracker.
-            flash('Thank you, your information has been added', 'alert-success')
-            return redirect(url_for('game', username=session['username']))
-
+            # Create a score tracker.
+            newUserScore(form.username.data, score)          
+            flash('You are now loged in', 'alert-success')
+            return redirect(url_for('game', username = session['username']))
+            
     except Exception:
-        flash('This username already exists, please try a different name.',
-              'alert-warning')
-
-    return render_template('signup.html', form=form, error=error)
+        db.session.rollback()
+        flash('This username already exists, please different User Name.', 'alert-danger')
+    
+    return render_template('signup.html', form = form, error = error)
 
 
 @app.route('/game/<username>', methods=["GET", "POST"])
