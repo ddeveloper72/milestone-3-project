@@ -26,13 +26,8 @@ from wtforms import Form, BooleanField, StringField, PasswordField, validators
 from flask_wtf import FlaskForm
 
 
-
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY')
-# I've used a relative path from sqlite to my database.db file
-# becase an absolute path failed to work.
-# I believe that this was because of an error in the path neame or sqlite3
-# doesn't like spaces in my windows 10 folder path names.
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 Bootstrap(app)
 db = SQLAlchemy(app)
@@ -164,9 +159,9 @@ def newUserScore(username, score):
 
     """
     Every instance of the game, requiers a dedicated
-    score board for the game. A pre-existing score,json file is
+    score board for the game. A pre-existing scoreboard json file is
     removed at login, if it is already present. 
-    So, our score alwasy starts from 0.
+    The users score alwasy starts from 0.
     """
     dir = f'data/player_data/{username}/'
     if not os.path.exists(dir):
@@ -216,7 +211,7 @@ def loadScore(username):
 def leaderborardCheck():
     """
     The game requires at least 3 scores to exist, to carry out the top 3 scores
-    function, scores_list() at the end of the game for the firs ever player. 
+    function, scores_list() at the end of the game for the first ever player. 
     As a work around, a scores-template.txt file is used to create the 
     player-scores.txt file, on first login of the first
     player.
