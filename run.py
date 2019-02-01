@@ -9,6 +9,7 @@ from the SQL database and pushed to the game.html
 import os
 import os.path
 os.path.exists('player-scores.txt')
+import glob
 import shutil
 import json
 import datetime
