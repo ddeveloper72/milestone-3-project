@@ -21,6 +21,8 @@
             {{ form.hidden_tag() }} {{ wtf.form_field(form.username) }} 
             {% with messages = get_flashed_messages(with_categories=true) %} 
             {% if messages %}
+
+
             {% for category, message in messages %}
               <div class="alert {{ category }}">
                 <div class="messages">          
@@ -28,7 +30,9 @@
                 </div>
               </div>
             {% endfor %}
-          {% endif %}   
+
+
+            {% endif %}   
             {% endwith %} 
             {{ wtf.form_field(form.password) }} {{ wtf.form_field(form.remember) }}
             <div class="input-group-append">

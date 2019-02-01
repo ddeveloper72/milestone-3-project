@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section>
+    <div class="col-12 my-auto mt-auto py-3"> 
+    <h2 class="mb-3 title title-script">Riddle Me This!</h2>
+    <h5 class="mb-5 subtitle title-script">Old Style Riddles from The Project Gutenberg</h5>
+    <a href="{{ url_for('index') }}"><img class="cover-image" src="{{ url_for('static', filename='images/404error.jpeg')}}" alt="404 page not found"></a>
+    <p class="lost">What you were looking for is just not there...</p>
+    </div>
+</section>
+
+{% endblock content %}

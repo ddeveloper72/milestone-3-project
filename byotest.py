@@ -10,16 +10,6 @@ class TestStringMethods(unittest.TestCase):
 
 
 
-    #2
-    def test_loadUsers(self):
-        """
-        test to check that the plyers can be loaded from the
-        users file which stores player names and wrong answers.
-        """
-        users = run.loadUsers()
-        self.assertEqual(len(users), 3)
-
-
     #3
     def test_storePlayerName(self):
         users = run.storePlayerName()

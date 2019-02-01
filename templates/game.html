@@ -24,34 +24,35 @@
         <div class="col-12">
             <div class="row ml-4">                
 
-            {% with messages = get_flashed_messages(with_categories=true) %} 
-            {% if messages %}
-            {% for category, message in messages %}
-              <div class=" alert {{ category }}">
-                <div class="notice text-script">          
-                  {{ message }}              
-                </div>
-              </div>
-            {% endfor %}
-            {% endif %}   
-            {% endwith %} 
+                {% with messages = get_flashed_messages(with_categories=true) %} 
+                {% if messages %}
+                {% for category, message in messages %}
+                  <div class=" alert {{ category }}">
+                    <div class="notice text-script">          
+                      {{ message }}              
+                    </div>
+                  </div>
+                {% endfor %}
+                {% endif %}   
+                {% endwith %} 
 
             
-            <div class="row">
-                <p><strong>Have you the answer?</strong> Type in your answer below!
-                    <br>(eg. glass of wine)</p>
+                <div class="row">
+                    <p><strong>Have you the answer?</strong> Type in your answer below!
+                        <br>(eg. glass of wine)</p>
+                </div>
+
+                <form method="POST" class="form-inline">
+                    <div class="row ml-4">
+                        <input type="text" class="form-control" placeholder="answer" name="answer" id="answer" required autofocus>
+                        <input type="hidden" name="riddleNumber" id="riddleNumber" value={{riddleNumber}}>
+                    </div>
+                    <div class="row mt-2 ml-4">
+                        <button class="btn btn-secondary" type="submit" onclick="getData"><i class="fas fa-chevron-circle-right"></i> Submit</button>                        
+                    </div>
+                </form>
+
             </div>
-
-            <form method="POST" class="form-inline">
-                <div class="row ml-4">
-                    <input type="text" class="form-control" placeholder="answer" name="answer" id="answer" required autofocus>
-                    <input type="hidden" name="riddleNumber" id="riddleNumber" value={{riddleNumber}}>
-                </div>
-                <div class="row mt-2 ml-4">
-                    <button class="btn btn-secondary" type="submit" onclick="getData"><i class="fas fa-chevron-circle-right"></i> Submit</button>                        
-                </div>
-            </form>
-
         </div>
     </div>
 </section>

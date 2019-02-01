@@ -54,6 +54,9 @@
 border-top: 1px solid rgba(251, 249, 249, 0.53);
 }
 
+.lost {
+  text-align: center
+}
 
 .nav-light {
   background-color: #b7b9ba;
