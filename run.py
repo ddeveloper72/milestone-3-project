@@ -134,7 +134,7 @@ def countRiddles():
 
 def newUserScore(username, score):
     """
-    User's inital score has to be created. This is set to 0 and the score file is
+    User's initial score has to be created. This is set to 0 and the score file is
     created on successful login. The file is stored in a directory consisting of the
     user's name, which will allow unique instances of the game, so long as the 
     player names are unique. This is insured but the login registration form, which 
@@ -149,8 +149,8 @@ def newUserScore(username, score):
     })
 
     """
-    Every instance of the game, requiers a dedicated score board for the game. A pre-existing scoreboard json file is
-    removed at login, if it is already present.  The users score alwasy starts from 0.
+    Every instance of the game, requires a dedicated score board for the game. A pre-existing scoreboard json file is
+    removed at login, if it is already present.  The users score always starts from 0.
     """
     dir = f'data/player_data/{username}/'
     if not os.path.exists(dir):
@@ -160,7 +160,7 @@ def newUserScore(username, score):
         os.makedirs(dir)
 
     """ 
-    The score board will alwasy write over itself, permitting the score to increase. 
+    The score board will always write over itself, permitting the score to increase. 
     """
     write_to_json(f'data/player_data/{username}/scores.json', data)
 
@@ -236,7 +236,7 @@ def scores_list():
     li.sort(key=lambda tup: tup[1])
     li.sort(reverse=True)  # sorts scores from highest to lowest
 
-    # Cleanup the tuple data by striping and replacing unwanted characters, for rendering to html
+    # Clean-up the tuple data by striping and replacing unwanted characters, for rendering to html
     first = str(li[0])[1:-1].replace("'", " ").replace(",", " ")
     second = str(li[1])[1:-1].replace("'", " ").replace(",", " ")
     third = str(li[2])[1:-1].replace("'", " ").replace(",", " ")
@@ -281,7 +281,7 @@ def login():
                 login_user(user, remember=form.remember.data)
                 session['username'] = (form.username.data)
                 session['logged_in'] = True
-                # Create a leaderboard if one doesn't already exist.
+                # Create a leader board if one doesn't already exist.
                 leaderborardCheck()
                 # Create a score tracker.
                 newUserScore(form.username.data, score)
@@ -296,7 +296,7 @@ def login():
 def signup():
     """ 
     Register a new user.  On successful registration, create user name and password in database.
-    creat a new user score card.  If a duplicate username from session is prepped for write to the
+    create a new user score card.  If a duplicate username from session is prepped for write to the
     database, Exception calls a session rollback to prevent duplicate username and prompts a warning.  
     """
 
@@ -315,7 +315,7 @@ def signup():
             leaderborardCheck()
             newUserScore(form.username.data, score)  
 
-            flash('You are now loged in', 'alert-success')
+            flash('You are now logged in', 'alert-success')
             return redirect(url_for('game', username = session['username']))
             
     except Exception:
@@ -323,11 +323,6 @@ def signup():
         flash('This username already exists. Please choose again', 'alert-danger')
     
     return render_template('signup.html', form = form, error = error)
-
-@app.errorhandler(404)
-def page_not_found(e):
-    # note that we set the 404 status explicitly
-    return render_template('404.html'), 404
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -372,12 +367,12 @@ def game(username):
             # time the question was answered.
             writeScore(username, score)
 
-            # Flash the number of riddles correct with the dynaminc total of the
+            # Flash the number of riddles correct with the dynamic total of the
             # number of riddles. Yes! The code will update for any number of riddles.
             flash(
                 f'Well done! Thats a score of {score} out of {countRiddles()} riddles right!')
 
-            # Determins what happens next when the last riddle is used.
+            # Determines what happens next when the last riddle is used.
             if riddleNumber == countRiddles():
                 write_LeaderboardScores(score, username, date)
                 return redirect(f'/leaderboard/{username}/{score}')
@@ -387,7 +382,7 @@ def game(username):
                 f'Sorry {username}, \"{answer_given}\" is not the right answer... \nIt was \"{data[riddleNumber]["answer"]}\". \nLets try another.\nUse the picture clue above for help')
             riddleNumber += 1
 
-            # Determins what happens next when the last riddle is used.
+            # Determines what happens next when the last riddle is used.
             if riddleNumber == countRiddles():
                 write_LeaderboardScores(score, username, date)
                 return redirect(f'/leaderboard/{username}/{score}')
@@ -403,7 +398,17 @@ def leaderboard(username, score):
 
     return render_template("leaderboard.html", username=current_user.username, player_scores=scores)
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# Page not found 404 Views                                                                                 #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# IP and PORT configuration to OS Environ                                                                  #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#   
 
 if __name__ == '__main__':
     app.run(host=os.getenv('IP'),
