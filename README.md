@@ -369,3 +369,5 @@ def writeScore(username, score):
     - [Start Bootstrap - Coming Soon](https://startbootstrap.com/template-overviews/coming-soon/) Free Bootstrap Themes and Templates
 5. Riddles
     - Victorian Era Riddles that have been sourced from the [Gutenberg Project](https://www.gutenberg.org/).
+
+<h6><span class="text-muted">Milestone 3 project for the Code Institute <br />by Duncan Falconer, 2018</span></h6>
