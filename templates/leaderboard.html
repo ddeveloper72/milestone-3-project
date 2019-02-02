@@ -3,11 +3,13 @@
 {% block content %}
 
 <section>
-
+<div class="col-xs-12">
   <h2 class="mb-3 title">Leaderboard!</h2>
   <h5 class="mb-5 subtitle">Riddle Me This!</h5>
-  <img class="leader-image" src="{{ url_for('static', filename='images/p001-illus.jpg')}}" alt="The Book of Riddles">
-
+  <div class="col-xs-12 col-auto">
+  <img class="leader-image" src="{{ url_for('static', filename='images/p001-illus.jpg')}}" width="337" height="287" alt="The Book of Riddles">
+</div>
+</div>
 </section>
 
 <section>
@@ -17,9 +19,9 @@
     <div class="card-body">
       {% for message in messages %}
       <div class="flashes">
-        <h5 class="subtitle">
+        <h6 class="subtitle">
             {{ message }}
-        </h5>
+        </h6>
         <hr class="line"> 
       </div>
       <ol class="card-text">
@@ -27,10 +29,9 @@
         <li>{{ scores }}</li>
         {% endfor %}
       </ol>
-
-      {% endfor %} {% endif %} {% endwith %}
     </div>
   </div>
+  {% endfor %} {% endif %} {% endwith %}
 
 </section>
 

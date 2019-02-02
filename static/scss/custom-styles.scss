@@ -1,0 +1,304 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*                              Milestone 3 Project                          */
+/*                               Custom Style Sheet                          */
+/*                                                                           */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/* Custom font famalies */
+
+.title-script {
+    font-family: 'Merienda', cursive;
+}
+
+
+.text-script {
+    font-family: 'Dancing Script', cursive;
+}
+
+
+/* Base Styles */
+
+.alert-danger {
+    color: #820611;
+}
+
+
+.alert-success {
+    color: #064214;
+}
+
+
+.alert-warning {
+    color: #000000;
+}
+
+
+.card {
+    background-color: #a06a1b;
+}
+
+.container {  
+    margin-top: 6em; 
+  }
+
+.content {
+    height: 100vh;
+    width: auto;
+}
+
+.cover-image {
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 1.5rem
+}
+
+.footer {
+    color: white;
+    font-size: 1rem;
+    font-family: Source Sans Pro;
+    bottom: 0;
+    text-align: center;
+}
+
+img {
+    display: block;
+    width: auto;
+}
+
+.line {
+    border-top: 1px solid rgba(251, 249, 249, 0.53);
+}
+
+.leader-image {
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 1.5rem
+}
+
+.lost {
+    text-align: center
+}
+
+/* Custom Nav Styles */
+.nav-light {
+    background-color: #b7b9ba;
+    margin-bottom: -4em;
+}
+
+
+.nav-link {
+    font-weight: 600;
+}
+
+@media only screen and (min-width: 768px) {
+    .navbar-expand-md {
+        transform: skewX(-8deg);
+        transform-origin: top right;
+    }
+}
+
+/* Custom Game page Riddle Box Styles */
+.noselect {
+    -webkit-touch-callout: auto;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+    supported by Chrome and Opera */
+}
+
+.notice {
+    font-size: 1rem;
+    font-family: Source Sans Pro;
+}
+
+
+.riddle {
+    display: block;
+    cursor: pointer;
+    font-size: 1rem;
+    height: 6rem;
+    width: 100%;
+    overflow: auto;
+    background-color: #ffe280;
+    color: #3e1c1c;
+    font-family: sans-serif;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.riddle-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+section {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-text {
+    padding-bottom: 0.5rem;
+    color: #b2bac1;
+    padding-top: 2em;
+    margin-top: 4em;
+    margin-bottom: 1em;
+
+}
+
+/* Scrollbar styles for main screen */
+
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+
+::-webkit-scrollbar-track {
+    border: 1px solid #b7b9ba;
+    border-radius: inherit;
+    background-color: aliceblue;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #b7b9ba;
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6e6e6e;
+}
+
+/* Scrollbar styles for riddle box */
+
+::-webkit-scrollbar {
+    width: 1rem; 
+}
+
+
+::-webkit-scrollbar-track {
+    border: 1px solid #b7b9ba;
+    border-radius: inherit;
+    background-color: aliceblue;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #b7b9ba;
+    border-radius: inherit;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6e6e6e;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*                               Media Queries                               */
+/*                                                                           */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+ /* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .cover-image {
+        height: 35em;
+      } 
+  }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .leader-image {
+        height: 20em;
+      } 
+  }
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .cover-image { 
+        height: 35em;
+      }   
+  }
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .leader-image { 
+        height: 20m;
+      }   
+  }
+
+  /* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 767px to 481px
+*/
+
+@media (max-width: 768px) and (min-width: 481px) {
+    .cover-image {
+        height: 35em;
+  }
+}
+@media (max-width: 768px) and (min-width: 481px) {
+    .leader-image {
+        height: 20em;
+  }
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-height: 432px) and (max-height: 962px) {
+    .cover-image {
+        height: 20em;
+      }     
+  }
+@media (min-height: 432px) and (max-height: 962px) {
+    .leader-image {
+        height: 15em;
+      }     
+  }
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .cover-image {
+        height: 20em;
+      }     
+  }
+@media (min-width: 481px) and (max-width: 767px) {
+    .leader-image {
+        height: 15em;
+      }     
+  }
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+@media (min-width: 320px) and (max-width: 480px) {  
+    .cover-image {
+        height: 20em;
+      }    
+  }
+@media (min-width: 320px) and (max-width: 480px) {  
+    .leader-image {
+        height: 20em;
+      }    
+  }

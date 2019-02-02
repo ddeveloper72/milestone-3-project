@@ -1,10 +1,10 @@
 #!/usr/bin/env python3.6
 """
-The login system for players uses SQLAlchemy.  The code has been adapted and 
-reworked from a tutorial by PrettyPrinted to suit this game environment.  
-Exception handling was added to def signup() function to inform a player 
-that a user name has already been taken.  The username for the game is pulled
-from the SQL database and pushed to the game.html
+The login system for players uses SQLAlchemy.  The code has been inspired from a tutorial by PrettyPrinted 
+to suit this game environment. 
+
+Exception handling was added to def signup() function to inform a player that a user name has already been taken.  
+The username for the game is pulled from the SQL database and pushed to the game.html
 """
 import os
 import os.path
