@@ -6,6 +6,9 @@
 ## [Riddle Me This](https://ddeveloper72-riddle-me-this.herokuapp.com/)
 ### by Duncan Falconer for the Code Institute, 2018
 
+1. The project brief can be found by clicking [here](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/brief.md)
+2. The project guidelines can be found by clicking [here](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/guidlines.md)
+
 ## 1. Project Goals:
 This project is all about having fun, while making a game which demonstrates Python as the backbone programming language.
 
