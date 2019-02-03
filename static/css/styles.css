@@ -314,22 +314,6 @@ section {
 ::-webkit-scrollbar-thumb:hover {
   background: #6e6e6e; }
 
-/* Scrollbar styles for riddle box */
-::-webkit-scrollbar {
-  width: 1rem; }
-
-::-webkit-scrollbar-track {
-  border: 1px solid #b7b9ba;
-  border-radius: inherit;
-  background-color: aliceblue; }
-
-::-webkit-scrollbar-thumb {
-  background: #b7b9ba;
-  border-radius: inherit; }
-
-::-webkit-scrollbar-thumb:hover {
-  background: #6e6e6e; }
-
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*                               Media Queries                               */
 /*                                                                           */

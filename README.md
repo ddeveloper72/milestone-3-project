@@ -6,8 +6,8 @@
 ## [Riddle Me This](https://ddeveloper72-riddle-me-this.herokuapp.com/)
 ### by Duncan Falconer for the Code Institute, 2018
 
-1. The project brief can be found by clicking ![here](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/brief.md)
-2. The project guidelines can be found by clicking ![here](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/guidlines.md)
+1. The project brief can be found by clicking [here](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/brief.md)
+2. The project guidelines can be found by clicking [here](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/guidlines.md)
 
 ## 1. Project Goals:
 This project is all about having fun, while making a game which demonstrates Python as the backbone programming language.
@@ -39,8 +39,8 @@ A leader-board will show the scores of players from highest to lowest.
 |                                                             | If the the answer is correct, to move on to the next riddle. | Flash messaging to inform the player of their progress. |
 |                                                             | If an answer is incorrect, to be provided with the correct answer.| Answer/Data validation check which shows the correct answer in a flash message. |
 |                                                             | To increment the player score for each correct answer given. | An internal score card, for logging the players score. |
-|                                                             | On completion of the riddles, to present a leader board of the top 5 scores. |  |
-|                                                             | Version control managed with Git & GitHub | A leader board which reads from all the players score cards. |
+|                                                             | On completion of the riddles, to present a leader board of the top 5 scores. | A leader board which reads from all the players score cards. |
+|                                                             | Version control managed with Git & GitHub |  |
 
 
 
@@ -93,15 +93,17 @@ A leader-board will show the scores of players from highest to lowest.
 
 1. Tools used
    * Written in VSCode
+   * SQL database was created with SQLite3 (see database included with repository)
+   * css files were compiled from scss using sass watch (_Please see programming comments within the [styles.css](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/css/styles.css)_) 
    * Tested Chrome dev tools & VSCode debugger
    * HTML and CSS checked with help from the Mark-up Validation Service
    * Version management and test branches created in git
    * Web deployment hosted on Heroku
 
 2. Reference Literature
-    * ![Flask-Login](https://flask-login.readthedocs.io/en/latest/)
-    * ![Flask-Session](Flask-Session)
-    * ![Message Flashing](http://flask.pocoo.org/docs/1.0/patterns/flashing/)
+   * [Flask-Login](https://flask-login.readthedocs.io/en/latest/)
+   * [Flask-Session](Flask-Session)
+   * [Message Flashing](http://flask.pocoo.org/docs/1.0/patterns/flashing/)
 
 
 3. Code Development
@@ -289,68 +291,88 @@ def writeScore(username, score):
 
 
 ## 4. Deployment Instructions:
-1. Instructions for deployment to a hosing site: ![Heroku](https://www.heroku.com/)
-    1. In Heroku - Part 1:
-        1. Log into Heroku
-        2. Select New and Create new App.
-        3. Create a App name, select the region.
-            - then Create app.
-  
-        4. Select Resources.
-            - then select Find more add-ons.
-            - Select Heroku Postgres.
-            - Install Heroku Postgres, using the hobby plan.
-        
-        6. Return to Personal menu then select ddeveloper72-riddle-me-this.
-        7. select Deploy 
-            - Note the deployment instructions.
-  
-    2. From Cloud 9:
-        1. Log in to Heroku: `$ heroku login`
-        2. Verify the app name is present, created in step 1 above: `$ heroku apps`
-        3. Connect git to new app location on Heroku: `$ heroku git:remote -a ddeveloper72-riddle-me-this set git remote heroku to https://git.heroku.com/ddeveloper72-riddle-me-this.git`
-        4. Create the requirements file, defining the modules imported to Heroku: `sudo pip3 freeze --local > requirements.txt`
-        5. Create the proc file: `echo web: python run.py > Procfile`
-        6. Add all project files: `$ git add .`
-        7. Create a default message for the first commit to Heroku: `$ git commit -am "make it better- Use Heroku"`
-        8. Push the project to Heroku: `$ git push heroku master`
-        9. `$ heroku buildpacks:clear`
-        10. Push the project to Heroku `$ git push heroku master` and watch the installation log for errors.
-        11. Scale the app dynos for Heroku: `$ heroku ps:scale web=1`
-        12. Set run.py debug to false before publishing: 
-            ```python
-            if __name__ == '__main__':
-             """
-             #assign a port ID works with cloud9
-             """
-             app.run(host=os.environ.get('IP'),
-                 port=int(os.environ.get('PORT')),
-                 debug=False) 
-            ``` 
-            Disable Flask developer-mode by setting debug=True to False. Save and execute  `git add run.py`
-            
 
-        13.  Execute `$ git commit -m "Turned off server developer mode"`
-        14.  Execute `$ git push heroku master`
-        15.  Save above changes to existing git profile `$ git push`
-   
-    3. In Heroku - Part 2:
-        1. Select Settings
-            - Select Config Vars:
-            - set `IP`to `0.0.0.0`
-            - set `PORT` to `5000`
-            - set `SECRET_KEY` to `Some_Secret`
-        2. Select More, beside Open app:
-            - Click Restart all dynos.
-        3. Click Open app
-            - Select new tab, [Riddle Me This](https://ddeveloper72-riddle-me-this.herokuapp.com/)
+1. Instructions for deployment to a hosing site: [Heroku](https://www.heroku.com/)
+    
+### In Heroku - Part 1
+
+1. Log into Heroku
+2. Select New and Create new App.
+3. Create a App name, select the region.
+    - then Create app.
+
+4. Select Resources.
+    - then select Find more add-ons.
+    - Select Heroku Postgres.
+    - Install Heroku Postgres, using the hobby plan.
+    
+5. Return to Personal menu then select ddeveloper72-riddle-me-this.
+6. select Deploy 
+    - Note the deployment instructions.
   
-2. Bugs & Debugging:
-    - Development Testing:
-      * During development, media responsiveness of the game was tested using Chrome dev tools to simulate different small and large screen devices.  
-      * I later shared my game with family and friends on WhatsApp so that they could follow the Heroku link to the game app and see the game on their mobile handsets.  In this way, I found that I had to limit the sizes of my riddle images as well as title page images.  
-      * I found response issues when viewing the game when switching between portrait and landscape modes in my development environment.  I was able to correct these by adding in media queries to my sass file.
-      * When testing the game in multiplayer mode-  I created several player logins by running different browsers simultaneously.  The browsers and hardware that I used were:
+### From Cloud 9
+
+1. Log in to Heroku:         
+   - `$ heroku login`
+1. Verify the app name is present, created in step 1 above: 
+    - `$ heroku apps`
+2. Connect git to new app location on Heroku: 
+    - `$ heroku git:remote -addeveloper72-riddle-me-this set git remote herokutohttps://git.heroku.com/ddeveloper72-riddle-me-this.git`
+3. Create the requirements file, defining the modules imported to Heroku:
+    - `sudo pip3freeze --local > requirements.txt`
+4. Create the proc file: 
+    - `echo web: python run.py > Procfile`
+5. Add all project files: 
+    - `$ git add .`
+6. Create a default message for the first commit to Heroku:
+   - `$ git commit -am "makeit better- Use Heroku"`
+7. Push the project to Heroku: 
+   - `$ git push heroku master`
+   - `$ heroku buildpacks:clear`
+8.  Push the project to Heroku 
+    - `$ git push heroku master` (watch the installation log for errors).
+9.  Scale the app dynos for Heroku:
+    - `$ heroku ps:scale web=1`
+10. Set run.py debug to false before publishing
+            
+    ```python
+    if __name__ == '__main__':
+     """
+     #assign a port ID works with cloud9
+     """
+     app.run(host=os.environ.get('IP'),
+         port=int(os.environ.get('PORT')),
+         debug=False) 
+    ``` 
+
+11. Disable Flask developer-mode by setting debug=True to False. Save and execut11. 
+    - `git add run.py`
+12.   Execute 
+      -   `$ git commit -m "Turned off server developer mode"`
+14.   Execute 
+      -   `$ git push heroku master`
+16.    Save above changes to existing git profile 
+       -    `$ git push`
+   
+### In Heroku - Part 2
+        
+1. Select Settings
+    - Select `Config Vars`
+    - set `IP` to `0.0.0.0`
+    - set `PORT` to `5000`
+    - set `SECRET_KEY` to `Some_Secret`
+2. Select More, beside Open app:
+    - Click `Restart all dynos`.
+3. Click Open app
+    - Select new tab, [Riddle Me This](https://ddeveloper72-riddle-me-this.herokuapp.com/)
+  
+
+## 5. Development & Testing
+
+   * During development, media responsiveness of the game was tested using Chrome dev tools to simulate different small and large screen devices.  
+   * I later shared my game with family and friends on WhatsApp so that they could follow the Heroku link to the game app and see the game on their mobile handsets.  In this way  I found that I had to limit the sizes of my riddle images as well as title page images.  
+   * I found response issues when viewing the game when switching between portrait and landscape modes in my development environment.  I was able to correct these by adding in media queries to my sass file.
+   * When testing the game in multiplayer mode-  I created several player logins by running different browsers simultaneously.  The browsers and hardware that I used were:
       
         1.  Chrome
         2.  Firefox
@@ -360,37 +382,42 @@ def writeScore(username, score):
         6.  Samsung Galaxy S5
         7.  Samsung Galaxy S8+
       
-    - Debugging Strategy:
-      I thought that the best way to test this game was to run a beta test by putting the game on Heroku and then letting everyone in my college play it.  While doing so, I asked for feedback on the game. This is the feedback I got:
-      1. The riddle answer checks were too literal. eg `A clock` failed, but `Clock` passed.
-      2. The bottom of the masthead template gets cut-off, hiding my footer so it is no longer visible.
-      3. The web page itself doesn't permit a user to scroll down on smaller screens.
-      4. The ordering of the scores from highest to lowest was in random order.
-      5. Clicking the home button on the nav bar started the riddle game again, but didn't reset the score to 0.
-      6. The image on the index page was too big when seen on a mobile device.
-      7. The log in, log out and sign up nav links were disabled on certain pages by design, but still visible.
-      8. If a player closes the browser without logging out of the game, they remain in session, when they open game again.
-   
-   - The fixes:
-      1. I changed the checking system between player answer and riddle answer from the same as to is in. (from `==` to `ìs`).
-      2. I changed the masthead height to 100% and added overflow-y scroll. This was a very difficult fix to resolve, because it wasn't know what was causing the problem preventing vertical page scrolling.
-      3. I had been experimenting with the leader board code and had left the return result in brackets when I shouldn't have.
-      4. In the @app.route('/') I added a line to the if statement which I use on the login decorator.  It creates a new player score, which is set at 0. So the player can play the game again without having to log out and log back in again.
-      5. I added a media queries for the main image as well as the leader board images for smaller screen sizes.
-      6. I implemented an if else flask function which uses session, to manage the navbar login, logout and sign-up nav links for the secure and insecure areas of the site.
-      7. I haven't implemented a solution yet, to log a player out of the game, if they close the browser window. I am currently researching ![Flask.session persisting after close browser](https://stackoverflow.com/questions/37227780/flask-session-persisting-after-close-browser). 
-   
-3. Boilerplate 
-    - [Start Bootstrap - Coming Soon](https://startbootstrap.com/template-overviews/coming-soon/) Free Bootstrap Themes and Templates
+## - Debugging Strategy
   
-4. Riddles
-    - I used Victorian Era Riddles that have been sourced with thanks from the [Gutenberg Project](https://www.gutenberg.org/).
+  I thought that the best way to test this game was to run a beta test by putting the game on Heroku and then letting everyone in my college play it.  While doing so, I asked for feedback on the game. This is the feedback I got:
 
-5. Credits:
-    - There are loads of people that I want to give credit to.  These include, first and foremost my family for their support!
-  
-    - My friends within the Code Institute who go by the Slack handles @JoWings, @Eventret, @Miro, @saraloh, @JohnL3, @Sonya my Mentor, Nishant and tutors @niel_ci and @nakita_ci.  You guys have helped me to find my way, introduced me to using various online resources like ![Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ) and personally shared resources like UXD design templates- to help keep my thoughts on task and on track and help with my C9 coding environment.  Thank you ladies and gentlemen!
-  
-    - To create a login function for my game site, I adapted the tutorial from Pretty Printed to create an SQL dataset for storing my player names and passwords in an secure environment.  The tutorial which I followed was called: ![Build a User Login System With Flask-Login, Flask-WTForms, Flask-Bootstrap, and Flask-SQLAlchemy](https://youtu.be/8aTnmsDMldY).
+  ### _The issues found_
+
+  1. The riddle answer checks were too literal. eg `A clock` failed, but `Clock` passed.
+  2. The bottom of the masthead template gets cut-off, hiding my footer so it is no longer visible.
+  3. The web page itself doesn't permit a user to scroll down on smaller screens.
+  4. The ordering of the scores from highest to lowest was in random order.
+  5. Clicking the home button on the nav bar started the riddle game again, but didn't reset the score to 0.
+  6. The image on the index page was too big when seen on a mobile device.
+  7. The log in, log out and sign up nav links were disabled on certain pages by design, but still visible.
+  8. I had written in an overflow-x scroll-bar feature for riddles, which were sometimes too long to view on the screen.  User feedback was to remove this as it was too awkward to use on computers with smaller screens.
+  9. If a player closes the browser without logging out of the game, they remain in session, when they open game again.
+   _
+### _The fixes implemented_
+
+   1. I changed the checking system between player answer and riddle answer from the same as to is in. (from `==` to `ìs`).
+   2. I changed the masthead height to 100% and added overflow-y scroll. This was a very difficult fix to resolve, because it wasn't know what was causing the problem preventing vertical page scrolling.
+   3. I had been experimenting with the leader board code and had left the return resulting brackets when I shouldn't have.
+   4. In the @app.route('/') I added a line to the if statement which I use on the login decorator.  It creates a new player score, which is set at 0. So the player can play the game again without having to log out and log back in again.
+   5. I added a media queries for the main image as well as the leader board images for smaller screen sizes.
+   6. I implemented an if else flask function which uses session, to manage the navbar login, logout and sign-up nav links for the secure and insecure areas of the site.
+   7. I added a height auto to the riddles dialog box, so as to remove the need for the vertical scroll bars.
+   8. I haven't implemented a solution yet, to log a player out of the game, if they close the browser window. I am currently researching [Flask.session persisting after close browser(https://stackoverflow.com/questions/37227780/flask-session-persisting-after-close-brower).
+   
+
+## 6. Credits
+
+- I used Victorian Era Riddles that have been sourced with thanks from the [Gutenberg Project](https://www.gutenberg.org/).
+
+- There are loads of people that I want to give credit to.  These include, first and foremost my family for their support!
+
+- My friends within the Code Institute who go by the Slack handles @JoWings, @Eventret, @Miro, @saraloh, @JohnL3, @Sonya my Mentor, Nishant and tutors @niel_ci and @nakita_ci.  You guys have helped meto find my way, introduced me to using various online resources like [Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ) and personally shared resources like UXD design templates-to help keep my thoughts on task and on track and help with my C9 coding environment.  Thank you ladies and gentlemen!
+
+- To create a login function for my game site, I adapted the tutorial from Pretty Printed to create an SQL dataset for storing my player names and passwords in an secure environment.  The tutorial which I followed was called: [Build a User Login System With Flask-Login, Flask-WTForms, Flask-Bootstrap, and Flask-SQLAlchemy](https://youtu.be/8aTnmsDMldY).
     
 <h6><span class="text-muted">Milestone 3 project for the Code Institute <br />by Duncan Falconer, 2018</span></h6>
