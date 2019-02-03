@@ -13,72 +13,64 @@ The Game is designed to run on Heroku and will facilitate multiple players, play
 
 A leader-board will show the scores of players from highest to lowest.
 ## 2 .The UX Design:
-### 1. Strategy:
-1. Focus:
-    * My project is to create a game for lovers of old style  Victorian Era Riddles that have been sourced from the [**Gutenberg Project**](https://www.gutenberg.org/)
-2. User Needs:
-    - To provide a game that a player can log into, so that   they  will then be able to play by answering a number of  riddles. If a     riddle is answered wrong, the game will    respond with the    player's incorrect answer as well as   provide the correct answer    along with a hint for   answering the next questions.
-    - The player's score will be added each time they answer a riddle correctly.  When the game is finished, the player can see their final score along with the scores of other players.
-  
-3.  Business Objectives:
-    - To demonstrate my use of the Python programming language in a game for my graded projects portfolio.
- 
-### 2. Scope:
-1. Focus:
-    - Features of this design. The requirements of this project from the brief.
-2. Functional Specification:
-    1. The player must be able to use a    unique     player   name to play the     game.
-    2. The player must also be able to     respond     to a    riddle by being able to    type in an     answer.
-    3. There has to be process which checks    the    player's     answer and provides    feedback to them  about their    answer.
-    4. The play must be able to see their      score.
-    5. The player needs to be asked another      riddle.
-    6. The player needs to be able to see  the  scores of other    players along with  their own.
-    7. The player needs to be able to play     the     game    again.
-       
-3. Content Requirements:
-    1. The game needs a way for users to   create    a unique  user name; a login     facility.
-    2.  This is a riddle game, so it has to     have    a source    of riddles to ask.
-    3.  The player must be able to submit    their  answer, so a    answer field and  submit button     is needed.
-    4.  A logic engine is needed to check the     player's  answer to the correct answer   for a   riddle, with feedback     provided to     the player,     of a wrong or right         answer.
-    5.  The game has to increment the score     for     right   answers.    
-    6.  The game has to show a score board  with     the results    from other  players.
-### 3. Structure:
-1. Focus:
-   - What are the steps, the progression/flow of information throughout the game process?
+#### 1 Strategy
 
-2. Interactive Design:
-    1. The player login function -> is a data filter.  It is a process which manages and insures the  player uses a unique player name, or else the game wouldn't work properly.
-    2. The unique player is given a riddle to  answer.
-    3. If the answer is correct, the score is  added and they are given the next riddle.
-    4. If the answer is wrong, they are presented the wrong answer as well as  provided a hint.
-    5. When the last riddle is answered correctly, the player is shown a leader board  of all the players.
-    6. If the player wishes to quit the game at any time, they can log out, or play again by   selecting the Home button on the navigation bar.
-   
-3. Information Architecture:
-    - The processes of this game follows a:    
-        - *Start:* Riddle, Answer =    Right, Next Riddle + Score, Answer = Right,    Next Riddle + Score  +1, End
-        - *Start:* Riddle, Answer =   Wrong, Next Riddle, Answer = Right, Next  Riddle + Score +1, End
-    
-### 4. Skeleton:
-1. Focus:
-    1. How will the information be represented?
-    2. How will the user navigate to the   information and features?
-2. Interface Design:
-    - The best way to show the design, was as in the Wireframes.  See below.
-3. Navigational Design:
-    - The user follows prompts from the index page to either register or login to play the game.  Once in the game, the page will refresh each time an answer is input, which again prompts the player toward completion of the game.  This then ends with the player being brought to the leader-board.
-4. Information Design:
-    - The player is prompted by both text and imagery throughout their visit to the game.
-     
-### 5. Surface:
-1. Focus:
-    The focus is on the triangular layout of the   page, when viewed  on a large screen device.
-    
-    - To play the riddle game, a player will need  to register their name and then log into the game.   Information is laid out    clearly with little to no     other page distraction.
-2. Visual Design:
-    The Bootstrap 4 template used in this project  was from [Start Bootstrap - Coming Soon](https://startbootstrap.com/template-overviews/coming-soon/).   
-    
-    A    video background of an old style ticking  timepiece, marks the passage of time while the   player deliberates over the     answer to  a   riddle.  
+| Focus                                                       | User Needs                                                            | Business Objectives                             |
+|-------------------------------------------------------------|-----------------------------------------------------------------------|-------------------------------------------------|
+| What are you aiming to achieve?                             | To be able to play a simple game of riddles. | To demonstrate my coding ability with the use of simple user authentication. |
+|                                                             | To see the score for each played riddle. | Deploy sessions as well as basic security principles to insure the player can enjoy the game without the site breaking if tampered with. |
+| For whom?                                                   | To see the total score amongst other players on the leader-board.|  |
+| TARGET AUDIENCE                                             |  |  |
+
+
+
+
+#### 2 Scope
+
+| Focus                                                       | Functional Specification                                              | Content Requirements                            |
+|-------------------------------------------------------------|-----------------------------------------------------------------------|-------------------------------------------------|
+| |  My project is to create a game for lovers of old style  Victorian Era Riddles that have been sourced from the [**Gutenberg Project**](https://www.gutenberg.org/) | |
+| Which features?                                             | User name and authentication. | SQL database for username and encrypted password storage.  Flash messaging for user feedback with conditional style formatting. |
+| What’s on the table?                                        | View a riddle to be played. | A list of riddles, answers and imagery. |
+|                                                             | Submit an answer to a riddle and have it checked. | A form field for submitting an answer. |
+|                                                             | If the the answer is correct, to move on to the next riddle. | Flash messaging to inform the player of their progress. |
+|                                                             | If an answer is incorrect, to be provided with the correct answer.| Answer/Data validation check which shows the correct answer in a flash message. |
+|                                                             | To increment the player score for each correct answer given. | An internal score card, for logging the players score. |
+|                                                             | On completion of the riddles, to present a leader board of the top 5 scores. |  |
+|                                                             | Version control managed with Git & GitHub | A leader board which reads from all the players score cards. |
+
+
+
+#### 3 Structure
+
+| Focus                                                       | Interaction Design                                                           | Information Architecture                                                               |
+|-------------------------------------------------------------|------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| How is the information structured?                          | Where am I? / How did I get here? / What can I do here? / Where can I go?    | Organizational / Navigational schemas (tree / nested list / hub and spoke / dashboard) |
+|                                                             | User sign-up or login | Tree Structure |
+| How is it logically grouped?                                | Unsuccessful login prompts user to register first. | Start/home page|
+|                               							  | TThe user is asked a riddle.  If answered correctly, the next riddle is given. | Answer riddle, progress through all riddles, ending at leader board. |
+|                                                             | If the wrong answer is given, the correct answer is shown.  The user is then given a new riddle to answer. |  |
+|                                                             | Following the last riddle, the leader board ins shown. The player ban play again from the home button. |  |
+
+
+#### 4 Skeleton
+
+| Focus                                                       | Interface Design                                       | Navigational Design  | Information Design  |
+|-------------------------------------------------------------|--------------------------------------------------------|----------------------|---------------------|
+| How will the information be represented?                    | See wireframes                                         |    Flash messaging with conditional formatting                  |                     |
+| How will the user navigate to the information and features? | Home button and navbar links. |  | Title and informational typescripts |
+
+
+
+#### 5 Surface
+
+| Focus                                                       | Visual Design                       |
+|-------------------------------------------------------------|-------------------------------------|
+| What will the finished product look like?                   | The Bootstrap 4 template used in this project  was from [Start Bootstrap - Coming Soon](https://startbootstrap.com/template-overviews/coming-soon/). |
+| | A    video background of an old style ticking  timepiece, marks the passage of time while the   player deliberates over the     answer to  a   riddle. |
+|                                                             | I tried to use typography that works on both mobile and large screens. |
+| What colours, typography and design elements will be used?  | I worked with feedback from test users |
+
 
 ### 6. Wireframes:
 
@@ -94,9 +86,23 @@ A leader-board will show the scores of players from highest to lowest.
 
 
 
-## 3. Game construction:
-    1. Code Development
-   The project brief was to follow a a pattern of **Test Driven Development**.  A series of tests were written at the start of this project and then the run time function was written, based on the test.
+## 3. Game construction
+
+1. Tools used
+   * Written in VSCode
+   * Tested Chrome dev tools & VSCode debugger
+   * HTML and CSS checked with help from the Mark-up Validation Service
+   * Version management and test branches created in git
+   * Web deployment hosted on Heroku
+
+2. Reference Literature
+    * [Flask-Login](https://flask-login.readthedocs.io/en/latest/)
+    * [Flask-Session](Flask-Session)
+    * [Message Flashing](http://flask.pocoo.org/docs/1.0/patterns/flashing/)
+
+
+3. Code Development
+   The project brief was to follow a a pattern of **Test Driven Development**.  A series of tests were written at the start of this project and then the run time function was written, based on the test. I used user feedback to assist with identifying and debugging the code.
 
 Not all functions were written in this way and these will be followed up with tests.
 
@@ -286,27 +292,29 @@ def writeScore(username, score):
         2. Select New and Create new App.
         3. Create a App name, select the region.
             - then Create app.
+  
         4. Select Resources.
-            -  then select Find more add-ons.
+            - then select Find more add-ons.
             - Select Heroku Postgres.
             - Install Heroku Postgres, using the hobby plan.
-        5. Return to Personal menu then select ddeveloper72-riddle-me-this.
-        6. select Deploy 
+        
+        6. Return to Personal menu then select ddeveloper72-riddle-me-this.
+        7. select Deploy 
             - Note the deployment instructions.
+  
     2. From Cloud 9:
         1. Log in to Heroku: `$ heroku login`
         2. Verify the app name is present, created in step 1 above: `$ heroku apps`
-        3. Connect git to new app location on Heroku: `$ heroku git:remote -a ddeveloper72-riddle-me-this
- set git remote heroku to https://git.heroku.com/ddeveloper72-riddle-me-this.git`
-        1. Create the requirements file, defining the modules imported to Heroku: `sudo pip3 freeze --local > requirements.txt`
-        2. Create the proc file: `echo web: python run.py > Procfile`
-        3. Add all project files: `$ git add .`
-        4. Create a default message for the first commit to Heroku: `$ git commit -am "make it better- Use Heroku"`
-        5. Push the project to Heroku: `$ git push heroku master`
-        6. `$ heroku buildpacks:clear`
-        7. Push the project to Heroku `$ git push heroku master` and watch the installation log for errors.
-        8. Scale the app dynos for Heroku: `$ heroku ps:scale web=1`
-        9. Set run.py debug to false before publishing: 
+        3. Connect git to new app location on Heroku: `$ heroku git:remote -a ddeveloper72-riddle-me-this set git remote heroku to https://git.heroku.com/ddeveloper72-riddle-me-this.git`
+        4. Create the requirements file, defining the modules imported to Heroku: `sudo pip3 freeze --local > requirements.txt`
+        5. Create the proc file: `echo web: python run.py > Procfile`
+        6. Add all project files: `$ git add .`
+        7. Create a default message for the first commit to Heroku: `$ git commit -am "make it better- Use Heroku"`
+        8. Push the project to Heroku: `$ git push heroku master`
+        9. `$ heroku buildpacks:clear`
+        10. Push the project to Heroku `$ git push heroku master` and watch the installation log for errors.
+        11. Scale the app dynos for Heroku: `$ heroku ps:scale web=1`
+        12. Set run.py debug to false before publishing: 
             ```python
             if __name__ == '__main__':
              """
@@ -321,53 +329,63 @@ def writeScore(username, score):
 
         13.  Execute `$ git commit -m "Turned off server developer mode"`
         14.  Execute `$ git push heroku master`
-        14.  Save above changes to existing git profile `$ git push`
-    1. In Heroku - Part 2:
+        15.  Save above changes to existing git profile `$ git push`
+   
+    3. In Heroku - Part 2:
         1. Select Settings
             - Select Config Vars:
-            - set IP to 0.0.0.0
-            - set PORT to 5000
+            - set `IP`to `0.0.0.0`
+            - set `PORT` to `5000`
+            - set `SECRET_KEY` to `Some_Secret`
         2. Select More, beside Open app:
             - Click Restart all dynos.
         3. Click Open app
             - Select new tab, [Riddle Me This](https://ddeveloper72-riddle-me-this.herokuapp.com/)
-2. Credits:
-    - There are loads of people that I want to give credit to.  These include, first and foremeost my family for thier support!
-    - My friends withinn the Code Institute who go by the Slack handles @Eventret, @Miro, @saraloh, my Mentor, Nishant and tutors @niel_ci and @nakita_ci.  You guys have helped me to find my way to using various online resources like [Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ) and personally shared resources like UXD design templates- to help keep my thoughts on task and ontrack and help with my C9 coding environment.  Thank you ladies and gentlement!
-    - To create a login function for my game site, I adapted the tutorial from Pretty Printed to create an SQL datase for storing my player names and passwords in an secure environment.  The tutorial which I followed was called: [Build a User Login System With Flask-Login, Flask-WTForms, Flask-Bootstrap, and Flask-SQLAlchemy](https://youtu.be/8aTnmsDMldY).  
   
-3. Bugs & Debugging:
+2. Bugs & Debugging:
     - Development Testing:
-      * During developent, media responsiveness of the game was tested using Chrome dev tools to simulate different small and large screen devices.  
-      * I later shared my game with family and friends on WhatsApp so that they could follow the Heroku link to the game app and see the game on their mobile handsets.  In this way, I fould that I had to limit the sizes of my riddle images as well as title page images.  
-      * I found response issues when viewing the game when switiching between portrate and landscape modes in my development environment.  I was able to correct these by adding in media queries to my css file.
-      * When testing the game in multiplayer mode-  I created several player logins by running different browsers simultaineously.  The browsers that I used were:
+      * During development, media responsiveness of the game was tested using Chrome dev tools to simulate different small and large screen devices.  
+      * I later shared my game with family and friends on WhatsApp so that they could follow the Heroku link to the game app and see the game on their mobile handsets.  In this way, I found that I had to limit the sizes of my riddle images as well as title page images.  
+      * I found response issues when viewing the game when switching between portrait and landscape modes in my development environment.  I was able to correct these by adding in media queries to my sass file.
+      * When testing the game in multiplayer mode-  I created several player logins by running different browsers simultaneously.  The browsers and hardware that I used were:
       
         1.  Chrome
         2.  Firefox
         3.  Opra Browser
         4.  Internet Explorer
         5.  Edge
+        6.  Samsung Galaxy S5
+        7.  Samsung Galaxy S8+
       
     - Debugging Strategy:
       I thought that the best way to test this game was to run a beta test by putting the game on Heroku and then letting everyone in my college play it.  While doing so, I asked for feedback on the game. This is the feedback I got:
       1. The riddle answer checks were too literal. eg `A clock` failed, but `Clock` passed.
       2. The bottom of the masthead template gets cut-off, hiding my footer so it is no longer visible.
-      3. The ordering of the scores from highest to lowest was in random order.
-      4. Clicking the home button on the nav bar started the riddle game again, but didn't reset the score to 0.
-      5. The image on the index page was too big when seen on a mobile device.
-      6. If a player closes the browser without logging out of the game, they remain in session, when they open game again.
+      3. The web page itself doesn't permit a user to scroll down on smaller screens.
+      4. The ordering of the scores from highest to lowest was in random order.
+      5. Clicking the home button on the nav bar started the riddle game again, but didn't reset the score to 0.
+      6. The image on the index page was too big when seen on a mobile device.
+      7. The log in, log out and sign up nav links were disabled on certain pages by design, but still visible.
+      8. If a player closes the browser without logging out of the game, they remain in session, when they open game again.
    
    - The fixes:
       1. I changed the checking system between player answer and riddle answer from the same as to is in. (from `==` to `ìs`).
-      2. I still need to look at debugging the masthead template.
-      3. I had been experimenting with the leaderboard code and had left the return result in brackets when I shouldn't have.
+      2. I changed the masthead height to 100% and added overflow-y scroll. This was a very difficult fix to resolve, because it wasn't know what was causing the problem preventing vertical page scrolling.
+      3. I had been experimenting with the leader board code and had left the return result in brackets when I shouldn't have.
       4. In the @app.route('/') I added a line to the if statement which I use on the login decorator.  It creates a new player score, which is set at 0. So the player can play the game again without having to log out and log back in again.
-      5. I added a media query in the style.css to change the max-width for the image to 30% on a max screen width of 415px.
-      6. I haven't implemented a solution yet, to log a player out of the game, if they close the browser window. I am currently researching [Flask.session persisting after close browser](https://stackoverflow.com/questions/37227780/flask-session-persisting-after-close-browser). 
-4. Boilerplate 
+      5. I added a media queries for the main image as well as the leader board images for smaller screen sizes.
+      6. I implemented an if else flask function which uses session, to manage the navbar login, logout and sign-up nav links for the secure and insecure areas of the site.
+      7. I haven't implemented a solution yet, to log a player out of the game, if they close the browser window. I am currently researching [Flask.session persisting after close browser](https://stackoverflow.com/questions/37227780/flask-session-persisting-after-close-browser). 
+   
+3. Boilerplate 
     - [Start Bootstrap - Coming Soon](https://startbootstrap.com/template-overviews/coming-soon/) Free Bootstrap Themes and Templates
-5. Riddles
-    - Victorian Era Riddles that have been sourced from the [Gutenberg Project](https://www.gutenberg.org/).
+  
+4. Riddles
+    - I used Victorian Era Riddles that have been sourced with thanks from the [Gutenberg Project](https://www.gutenberg.org/).
 
+5. Credits:
+    - There are loads of people that I want to give credit to.  These include, first and foremost my family for their support!
+    - My friends within the Code Institute who go by the Slack handles @JoWings, @Eventret, @Miro, @saraloh, @JohnL3, @Sonya my Mentor, Nishant and tutors @niel_ci and @nakita_ci.  You guys have helped me to find my way to using various online resources like [Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ) and personally shared resources like UXD design templates- to help keep my thoughts on task and on track and help with my C9 coding environment.  Thank you ladies and gentlemen!
+    - To create a login function for my game site, I adapted the tutorial from Pretty Printed to create an SQL dataset for storing my player names and passwords in an secure environment.  The tutorial which I followed was called: [Build a User Login System With Flask-Login, Flask-WTForms, Flask-Bootstrap, and Flask-SQLAlchemy](https://youtu.be/8aTnmsDMldY).
+    
 <h6><span class="text-muted">Milestone 3 project for the Code Institute <br />by Duncan Falconer, 2018</span></h6>

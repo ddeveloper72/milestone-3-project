@@ -1,11 +1,19 @@
-#!/usr/bin/env python3.6
-"""
-The login system for players uses SQLAlchemy.  The code has been inspired from a tutorial by PrettyPrinted 
-to suit this game environment. 
-
-Exception handling was added to def signup() function to inform a player that a user name has already been taken.  
-The username for the game is pulled from the SQL database and pushed to the game.html
-"""
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# !/usr/bin/env python3.6  (for cloud9)                                                                    #                                           
+#                                                                                                          #
+# The login system for players uses SQLAlchemy.  The code has been inspired from a tutorial by             #
+# PrettyPrinted to suit this game environment.                                                             #
+#                                                                                                          #
+# Exception handling was added to def signup() function to inform a player that a user name has already    #
+# been taken.  # The username for the game is pulled from the SQL database and pushed to the game.html     #
+#                                                                                                          #
+# The glob module finds all the pathnames matching a specified pattern according to the rules used by      #
+# the Unix shell.                                                                                          #
+#                                                                                                          #
+# The shutil module offers a number of high-level operations on files and collections of files.            #
+# In particular, # functions are provided which support file copying and removal.                          #
+#                                                                                                          #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 import os
 import os.path
 os.path.exists('player-scores.txt')
