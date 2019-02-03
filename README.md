@@ -416,7 +416,7 @@ def writeScore(username, score):
 
 - There are loads of people that I want to give credit to.  These include, first and foremost my family for their support!
 
-- My friends within the Code Institute who go by the Slack handles @JoWings, @Eventret, @Miro, @saraloh, @JohnL3, @Sonya my Mentor, Nishant and tutors @niel_ci and @nakita_ci.  You guys have helped meto find my way, introduced me to using various online resources like [Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ) and personally shared resources like UXD design templates-to help keep my thoughts on task and on track and help with my C9 coding environment.  Thank you ladies and gentlemen!
+- My friends within the Code Institute who go by the Slack handles @JoWings, @Eventret, @Miro, @saraloh, @JohnL3, @Sonya my Mentor, Nishant and tutors @niel_ci and @nakita_ci and many others.  You guys have helped me to find my way, introduced me to using various online resources like [Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ) and personally shared resources like UXD design templates-to help keep my thoughts on task and on track and help with my C9 coding environment.  Thank you ladies and gentlemen!
 
 - To create a login function for my game site, I adapted the tutorial from Pretty Printed to create an SQL dataset for storing my player names and passwords in an secure environment.  The tutorial which I followed was called: [Build a User Login System With Flask-Login, Flask-WTForms, Flask-Bootstrap, and Flask-SQLAlchemy](https://youtu.be/8aTnmsDMldY).
     
