@@ -6,8 +6,8 @@
 ## [Riddle Me This](https://ddeveloper72-riddle-me-this.herokuapp.com/)
 ### by Duncan Falconer for the Code Institute, 2018
 
-1. The project brief can be found by clicking [here](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/brief.md)
-2. The project guidelines can be found by clicking [here](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/guidlines.md)
+1. The project brief can be found by clicking ![here](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/brief.md)
+2. The project guidelines can be found by clicking ![here](https://github.com/ddeveloper72/milestone-3-project/blob/master/static/readme/guidlines.md)
 
 ## 1. Project Goals:
 This project is all about having fun, while making a game which demonstrates Python as the backbone programming language.
@@ -99,9 +99,9 @@ A leader-board will show the scores of players from highest to lowest.
    * Web deployment hosted on Heroku
 
 2. Reference Literature
-    * [Flask-Login](https://flask-login.readthedocs.io/en/latest/)
-    * [Flask-Session](Flask-Session)
-    * [Message Flashing](http://flask.pocoo.org/docs/1.0/patterns/flashing/)
+    * ![Flask-Login](https://flask-login.readthedocs.io/en/latest/)
+    * ![Flask-Session](Flask-Session)
+    * ![Message Flashing](http://flask.pocoo.org/docs/1.0/patterns/flashing/)
 
 
 3. Code Development
@@ -289,7 +289,7 @@ def writeScore(username, score):
 
 
 ## 4. Deployment Instructions:
-1. Instructions for deployment to a hosing site: [Heroku](https://www.heroku.com/)
+1. Instructions for deployment to a hosing site: ![Heroku](https://www.heroku.com/)
     1. In Heroku - Part 1:
         1. Log into Heroku
         2. Select New and Create new App.
@@ -378,7 +378,7 @@ def writeScore(username, score):
       4. In the @app.route('/') I added a line to the if statement which I use on the login decorator.  It creates a new player score, which is set at 0. So the player can play the game again without having to log out and log back in again.
       5. I added a media queries for the main image as well as the leader board images for smaller screen sizes.
       6. I implemented an if else flask function which uses session, to manage the navbar login, logout and sign-up nav links for the secure and insecure areas of the site.
-      7. I haven't implemented a solution yet, to log a player out of the game, if they close the browser window. I am currently researching [Flask.session persisting after close browser](https://stackoverflow.com/questions/37227780/flask-session-persisting-after-close-browser). 
+      7. I haven't implemented a solution yet, to log a player out of the game, if they close the browser window. I am currently researching ![Flask.session persisting after close browser](https://stackoverflow.com/questions/37227780/flask-session-persisting-after-close-browser). 
    
 3. Boilerplate 
     - [Start Bootstrap - Coming Soon](https://startbootstrap.com/template-overviews/coming-soon/) Free Bootstrap Themes and Templates
@@ -388,7 +388,9 @@ def writeScore(username, score):
 
 5. Credits:
     - There are loads of people that I want to give credit to.  These include, first and foremost my family for their support!
-    - My friends within the Code Institute who go by the Slack handles @JoWings, @Eventret, @Miro, @saraloh, @JohnL3, @Sonya my Mentor, Nishant and tutors @niel_ci and @nakita_ci.  You guys have helped me to find my way to using various online resources like [Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ) and personally shared resources like UXD design templates- to help keep my thoughts on task and on track and help with my C9 coding environment.  Thank you ladies and gentlemen!
-    - To create a login function for my game site, I adapted the tutorial from Pretty Printed to create an SQL dataset for storing my player names and passwords in an secure environment.  The tutorial which I followed was called: [Build a User Login System With Flask-Login, Flask-WTForms, Flask-Bootstrap, and Flask-SQLAlchemy](https://youtu.be/8aTnmsDMldY).
+  
+    - My friends within the Code Institute who go by the Slack handles @JoWings, @Eventret, @Miro, @saraloh, @JohnL3, @Sonya my Mentor, Nishant and tutors @niel_ci and @nakita_ci.  You guys have helped me to find my way, introduced me to using various online resources like ![Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ) and personally shared resources like UXD design templates- to help keep my thoughts on task and on track and help with my C9 coding environment.  Thank you ladies and gentlemen!
+  
+    - To create a login function for my game site, I adapted the tutorial from Pretty Printed to create an SQL dataset for storing my player names and passwords in an secure environment.  The tutorial which I followed was called: ![Build a User Login System With Flask-Login, Flask-WTForms, Flask-Bootstrap, and Flask-SQLAlchemy](https://youtu.be/8aTnmsDMldY).
     
 <h6><span class="text-muted">Milestone 3 project for the Code Institute <br />by Duncan Falconer, 2018</span></h6>
